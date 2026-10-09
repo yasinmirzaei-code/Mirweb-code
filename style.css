@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #000; /* fallback color until the video loads */
+}
+
+/* ---------- Background video ---------- */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;   /* fallback for older browsers */
+    height: 100dvh;  /* correct height on mobile browsers */
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Dark overlay for text readability (optional) */
+.video-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Header ---------- */
+header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* ---------- Logo (image) ---------- */
+.MIRWEB {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.MIRWEB img {
+    display: block;
+    height: 150px;   /* same height as the glass navigation */
+    width: auto;    /* keeps the original proportions */
+}
+
+/* ---------- Glass navigation ---------- */
+.glass-nav {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 999px;
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    /* Soft entrance animation */
+    animation: navFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes navFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.96);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.glass-nav a {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: 999px;
+}
+
+/* The moving glass bubble */
+.nav-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 999px;
+    pointer-events: none;
+    opacity: 0;
+
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+    transition:
+        transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1),
+        width 0.5s cubic-bezier(0.34, 1.4, 0.64, 1),
+        height 0.5s cubic-bezier(0.34, 1.4, 0.64, 1),
+        opacity 0.3s ease;
+}
+
+/* ---------- Hamburger button (hidden on desktop) ---------- */
+.menu-toggle {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle span {
+    position: absolute;
+    left: 10px;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.25s ease,
+        top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.35s ease;
+}
+
+.menu-toggle span:nth-child(1) { top: 14px; }
+.menu-toggle span:nth-child(2) { top: 21px; width: 16px; }
+.menu-toggle span:nth-child(3) { top: 28px; }
+
+/* Turns into an X when open */
+.menu-toggle.open span:nth-child(1) {
+    top: 21px;
+    transform: rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    width: 24px;
+}
+.menu-toggle.open span:nth-child(3) {
+    top: 21px;
+    transform: rotate(-45deg);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablets and small laptops */
+@media (max-width: 900px) {
+    .MIRWEB {
+        left: 30px;
+    }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    header {
+        top: 12px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+    }
+
+    .MIRWEB {
+        position: static;
+        transform: none;
+    }
+
+    .MIRWEB img {
+        height: 100px;   /* logo height on phones */
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Same glass navigation, opened as a dropdown */
+    .glass-nav {
+        position: absolute;
+        top: 100%;
+        left: 16px;
+        right: 16px;
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 2px;
+        padding: 8px;
+        border-radius: 28px;
+        transform-origin: top right;
+
+        /* Hidden by default */
+        animation: none;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-12px) scale(0.92);
+        filter: blur(8px);
+        transition:
+            opacity 0.4s ease,
+            transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.4s ease,
+            visibility 0.4s;
+    }
+
+    .glass-nav.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+
+    /* Links slide in one after another */
+    .glass-nav a {
+        text-align: center;
+        font-size: 16px;
+        padding: 14px 20px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+            opacity 0.4s ease,
+            transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+            background 0.25s ease;
+    }
+
+    .glass-nav.open a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .glass-nav.open a:nth-child(2) { transition-delay: 0.08s; }
+    .glass-nav.open a:nth-child(3) { transition-delay: 0.15s; }
+    .glass-nav.open a:nth-child(4) { transition-delay: 0.22s; }
+
+    .glass-nav a.active {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* The sliding bubble is not needed on phones */
+    .nav-bubble {
+        display: none;
+    }
+}
