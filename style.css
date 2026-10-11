@@ -3,7 +3,6 @@
     --font-heading: "Syne", Arial, Helvetica, sans-serif;
     --font-body: "Inter", Arial, Helvetica, sans-serif;
     --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
-    --scroll-p: 0;     /* scroll progress from 0 to 1, updated by JavaScript */
 }
 
 * {
@@ -16,7 +15,6 @@ html {
 
 html, body {
     margin: 0;
-    height: 100%;
 }
 
 body {
@@ -33,15 +31,13 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;   /* fallback for older browsers */
-    height: 100dvh;  /* correct height on mobile browsers */
+    height: 100vh;
+    height: 100lvh;  /* stable height: does not change when the mobile address bar moves */
     z-index: -1;
     overflow: hidden;
 }
 
 .video-bg video {
-    position: relative;
-    z-index: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -62,17 +58,23 @@ body {
     }
 }
 
-/* Dark and blur layer that fades in while scrolling */
+/* Dark layer that fades in while scrolling (--scroll-p is set by JavaScript) */
 .video-bg::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 1;
     background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    opacity: var(--scroll-p);
+    opacity: var(--scroll-p, 0);
     will-change: opacity;
+}
+
+/* Extra blur on desktop only (too heavy for phones) */
+@media (hover: hover) and (pointer: fine) {
+    .video-bg::before {
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
 }
 
 /* Dark overlay for text readability (stronger on the left) */
@@ -254,7 +256,7 @@ header > * {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;   /* stable height on mobile browsers */
     display: flex;
     align-items: center;
     padding: calc(var(--logo-h) + 40px) 60px 60px;
@@ -262,6 +264,7 @@ header > * {
 
 .hero-content {
     max-width: 760px;
+    will-change: opacity, transform;
 }
 
 /* Small tag with a growing line */
@@ -403,6 +406,18 @@ header > * {
     }
 }
 
+/* Light version without blur (used on phones and tablets) */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(26px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Scroll hint at the bottom of the hero */
 .scroll-hint {
     position: absolute;
@@ -448,7 +463,7 @@ header > * {
 .section {
     position: relative;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;   /* stable height on mobile browsers */
     display: flex;
     align-items: center;
     padding: 140px 60px;
@@ -663,11 +678,9 @@ header > * {
         visibility: hidden;
         pointer-events: none;
         transform: translateY(-12px) scale(0.92);
-        filter: blur(8px);
         transition:
             opacity 0.4s ease,
             transform 0.55s var(--ease-cinema),
-            filter 0.4s ease,
             visibility 0.4s;
     }
 
@@ -676,7 +689,6 @@ header > * {
         visibility: visible;
         pointer-events: auto;
         transform: translateY(0) scale(1);
-        filter: blur(0);
     }
 
     /* Links slide in one after another */
@@ -731,17 +743,17 @@ header > * {
 
 /* Phones */
 @media (max-width: 600px) {
-    /* Smaller video at the top, fading out at the bottom */
+    /* Smaller video at the top, softly faded into black below it */
     .video-bg video {
         height: 55%;
         object-fit: cover;
         object-position: center center;
-        -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-        mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
     }
 
     .video-bg::after {
-        background: rgba(0, 0, 0, 0.25);
+        background:
+            linear-gradient(to bottom, transparent 30%, #000 55%),
+            linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
     }
 
     /* Text sits in the empty space below the video */
@@ -807,10 +819,8 @@ header > * {
         line-height: 1.65;
     }
 
-    /* Lighter reveal effect for smoother scrolling on phones */
     .reveal {
         transform: translateY(24px);
-        filter: blur(6px);
     }
 
     /* Compact cards: number on the left, text on the right */
@@ -825,8 +835,6 @@ header > * {
         row-gap: 6px;
         padding: 18px 20px;
         border-radius: 20px;
-        backdrop-filter: blur(10px) saturate(140%);
-        -webkit-backdrop-filter: blur(10px) saturate(140%);
     }
 
     .card-number {
@@ -854,7 +862,50 @@ header > * {
 
     .card.in-view:active {
         transform: scale(0.98);
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
+    }
+}
+
+/* ---------- Performance mode: phones, tablets and touch devices ---------- */
+@media (max-width: 1000px), (hover: none) {
+    /* No backdrop blur: it is recalculated every frame over the playing video */
+    .glass-nav,
+    .hero-btn,
+    .card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .glass-nav {
+        background: rgba(20, 20, 20, 0.62);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-btn {
+        background: rgba(255, 255, 255, 0.14);
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* No blur filters in animations */
+    .hero-tag,
+    .hero-text,
+    .hero-btn,
+    .scroll-hint,
+    .MIRWEB img {
+        animation-name: fadeUp;
+    }
+
+    .hero-content h1 {
+        filter: none;
+    }
+
+    .reveal,
+    .reveal.in-view {
+        filter: none;
     }
 }
 

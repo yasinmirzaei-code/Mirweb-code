@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const nav = document.querySelector('.glass-nav');
     const menuToggle = document.querySelector('.menu-toggle');
+    const videoBg = document.querySelector('.video-bg');
+    const heroContent = document.querySelector('.hero-content');
 
     if (!nav) {
         console.error('Element .glass-nav not found');
@@ -10,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const links = nav.querySelectorAll('a');
     const bubble = nav.querySelector('.nav-bubble');
     let activeLink = nav.querySelector('a.active') || links[0];
+
+    let viewportH = window.innerHeight;
+    let lastWidth = window.innerWidth;
 
     /* ---------- Sliding bubble (desktop) ---------- */
     function moveBubbleTo(el) {
@@ -78,8 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', closeMenu);
     });
 
+    // Mobile browsers fire resize when the address bar hides or shows.
+    // Only react when the width really changes.
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 1000) {
+        if (window.innerWidth === lastWidth) return;
+
+        lastWidth = window.innerWidth;
+        viewportH = window.innerHeight;
+
+        if (lastWidth > 1000) {
             closeMenu();
         }
         moveBubbleTo(activeLink);
@@ -127,22 +139,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ---------- Scroll progress: fades the video and the hero content ---------- */
-    const heroContent = document.querySelector('.hero-content');
     let ticking = false;
+    let lastProgress = -1;
 
     function updateScroll() {
-        const progress = Math.min(window.scrollY / (window.innerHeight * 0.9), 1);
+        ticking = false;
 
-        // Used by CSS to darken and blur the background video
-        document.documentElement.style.setProperty('--scroll-p', progress.toFixed(3));
+        const raw = Math.min(window.scrollY / (viewportH * 0.9), 1);
+        const progress = Math.round(raw * 100) / 100;
+
+        // Nothing changed: skip all DOM work
+        if (progress === lastProgress) return;
+        lastProgress = progress;
+
+        // The variable is set only on the video container (not on the whole page)
+        if (videoBg) {
+            videoBg.style.setProperty('--scroll-p', String(progress));
+        }
 
         if (heroContent) {
             const heroProgress = Math.min(progress / 0.8, 1);
             heroContent.style.opacity = String(1 - heroProgress);
-            heroContent.style.transform = 'translateY(' + (heroProgress * -60) + 'px)';
+            heroContent.style.transform =
+                'translate3d(0, ' + (heroProgress * -60) + 'px, 0)';
         }
-
-        ticking = false;
     }
 
     window.addEventListener('scroll', function () {
