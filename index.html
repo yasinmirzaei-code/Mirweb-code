@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRWEB</title>
+
+    <!-- Modern fonts: Syne (headings) + Inter (body text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
 <body>
 
-    <!-- Background video: keep this at the top of body -->
+    <!-- Background video -->
     <div class="video-bg">
         <video autoplay muted loop playsinline>
             <source src="VOLI5741.MP4" type="video/mp4">
@@ -19,8 +24,8 @@
     <!-- Header: logo, hamburger button, navigation -->
     <header>
         <a href="#" class="MIRWEB">
-    <img src="logo.png" alt="Website logo">
-</a>
+            <img src="logo.png" alt="Website logo">
+        </a>
 
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
@@ -35,14 +40,31 @@
             <a href="#">Portfolio</a>
             <a href="#">About Me</a>
             <a href="#">Contact</a>
-
         </nav>
     </header>
 
     <!-- Main content -->
     <section class="hero">
-        <!-- Anything you want to show on top of the video -->
+        <div class="hero-content">
+            <p class="hero-tag">Digital Solution</p>
+
+            <h1>
+                <span class="line"><span>Ideas into</span></span>
+                <span class="line"><span class="accent">Digital Reality</span></span>
+            </h1>
+
+            <p class="hero-text">
+                I design and develop modern websites, web applications &amp;
+                digital experiences that turn your ideas into real solutions.
+            </p>
+
+            <a href="#" class="hero-btn">
+                View My Work
+                <span class="arrow">&rarr;</span>
+            </a>
+        </div>
     </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
-

@@ -31,11 +31,18 @@ document.addEventListener('DOMContentLoaded', function () {
         moveBubbleTo(activeLink);
     });
 
+    // Wait for fonts so the bubble measures the final link sizes
     window.addEventListener('load', function () {
-        moveBubbleTo(activeLink);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(function () {
+                moveBubbleTo(activeLink);
+            });
+        } else {
+            moveBubbleTo(activeLink);
+        }
     });
 
-    /* ---------- Hamburger menu (mobile) ---------- */
+    /* ---------- Hamburger menu (tablet and phone) ---------- */
     if (!menuToggle) {
         console.error('Element .menu-toggle not found');
         return;
@@ -65,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 600) {
+        if (window.innerWidth > 1000) {
             closeMenu();
         }
         moveBubbleTo(activeLink);
