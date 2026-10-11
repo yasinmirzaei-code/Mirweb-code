@@ -1854,3 +1854,383 @@ header > * {
         transform: none;
     }
 }
+/* ================= About me ================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+        "card   stats"
+        "bio    journey"
+        "cv     journey"
+        "marq   marq";
+    gap: 28px 56px;
+    align-items: start;
+}
+
+.about-card     { grid-area: card; }
+.about-bio      { grid-area: bio; }
+.about-cv-wrap  { grid-area: cv; }
+.about-stats    { grid-area: stats; }
+.about-journey  { grid-area: journey; }
+.about-marq     { grid-area: marq; }
+
+/* Profile card (the whole glass card tilts on desktop) */
+.about-card-tilt {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.25s ease-out, border-color 0.3s ease;
+    will-change: transform;
+}
+
+.about-card-tilt:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.about-photo {
+    width: 120px;
+    height: 150px;
+    flex: none;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #1d1a3a;
+}
+
+.about-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-info {
+    min-width: 0;
+}
+
+.about-name {
+    margin: 0 0 4px;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.about-role {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    animation: aboutFloat 4s ease-in-out infinite;
+}
+
+@keyframes aboutFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-3px); }
+}
+
+.about-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border-radius: 50%;
+    background: #5DCAA5;
+}
+
+.about-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #5DCAA5;
+    animation: aboutPulse 2s ease-out infinite;
+}
+
+@keyframes aboutPulse {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Bio */
+.about-bio {
+    max-width: 520px;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* Download CV */
+.about-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.4s var(--ease-cinema);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.about-cv:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+}
+
+.about-cv svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Stats */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.about-stat {
+    padding: 20px 22px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.about-stat-num {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.about-stat-label {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Journey */
+.about-journey-title {
+    margin: 0 0 20px;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.about-list {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 24px;
+    list-style: none;
+}
+
+.about-list::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.about-step {
+    position: relative;
+    margin: 0 0 24px;
+}
+
+.about-step:last-child {
+    margin-bottom: 0;
+}
+
+.about-step::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.about-step-year {
+    margin: 0 0 2px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.about-step-text {
+    margin: 0;
+    font-size: 17px;
+}
+
+/* Tools strip */
+.about-marq {
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.about-track {
+    display: flex;
+    width: max-content;
+    animation: aboutScroll 26s linear infinite;
+}
+
+.about-marq:hover .about-track {
+    animation-play-state: paused;
+}
+
+@keyframes aboutScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.about-set {
+    display: flex;
+    gap: 12px;
+    padding-right: 12px;
+}
+
+.about-chip {
+    flex: none;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Tablets and phones: one column */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "card"
+            "bio"
+            "marq"
+            "stats"
+            "journey"
+            "cv";
+        gap: 24px;
+    }
+
+    .about-bio {
+        max-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-grid {
+        gap: 20px;
+    }
+
+    .about-card-tilt {
+        gap: 14px;
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .about-photo {
+        width: 104px;
+        height: 128px;
+        border-radius: 14px;
+    }
+
+    .about-name {
+        font-size: 20px;
+    }
+
+    .about-role {
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .about-pill {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .about-bio {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .about-stats {
+        gap: 12px;
+    }
+
+    .about-stat {
+        padding: 14px 16px;
+        border-radius: 16px;
+    }
+
+    .about-stat-num {
+        font-size: 26px;
+    }
+
+    .about-step-text {
+        font-size: 15px;
+    }
+
+    .about-chip {
+        padding: 6px 16px;
+        font-size: 13px;
+    }
+
+    .about-cv {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Performance mode for phones and touch devices (no blur) */
+@media (max-width: 1000px), (hover: none) {
+    .about-card-tilt,
+    .about-stat {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Reduced motion: stop the looping animations */
+@media (prefers-reduced-motion: reduce) {
+    .about-track,
+    .about-pill,
+    .about-dot::after {
+        animation: none !important;
+    }
+}
