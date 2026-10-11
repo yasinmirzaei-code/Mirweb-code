@@ -20,12 +20,14 @@
             <source src="VOLI5741.MP4" type="video/mp4">
         </video>
     </div>
-<a href="#home" class="MIRWEB">
-            <img src="logo.png" alt="Website logo">
-        </a>
-    <!-- Header: logo, hamburger button, navigation -->
-    <header>
 
+    <!-- Logo: outside the header, so it scrolls away with the first page -->
+    <a href="#home" class="MIRWEB">
+        <img src="logo.png" alt="Website logo">
+    </a>
+
+    <!-- Header: hamburger button and navigation -->
+    <header>
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
@@ -57,7 +59,7 @@
                 digital experiences that turn your ideas into real solutions.
             </p>
 
-            <a href="#services" class="hero-btn">
+            <a href="#portfolio" class="hero-btn">
                 View My Work
                 <span class="arrow">&rarr;</span>
             </a>
@@ -69,7 +71,7 @@
         </div>
     </section>
 
-    <!-- Second section -->
+    <!-- Services -->
     <section class="section" id="services">
         <div class="section-inner">
             <p class="section-tag reveal">What I Do</p>
@@ -103,6 +105,280 @@
                     <p>Smooth animations and details that turn a simple page into a memorable experience.</p>
                 </article>
             </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section" id="portfolio">
+        <div class="section-inner">
+            <p class="section-tag reveal">Selected work</p>
+
+            <h2 class="section-title">
+                <span class="line"><span>Websites that</span></span>
+                <span class="line"><span class="accent">speak for me</span></span>
+            </h2>
+
+            <div class="pf-toolbar reveal">
+                <p class="pf-count">4 websites &middot; 2025 to 2026</p>
+
+                <div class="pf-views">
+                    <button type="button" class="pf-view on" data-view="grid" aria-label="Grid view" aria-pressed="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
+                    </button>
+                    <button type="button" class="pf-view" data-view="list" aria-label="List view" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="pf-grid" id="pf-grid">
+
+                <!--
+                    HOW TO EDIT A PROJECT:
+                    1. Change the data-* values (title, year, role, tags, description, url).
+                    2. Replace the <svg> sample art with your own screenshot:
+                       <img src="projects/my-project.jpg" alt="Project name">
+                -->
+
+                <article class="pf-card wide reveal sel" tabindex="0" style="--delay: 0s"
+                    data-title="Aurora Studio" data-year="2026" data-role="Design and development"
+                    data-tags="Web design,Development,Animation"
+                    data-desc="A cinematic brand website for a creative studio, with smooth scroll animations and a fast, modern feel."
+                    data-url="#">
+                    <div class="pf-img">
+                        <svg viewBox="0 0 600 214" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
+                            <rect width="600" height="214" fill="#1d1a3a"/>
+                            <rect x="90" y="24" width="420" height="166" rx="12" fill="#2b2760"/>
+                            <rect x="90" y="24" width="420" height="26" rx="12" fill="#3c3489"/>
+                            <circle cx="110" cy="37" r="4" fill="#AFA9EC"/>
+                            <circle cx="124" cy="37" r="4" fill="#AFA9EC"/>
+                            <circle cx="138" cy="37" r="4" fill="#AFA9EC"/>
+                            <rect x="116" y="76" width="170" height="12" rx="6" fill="#CECBF6"/>
+                            <rect x="116" y="98" width="120" height="8" rx="4" fill="#7F77DD"/>
+                            <rect x="116" y="132" width="70" height="22" rx="11" fill="#7F77DD"/>
+                            <circle cx="410" cy="124" r="44" fill="#534AB7"/>
+                            <circle cx="428" cy="108" r="22" fill="#AFA9EC"/>
+                        </svg>
+                        <span class="pf-num">01</span>
+                    </div>
+                    <div class="pf-meta">
+                        <span class="pf-rownum">01</span>
+                        <div class="pf-txt">
+                            <p class="pf-cat">Web design &middot; 2026</p>
+                            <p class="pf-title">Aurora Studio</p>
+                        </div>
+                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </div>
+                </article>
+
+                <article class="pf-card reveal" tabindex="0" style="--delay: 0.12s"
+                    data-title="Atlas Travel" data-year="2026" data-role="Design and development"
+                    data-tags="Web design,UX,Responsive"
+                    data-desc="A travel booking website with a clean search experience that works great on every screen."
+                    data-url="#">
+                    <div class="pf-img">
+                        <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
+                            <rect width="380" height="280" fill="#3a1e12"/>
+                            <circle cx="270" cy="90" r="38" fill="#D85A30"/>
+                            <polygon points="0,250 110,120 190,200 250,150 380,250 380,280 0,280" fill="#993C1D"/>
+                            <polygon points="0,280 140,190 260,280" fill="#712B13"/>
+                            <rect x="70" y="206" width="240" height="38" rx="19" fill="#F5C4B3"/>
+                            <circle cx="290" cy="225" r="11" fill="#D85A30"/>
+                        </svg>
+                        <span class="pf-num">02</span>
+                    </div>
+                    <div class="pf-meta">
+                        <span class="pf-rownum">02</span>
+                        <div class="pf-txt">
+                            <p class="pf-cat">Web design &middot; 2026</p>
+                            <p class="pf-title">Atlas Travel</p>
+                        </div>
+                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </div>
+                </article>
+
+                <article class="pf-card reveal" tabindex="0" style="--delay: 0.12s"
+                    data-title="Nimbus Agency" data-year="2025" data-role="Design and development"
+                    data-tags="Web design,Branding,Development"
+                    data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
+                    data-url="#">
+                    <div class="pf-img">
+                        <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
+                            <rect width="380" height="280" fill="#0f2e2a"/>
+                            <rect x="50" y="30" width="280" height="220" rx="12" fill="#085041"/>
+                            <rect x="50" y="30" width="280" height="24" rx="12" fill="#0F6E56"/>
+                            <circle cx="70" cy="42" r="4" fill="#9FE1CB"/>
+                            <circle cx="84" cy="42" r="4" fill="#9FE1CB"/>
+                            <circle cx="98" cy="42" r="4" fill="#9FE1CB"/>
+                            <rect x="70" y="70" width="240" height="60" rx="8" fill="#1D9E75"/>
+                            <rect x="70" y="146" width="150" height="10" rx="5" fill="#9FE1CB"/>
+                            <rect x="70" y="164" width="110" height="8" rx="4" fill="#5DCAA5"/>
+                            <rect x="70" y="190" width="112" height="46" rx="8" fill="#0F6E56"/>
+                            <rect x="198" y="190" width="112" height="46" rx="8" fill="#0F6E56"/>
+                        </svg>
+                        <span class="pf-num">03</span>
+                    </div>
+                    <div class="pf-meta">
+                        <span class="pf-rownum">03</span>
+                        <div class="pf-txt">
+                            <p class="pf-cat">Web design &middot; 2025</p>
+                            <p class="pf-title">Nimbus Agency</p>
+                        </div>
+                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </div>
+                </article>
+
+                <article class="pf-card wide reveal" tabindex="0" style="--delay: 0.24s"
+                    data-title="Pulse Store" data-year="2025" data-role="Design and development"
+                    data-tags="E-commerce,UX,Performance"
+                    data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
+                    data-url="#">
+                    <div class="pf-img">
+                        <svg viewBox="0 0 600 214" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
+                            <rect width="600" height="214" fill="#10243a"/>
+                            <rect x="40" y="24" width="520" height="22" rx="11" fill="#185FA5"/>
+                            <rect x="40" y="64" width="112" height="96" rx="12" fill="#185FA5"/>
+                            <rect x="176" y="64" width="112" height="96" rx="12" fill="#378ADD"/>
+                            <rect x="312" y="64" width="112" height="96" rx="12" fill="#85B7EB"/>
+                            <rect x="448" y="64" width="112" height="96" rx="12" fill="#B5D4F4"/>
+                            <rect x="40" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
+                            <rect x="176" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
+                            <rect x="312" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
+                            <rect x="448" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
+                        </svg>
+                        <span class="pf-num">04</span>
+                    </div>
+                    <div class="pf-meta">
+                        <span class="pf-rownum">04</span>
+                        <div class="pf-txt">
+                            <p class="pf-cat">Web design &middot; 2025</p>
+                            <p class="pf-title">Pulse Store</p>
+                        </div>
+                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Details of the selected project -->
+            <div class="pf-detail reveal" id="pf-detail">
+                <div class="pf-detail-top">
+                    <span class="pf-detail-count" id="pf-d-count">01 / 04</span>
+                    <div class="pf-detail-nav">
+                        <button type="button" class="pf-nav" id="pf-prev" aria-label="Previous project">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                        </button>
+                        <button type="button" class="pf-nav" id="pf-next" aria-label="Next project">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pf-detail-body" id="pf-d-body">
+                    <h3 id="pf-d-title"></h3>
+                    <p class="pf-d-desc" id="pf-d-desc"></p>
+                    <div class="pf-tags" id="pf-d-tags"></div>
+                    <p class="pf-detail-meta"><span id="pf-d-role"></span> &middot; <span id="pf-d-year"></span></p>
+                    <a href="#" class="pf-go" id="pf-d-link">
+                        View project
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-contact" id="contact">
+        <div class="section-inner">
+
+            <div class="contact-cta reveal">
+                <div>
+                    <p class="contact-cta-title">Have a project in mind?</p>
+                    <p class="contact-cta-text">Tell me about your idea and I will get back to you.</p>
+                </div>
+                <button type="button" class="pf-go" id="contact-toggle" aria-expanded="false" aria-controls="contact-panel">
+                    Let's talk
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+
+            <div class="contact-panel" id="contact-panel">
+                <div class="contact-panel-inner">
+                    <div class="contact-card">
+
+                        <button type="button" class="contact-close" id="contact-close" aria-label="Close form">&times;</button>
+
+                        <form id="contact-form" novalidate>
+                            <h3 class="contact-title">Let's talk about your project</h3>
+                            <p class="contact-sub">Fill in the form and I will contact you as soon as possible.</p>
+
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="f-name">Your name</label>
+                                    <input id="f-name" name="name" type="text" autocomplete="name" placeholder="John Smith" maxlength="80">
+                                    <p class="field-error" id="err-name" aria-live="polite"></p>
+                                </div>
+
+                                <div class="field">
+                                    <label for="f-email">Email</label>
+                                    <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" maxlength="120">
+                                    <p class="field-error" id="err-email" aria-live="polite"></p>
+                                </div>
+
+                                <div class="field full">
+                                    <label for="f-phone">Phone number</label>
+                                    <div class="phone-row">
+                                        <button type="button" class="cc-btn" id="cc-btn" aria-haspopup="true" aria-expanded="false" aria-controls="cc-wrap" aria-label="Choose country code">
+                                            <span class="cc-iso" id="cc-iso">US</span>
+                                            <span id="cc-dial">+1</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                        </button>
+
+                                        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="501 234 567" maxlength="20">
+
+                                        <div class="cc-wrap" id="cc-wrap">
+                                            <input type="text" class="cc-search" id="cc-search" placeholder="Search country or code" autocomplete="off" aria-label="Search country">
+                                            <ul class="cc-list" id="cc-list"></ul>
+                                        </div>
+                                    </div>
+                                    <p class="field-error" id="err-phone" aria-live="polite"></p>
+                                </div>
+
+                                <div class="field full">
+                                    <label for="f-message">Tell me about your project</label>
+                                    <textarea id="f-message" name="message" placeholder="What kind of website do you need? Add your goals, pages, deadline or anything else that helps." maxlength="2000"></textarea>
+                                    <p class="field-error" id="err-message" aria-live="polite"></p>
+                                </div>
+                            </div>
+
+                            <!-- Spam trap: real visitors never see or fill this field -->
+                            <input type="text" name="_gotcha" id="f-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                            <div class="form-actions">
+                                <p class="form-note">Your details are only used to reply to your message.</p>
+                                <button type="submit" class="pf-go" id="f-submit">
+                                    Send message
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                                </button>
+                            </div>
+
+                            <p class="form-status" id="form-status" role="alert"></p>
+                        </form>
+
+                        <div class="form-success" id="form-success" hidden>
+                            <div class="success-mark">
+                                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                            </div>
+                            <h3 class="contact-title">Thank you, <span id="success-name"></span></h3>
+                            <p class="contact-sub">Your message has been sent. I will contact you very soon.</p>
+                            <button type="button" class="pf-go" id="send-another">Send another message</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
