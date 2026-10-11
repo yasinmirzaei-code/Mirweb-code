@@ -15,6 +15,7 @@ html {
 
 html, body {
     margin: 0;
+    overscroll-behavior-y: none;   /* no elastic bounce at the top and bottom */
 }
 
 body {
@@ -86,30 +87,13 @@ body {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.15) 70%);
 }
 
-/* ---------- Header ---------- */
-header {
-    position: fixed;
-    top: 10px;
-    left: 0;
-    width: 100%;
-    height: var(--logo-h);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    pointer-events: none;   /* header area does not block clicks below it */
-}
-
-header > * {
-    pointer-events: auto;   /* but logo, nav and button stay clickable */
-}
-
-/* ---------- Logo (image) ---------- */
+/* ---------- Logo (image): scrolls away with the first page ---------- */
 .MIRWEB {
     position: absolute;
+    top: 10px;
     left: 60px;
-    top: 50%;
-    transform: translateY(-50%);
+    height: var(--logo-h);
+    z-index: 11;
     margin: 0;
     display: flex;
     align-items: center;
@@ -131,6 +115,29 @@ header > * {
         opacity: 1;
         filter: blur(0);
     }
+}
+
+/* ---------- Header (fixed: navigation and hamburger button) ---------- */
+header {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: var(--logo-h);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;   /* header area does not block clicks below it */
+
+    /* Own GPU layer: keeps the header perfectly still while scrolling */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+header > * {
+    pointer-events: auto;   /* but nav and button stay clickable */
 }
 
 /* ---------- Glass navigation ---------- */
@@ -418,6 +425,12 @@ header > * {
     }
 }
 
+/* Fade only, no movement (used for the logo on phones) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 /* Scroll hint at the bottom of the hero */
 .scroll-hint {
     position: absolute;
@@ -645,14 +658,13 @@ header > * {
         --logo-h: 100px;   /* logo height on tablets and phones */
     }
 
-    header {
-        justify-content: space-between;
-        padding: 0 16px;
+    .MIRWEB {
+        left: 16px;
     }
 
-    .MIRWEB {
-        position: static;
-        transform: none;
+    header {
+        justify-content: flex-end;   /* hamburger button on the right */
+        padding: 0 16px;
     }
 
     .menu-toggle {
@@ -894,9 +906,12 @@ header > * {
     .hero-tag,
     .hero-text,
     .hero-btn,
-    .scroll-hint,
-    .MIRWEB img {
+    .scroll-hint {
         animation-name: fadeUp;
+    }
+
+    .MIRWEB img {
+        animation-name: fadeIn;   /* the logo never moves */
     }
 
     .hero-content h1 {
