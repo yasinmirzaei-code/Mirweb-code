@@ -889,8 +889,15 @@ header > * {
     }
 
     .glass-nav {
-        background: rgba(20, 20, 20, 0.62);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        background: rgba(12, 12, 12, 0.85);
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Blur is enabled only while the menu is open */
+    .glass-nav.open {
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
     }
 
     .hero-btn {
