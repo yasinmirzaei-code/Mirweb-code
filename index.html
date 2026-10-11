@@ -23,7 +23,7 @@
 
     <!-- Header: logo, hamburger button, navigation -->
     <header>
-        <a href="#" class="MIRWEB">
+        <a href="#home" class="MIRWEB">
             <img src="logo.png" alt="Website logo">
         </a>
 
@@ -35,16 +35,16 @@
 
         <nav class="glass-nav">
             <span class="nav-bubble"></span>
-            <a href="#" class="active">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Portfolio</a>
-            <a href="#">About Me</a>
-            <a href="#">Contact</a>
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <!-- Main content -->
-    <section class="hero">
+    <!-- First section -->
+    <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-tag">Digital Solution</p>
 
@@ -58,10 +58,52 @@
                 digital experiences that turn your ideas into real solutions.
             </p>
 
-            <a href="#" class="hero-btn">
+            <a href="#services" class="hero-btn">
                 View My Work
                 <span class="arrow">&rarr;</span>
             </a>
+        </div>
+
+        <div class="scroll-hint">
+            <span class="bar"></span>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- Second section -->
+    <section class="section" id="services">
+        <div class="section-inner">
+            <p class="section-tag reveal">What I Do</p>
+
+            <h2 class="section-title">
+                <span class="line"><span>Crafting digital</span></span>
+                <span class="line"><span class="accent">experiences that matter</span></span>
+            </h2>
+
+            <p class="section-text reveal">
+                From the first sketch to the final launch, I build fast, modern
+                and beautiful websites that help your business stand out.
+            </p>
+
+            <div class="cards">
+                <article class="card reveal" style="--delay: 0s">
+                    <span class="card-number">01</span>
+                    <h3>Web Design</h3>
+                    <p>Clean and modern interfaces designed around your brand and your visitors.</p>
+                </article>
+
+                <article class="card reveal" style="--delay: 0.15s">
+                    <span class="card-number">02</span>
+                    <h3>Development</h3>
+                    <p>Fast, responsive websites and web applications built with modern technologies.</p>
+                </article>
+
+                <article class="card reveal" style="--delay: 0.3s">
+                    <span class="card-number">03</span>
+                    <h3>Digital Experience</h3>
+                    <p>Smooth animations and details that turn a simple page into a memorable experience.</p>
+                </article>
+            </div>
         </div>
     </section>
 
