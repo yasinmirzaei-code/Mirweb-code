@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.querySelector('.menu-toggle');
     const videoBg = document.querySelector('.video-bg');
     const heroContent = document.querySelector('.hero-content');
+        initCopyButtons();
 
     if (!nav) {
         console.error('Element .glass-nav not found');
@@ -755,5 +756,69 @@ function initContact() {
         statusEl.textContent = '';
         successBox.hidden = true;
         form.hidden = false;
+    });
+}
+
+/* =========================================================
+   CONTACT DETAILS: copy email and phone number
+   ========================================================= */
+
+function initCopyButtons() {
+    const buttons = document.querySelectorAll('.info-copy');
+
+    function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+
+        // Fallback for older browsers and pages without https
+        return new Promise(function (resolve, reject) {
+            const area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', '');
+            area.style.position = 'absolute';
+            area.style.left = '-9999px';
+            document.body.appendChild(area);
+            area.select();
+
+            let ok = false;
+            try {
+                ok = document.execCommand('copy');
+            } catch (error) {
+                ok = false;
+            }
+
+            document.body.removeChild(area);
+            if (ok) {
+                resolve();
+            } else {
+                reject(new Error('Copy command failed'));
+            }
+        });
+    }
+
+    buttons.forEach(function (button) {
+        const icon = button.querySelector('i');
+        const label = button.getAttribute('aria-label');
+        let timer = null;
+
+        button.addEventListener('click', function () {
+            copyText(button.dataset.copy)
+                .then(function () {
+                    button.classList.add('ok');
+                    icon.className = 'ti ti-check';
+                    button.setAttribute('aria-label', 'Copied');
+
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        button.classList.remove('ok');
+                        icon.className = 'ti ti-copy';
+                        button.setAttribute('aria-label', label);
+                    }, 1600);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        });
     });
 }
