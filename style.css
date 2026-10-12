@@ -2606,3 +2606,279 @@ header > * {
     }
 }
 
+
+
+
+
+
+/* =========================================================
+   lang.css: language button + Persian (RTL) support
+   Load this AFTER style.css. style.css does not change.
+   ========================================================= */
+ 
+/* ---------- Language button + hamburger group ---------- */
+.header-actions {
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    animation: navFadeIn 1.2s var(--ease-cinema) 0.5s both;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+ 
+.lang-toggle i {
+    font-size: 20px;
+    line-height: 1;
+}
+ 
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+ 
+.lang-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+ 
+/* Tablets and phones: the button sits right beside the hamburger */
+@media (max-width: 1000px) {
+    .header-actions {
+        position: static;
+        transform: none;
+        gap: 4px;
+    }
+ 
+    .lang-toggle {
+        height: 40px;
+        padding: 0 12px;
+    }
+}
+ 
+/* Phones and touch devices: no blur (same as the rest of the site) */
+@media (max-width: 1000px), (hover: none) {
+    .lang-toggle {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(12, 12, 12, 0.85);
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+}
+ 
+/* ---------- Persian font and typography ---------- */
+html[lang="fa"] {
+    --font-heading: "Vazirmatn", Tahoma, Arial, sans-serif;
+    --font-body: "Vazirmatn", Tahoma, Arial, sans-serif;
+}
+ 
+/* Letter spacing breaks the joined Persian letters, so it is turned off */
+html[lang="fa"] *,
+html[lang="fa"] *::before,
+html[lang="fa"] *::after {
+    letter-spacing: 0 !important;
+}
+ 
+/* Persian glyphs are taller: more line height so the mask does not cut them */
+html[lang="fa"] .hero-content h1,
+html[lang="fa"] .section-title {
+    line-height: 1.35;
+}
+ 
+html[lang="fa"] .hero-content h1 {
+    font-size: clamp(38px, 5.6vw, 80px);
+}
+ 
+html[lang="fa"] .section-title {
+    font-size: clamp(32px, 4.6vw, 66px);
+}
+ 
+html[lang="fa"] .hero-content h1 .line,
+html[lang="fa"] .section-title .line {
+    padding-top: 0.08em;
+    padding-bottom: 0.18em;
+}
+ 
+html[lang="fa"] .hero-text,
+html[lang="fa"] .section-text,
+html[lang="fa"] .about-bio {
+    line-height: 1.95;
+}
+ 
+/* ---------- Right-to-left layout ---------- */
+html[dir="rtl"] .MIRWEB {
+    left: auto;
+    right: 60px;
+}
+ 
+html[dir="rtl"] .header-actions {
+    right: auto;
+    left: 60px;
+}
+ 
+html[dir="rtl"] .scroll-hint {
+    left: auto;
+    right: 60px;
+}
+ 
+html[dir="rtl"] .hero-content h1 .line > span,
+html[dir="rtl"] .section-title .line > span {
+    transform-origin: right bottom;
+}
+ 
+html[dir="rtl"] .section-tag::before {
+    transform-origin: right center;
+}
+ 
+/* Dark gradient behind the text moves to the right side */
+@media (min-width: 601px) {
+    html[dir="rtl"] .video-bg::after {
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.15) 70%);
+    }
+}
+ 
+html[dir="rtl"] .hero-content h1 .accent,
+html[dir="rtl"] .section-title .accent {
+    background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0.55) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+ 
+/* Arrows point the other way */
+html[dir="rtl"] .hero-btn .arrow {
+    transform: scaleX(-1);
+}
+ 
+html[dir="rtl"] .hero-btn:hover .arrow {
+    transform: scaleX(-1) translateX(6px);
+}
+ 
+html[dir="rtl"] #contact-toggle svg {
+    transform: scaleX(-1);
+}
+ 
+html[dir="rtl"] #contact-toggle:hover svg {
+    transform: scaleX(-1) translateX(3px);
+}
+ 
+html[dir="rtl"] #contact-toggle[aria-expanded="true"] svg,
+html[dir="rtl"] #contact-toggle[aria-expanded="true"]:hover svg {
+    transform: rotate(90deg);
+}
+ 
+html[dir="rtl"] .pf-nav svg {
+    transform: scaleX(-1);
+}
+ 
+/* Portfolio */
+html[dir="rtl"] .pf-num {
+    left: auto;
+    right: 16px;
+}
+ 
+/* Contact form */
+html[dir="rtl"] .contact-close {
+    right: auto;
+    left: 20px;
+}
+ 
+html[dir="rtl"] .contact-title {
+    padding-right: 0;
+    padding-left: 50px;
+}
+ 
+/* Phone number and email are always typed left to right */
+html[dir="rtl"] .phone-row {
+    direction: ltr;
+}
+ 
+html[dir="rtl"] .cc-wrap {
+    direction: rtl;
+}
+ 
+html[dir="rtl"] .cc-item {
+    text-align: right;
+}
+ 
+html[dir="rtl"] .field input[type="email"],
+html[dir="rtl"] .field input[type="tel"] {
+    direction: ltr;
+    text-align: left;
+}
+ 
+html[dir="rtl"] .info-phone,
+html[dir="rtl"] .info-email {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: right;
+}
+ 
+/* About: timeline line moves to the right */
+html[dir="rtl"] .about-list {
+    padding: 0 24px 0 0;
+}
+ 
+html[dir="rtl"] .about-list::before {
+    left: auto;
+    right: 3px;
+}
+ 
+html[dir="rtl"] .about-step::before {
+    left: auto;
+    right: -24px;
+}
+ 
+/* The tools strip keeps scrolling left to right so the loop stays seamless */
+html[dir="rtl"] .about-marq {
+    direction: ltr;
+}
+ 
+@media (max-width: 1000px) {
+    html[dir="rtl"] .MIRWEB {
+        left: auto;
+        right: 16px;
+    }
+ 
+    html[dir="rtl"] .glass-nav {
+        transform-origin: top left;
+    }
+}
+ 
+@media (max-width: 900px) {
+    html[dir="rtl"] .scroll-hint {
+        right: 30px;
+    }
+}
+ 
+@media (max-width: 600px) {
+    html[dir="rtl"] .contact-close {
+        left: 14px;
+        right: auto;
+    }
+}

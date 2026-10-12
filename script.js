@@ -757,3 +757,237 @@ function initContact() {
         form.hidden = false;
     });
 }
+
+
+
+/* =========================================================
+   LANGUAGE SWITCH (English / Persian)
+ 
+   How it works:
+   - Every element with data-i18n="key" gets its text from the FA
+     dictionary below when Persian is on. The English text is read
+     from the HTML itself, so index.html stays your English source.
+   - data-i18n-attr="placeholder:key;aria-label:key" does the same
+     for attributes.
+   - To add a new translated text: put data-i18n="my.key" on the
+     element and add "my.key" to the FA dictionary.
+   ========================================================= */
+ 
+(function () {
+    'use strict';
+ 
+    var STORAGE_KEY = 'site-lang';
+ 
+    /* ---------- Persian texts ---------- */
+    var FA = {
+        // Navigation
+        'nav.home': 'خانه',
+        'nav.services': 'خدمات',
+        'nav.portfolio': 'نمونه‌کارها',
+        'nav.about': 'درباره من',
+        'nav.contact': 'تماس',
+        'menu.aria': 'باز و بسته کردن منو',
+        'logo.alt': 'لوگوی وب‌سایت',
+ 
+        // Language button (shows the language you can switch TO)
+        'lang.label': 'EN',
+        'lang.aria': 'تغییر زبان به انگلیسی',
+ 
+        // Hero
+        'hero.tag': 'راهکار دیجیتال',
+        'hero.l1': 'از ایده تا',
+        'hero.l2': 'واقعیت دیجیتال',
+        'hero.text': 'من وب‌سایت، اپلیکیشن وب و تجربه‌های دیجیتال مدرن طراحی و توسعه می‌دهم تا ایده‌های شما به راهکارهای واقعی تبدیل شوند.',
+        'hero.btn': 'مشاهده نمونه‌کارها',
+        'hero.scroll': 'اسکرول',
+ 
+        // Services
+        's.tag': 'کارهایی که انجام می‌دهم',
+        's.l1': 'ساخت تجربه‌های دیجیتال',
+        's.l2': 'که اهمیت دارند',
+        's.text': 'از اولین طرح تا راه‌اندازی نهایی، وب‌سایت‌هایی سریع، مدرن و زیبا می‌سازم که کسب‌وکار شما را متمایز می‌کنند.',
+        's.c1.t': 'طراحی وب',
+        's.c1.p': 'رابط‌های تمیز و مدرن، طراحی‌شده بر اساس برند و مخاطبان شما.',
+        's.c2.t': 'توسعه',
+        's.c2.p': 'وب‌سایت‌ها و اپلیکیشن‌های وب سریع و واکنش‌گرا با فناوری‌های روز.',
+        's.c3.t': 'تجربه دیجیتال',
+        's.c3.p': 'انیمیشن‌های نرم و جزئیاتی که یک صفحه ساده را به تجربه‌ای ماندگار تبدیل می‌کنند.',
+ 
+        // Portfolio
+        'p.tag': 'نمونه‌کارهای منتخب',
+        'p.l1': 'وب‌سایت‌هایی که',
+        'p.l2': 'به جای من حرف می‌زنند',
+        'p.count': '4 وب‌سایت · 2025 تا 2026',
+        'p.grid': 'نمای شبکه‌ای',
+        'p.list': 'نمای فهرستی',
+        'p.cat2026': 'طراحی وب · 2026',
+        'p.cat2025': 'طراحی وب · 2025',
+        'p.prev': 'پروژه قبلی',
+        'p.next': 'پروژه بعدی',
+        'p.view': 'مشاهده پروژه',
+ 
+        // About
+        'a.tag': 'درباره من',
+        'a.l1': 'طراحی وب،',
+        'a.l2': 'با دقت در هر جزئیات',
+        'a.name': 'یاسین میرزایی',
+        'a.role': 'طراح و توسعه‌دهنده وب',
+        'a.pill': 'آماده همکاری در پروژه‌ها',
+        'a.bio': 'ایده‌های شما را به وب‌سایت‌هایی سریع، مدرن و زیبا تبدیل می‌کنم. هر پروژه از اهداف شما شروع می‌شود و بعد طراحی و جزئیات انیمیشنی کوچکی را می‌سازم که آن را زنده می‌کنند.',
+        'a.cv': 'دانلود رزومه',
+        'a.stat1': 'پروژه تحویل‌شده',
+        'a.stat2': 'سال تجربه',
+        'a.jtitle': 'مسیر من',
+        'a.j1': 'شروع طراحی وب‌سایت',
+        'a.j2': 'راه‌اندازی اولین پروژه‌های مشتریان',
+        'a.j3': 'ساخت تجربه‌های وب سینمایی',
+        'a.tools': 'ابزارهایی که استفاده می‌کنم',
+ 
+        // Contact
+        'c.tag': 'تماس',
+        'c.l1': 'بیایید چیزی',
+        'c.l2': 'عالی بسازیم',
+        'c.text': 'ایده یا پروژه‌ای در ذهن دارید؟ از هر راهی که برایتان راحت‌تر است با من در تماس باشید.',
+        'c.mail.label': 'ایمیل بزنید',
+        'c.mail.copy': 'کپی ایمیل',
+        'c.phone.label': 'تماس یا پیام',
+        'c.phone.copy': 'کپی شماره تلفن',
+        'c.wa': 'واتس‌اپ',
+        'c.tg': 'تلگرام',
+        'c.status': 'معمولاً بین 9 صبح تا 9 شب پاسخ می‌دهم',
+        'c.cta.t': 'پروژه‌ای در ذهن دارید؟',
+        'c.cta.p': 'درباره ایده‌تان به من بگویید تا با شما تماس بگیرم.',
+        'c.cta.btn': 'بیایید صحبت کنیم',
+ 
+        // Contact form
+        'f.close': 'بستن فرم',
+        'f.title': 'درباره پروژه‌تان صحبت کنیم',
+        'f.sub': 'فرم را پر کنید تا در اسرع وقت با شما تماس بگیرم.',
+        'f.name': 'نام شما',
+        'f.name.ph': 'علی رضایی',
+        'f.email': 'ایمیل',
+        'f.phone': 'شماره تلفن',
+        'f.cc.aria': 'انتخاب کد کشور',
+        'f.cc.search': 'جست‌وجوی کشور یا کد',
+        'f.msg': 'درباره پروژه‌تان بگویید',
+        'f.msg.ph': 'چه نوع وب‌سایتی نیاز دارید؟ اهداف، صفحات، مهلت زمانی یا هر چیز دیگری که کمک می‌کند بنویسید.',
+        'f.note': 'اطلاعات شما فقط برای پاسخ به پیامتان استفاده می‌شود.',
+        'form.send': 'ارسال پیام',
+        'success.title': 'سپاس،',
+        'success.sub': 'پیامتان ارسال شد. به‌زودی با شما تماس می‌گیرم.',
+        'success.another': 'ارسال پیام دیگر',
+ 
+        // Texts used only by script.js
+        'form.sending': 'در حال ارسال...',
+        'cc.empty': 'کشوری پیدا نشد',
+        'err.name': 'لطفاً نام خود را وارد کنید.',
+        'err.email': 'لطفاً یک ایمیل معتبر وارد کنید.',
+        'err.phone': 'لطفاً یک شماره تلفن معتبر وارد کنید.',
+        'err.message': 'لطفاً کمی بیشتر درباره پروژه‌تان بنویسید.',
+        'status.notconnected': 'فرم تماس هنوز متصل نشده است.',
+        'status.failed': 'مشکلی پیش آمد. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید.'
+    };
+ 
+    /* ---------- English texts that exist only in script.js ---------- */
+    var EN_EXTRA = {
+        'form.sending': 'Sending...',
+        'cc.empty': 'No country found',
+        'err.name': 'Please enter your name.',
+        'err.email': 'Please enter a valid email address.',
+        'err.phone': 'Please enter a valid phone number.',
+        'err.message': 'Please tell me a little more about your project.',
+        'status.notconnected': 'The contact form is not connected yet.',
+        'status.failed': 'Something went wrong. Please check your connection and try again.'
+    };
+ 
+    var root = document.documentElement;
+    var records = [];
+    var enDom = {};
+    var current = 'en';
+ 
+    function readSaved() {
+        try {
+            var saved = localStorage.getItem(STORAGE_KEY);
+            return saved === 'fa' ? 'fa' : 'en';
+        } catch (error) {
+            return 'en';
+        }
+    }
+ 
+    /* Returns the text for a key in the current language */
+    function t(key) {
+        if (current === 'fa' && FA[key] !== undefined) return FA[key];
+        if (enDom[key] !== undefined) return enDom[key];
+        if (EN_EXTRA[key] !== undefined) return EN_EXTRA[key];
+        return key;
+    }
+ 
+    /* Remember the original English text of every translatable element */
+    function collect() {
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            var en = el.textContent.trim();
+            records.push({ el: el, key: key, attr: null, en: en });
+            if (enDom[key] === undefined) enDom[key] = en;
+        });
+ 
+        document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
+            el.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
+                var parts = pair.split(':');
+                if (parts.length < 2) return;
+ 
+                var attr = parts[0].trim();
+                var key = parts[1].trim();
+                var en = el.getAttribute(attr) || '';
+ 
+                records.push({ el: el, key: key, attr: attr, en: en });
+                if (enDom[key] === undefined) enDom[key] = en;
+            });
+        });
+    }
+ 
+    function apply(lang, silent) {
+        current = lang === 'fa' ? 'fa' : 'en';
+ 
+        root.setAttribute('lang', current);
+        root.setAttribute('dir', current === 'fa' ? 'rtl' : 'ltr');
+ 
+        records.forEach(function (record) {
+            var value = (current === 'fa' && FA[record.key] !== undefined)
+                ? FA[record.key]
+                : record.en;
+ 
+            if (record.attr) {
+                record.el.setAttribute(record.attr, value);
+            } else {
+                record.el.textContent = value;
+            }
+        });
+ 
+        if (!silent) {
+            try {
+                localStorage.setItem(STORAGE_KEY, current);
+            } catch (error) { /* private mode: the choice is just not saved */ }
+ 
+            document.dispatchEvent(new CustomEvent('sitelangchange', {
+                detail: { lang: current }
+            }));
+        }
+    }
+ 
+    collect();
+    apply(readSaved(), true);
+ 
+    var switchBtn = document.getElementById('lang-toggle');
+    if (switchBtn) {
+        switchBtn.addEventListener('click', function () {
+            apply(current === 'fa' ? 'en' : 'fa');
+        });
+    }
+ 
+    window.I18N = {
+        t: t,
+        set: apply,
+        get lang() { return current; }
+    };
+})();

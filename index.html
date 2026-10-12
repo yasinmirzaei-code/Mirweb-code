@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRWEB</title>
 
-    <!-- Modern fonts: Syne (headings) + Inter (body text) -->
+    <!-- Applies the saved language before the page paints (no flash of left-to-right layout) -->
+    <script>
+        try {
+            if (localStorage.getItem('site-lang') === 'fa') {
+                document.documentElement.lang = 'fa';
+                document.documentElement.dir = 'rtl';
+            }
+        } catch (e) {}
+    </script>
+
+    <!-- Fonts: Syne (headings) + Inter (body text) + Vazirmatn (Persian) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lang.css">
 </head>
 <body>
 
@@ -24,86 +35,90 @@
 
     <!-- Logo: outside the header, so it scrolls away with the first page -->
     <a href="#home" class="MIRWEB">
-        <img src="logo.png" alt="Website logo">
+        <img src="logo.png" alt="Website logo" data-i18n-attr="alt:logo.alt">
     </a>
 
-    <!-- Header: hamburger button and navigation -->
+    <!-- Header: language button, hamburger button and navigation -->
     <header>
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-actions">
+            <!-- Language switch: shows the language you can switch to -->
+            <button type="button" class="lang-toggle" id="lang-toggle"
+                aria-label="Switch language to Persian" title="Switch language to Persian"
+                data-i18n-attr="aria-label:lang.aria;title:lang.aria">
+                <i class="ti ti-language" aria-hidden="true"></i>
+                <span data-i18n="lang.label">FA</span>
+            </button>
+
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" data-i18n-attr="aria-label:menu.aria">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
 
         <nav class="glass-nav">
             <span class="nav-bubble"></span>
-            <a href="#home" class="active">Home</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#about">About Me</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="active" data-i18n="nav.home">Home</a>
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+            <a href="#about" data-i18n="nav.about">About Me</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
     </header>
 
     <!-- First section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <p class="hero-tag">Digital Solution</p>
+            <p class="hero-tag" data-i18n="hero.tag">Digital Solution</p>
 
             <h1>
-                <span class="line"><span>Ideas into</span></span>
-                <span class="line"><span class="accent">Digital Reality</span></span>
+                <span class="line"><span data-i18n="hero.l1">Ideas into</span></span>
+                <span class="line"><span class="accent" data-i18n="hero.l2">Digital Reality</span></span>
             </h1>
 
-            <p class="hero-text">
-                I design and develop modern websites, web applications &amp;
-                digital experiences that turn your ideas into real solutions.
-            </p>
+            <p class="hero-text" data-i18n="hero.text">I design and develop modern websites, web applications &amp; digital experiences that turn your ideas into real solutions.</p>
 
             <a href="#portfolio" class="hero-btn">
-                View My Work
+                <span data-i18n="hero.btn">View My Work</span>
                 <span class="arrow">&rarr;</span>
             </a>
         </div>
 
         <div class="scroll-hint">
             <span class="bar"></span>
-            <span>Scroll</span>
+            <span data-i18n="hero.scroll">Scroll</span>
         </div>
     </section>
 
     <!-- Services -->
     <section class="section" id="services">
         <div class="section-inner">
-            <p class="section-tag reveal">What I Do</p>
+            <p class="section-tag reveal" data-i18n="s.tag">What I Do</p>
 
             <h2 class="section-title">
-                <span class="line"><span>Crafting digital</span></span>
-                <span class="line"><span class="accent">experiences that matter</span></span>
+                <span class="line"><span data-i18n="s.l1">Crafting digital</span></span>
+                <span class="line"><span class="accent" data-i18n="s.l2">experiences that matter</span></span>
             </h2>
 
-            <p class="section-text reveal">
-                From the first sketch to the final launch, I build fast, modern
-                and beautiful websites that help your business stand out.
-            </p>
+            <p class="section-text reveal" data-i18n="s.text">From the first sketch to the final launch, I build fast, modern and beautiful websites that help your business stand out.</p>
 
             <div class="cards">
                 <article class="card reveal" style="--delay: 0s">
                     <span class="card-number">01</span>
-                    <h3>Web Design</h3>
-                    <p>Clean and modern interfaces designed around your brand and your visitors.</p>
+                    <h3 data-i18n="s.c1.t">Web Design</h3>
+                    <p data-i18n="s.c1.p">Clean and modern interfaces designed around your brand and your visitors.</p>
                 </article>
 
                 <article class="card reveal" style="--delay: 0.15s">
                     <span class="card-number">02</span>
-                    <h3>Development</h3>
-                    <p>Fast, responsive websites and web applications built with modern technologies.</p>
+                    <h3 data-i18n="s.c2.t">Development</h3>
+                    <p data-i18n="s.c2.p">Fast, responsive websites and web applications built with modern technologies.</p>
                 </article>
 
                 <article class="card reveal" style="--delay: 0.3s">
                     <span class="card-number">03</span>
-                    <h3>Digital Experience</h3>
-                    <p>Smooth animations and details that turn a simple page into a memorable experience.</p>
+                    <h3 data-i18n="s.c3.t">Digital Experience</h3>
+                    <p data-i18n="s.c3.p">Smooth animations and details that turn a simple page into a memorable experience.</p>
                 </article>
             </div>
         </div>
@@ -112,21 +127,21 @@
     <!-- Portfolio -->
     <section class="section" id="portfolio">
         <div class="section-inner">
-            <p class="section-tag reveal">Selected work</p>
+            <p class="section-tag reveal" data-i18n="p.tag">Selected work</p>
 
             <h2 class="section-title">
-                <span class="line"><span>Websites that</span></span>
-                <span class="line"><span class="accent">speak for me</span></span>
+                <span class="line"><span data-i18n="p.l1">Websites that</span></span>
+                <span class="line"><span class="accent" data-i18n="p.l2">speak for me</span></span>
             </h2>
 
             <div class="pf-toolbar reveal">
-                <p class="pf-count">4 websites &middot; 2025 to 2026</p>
+                <p class="pf-count" data-i18n="p.count">4 websites &middot; 2025 to 2026</p>
 
                 <div class="pf-views">
-                    <button type="button" class="pf-view on" data-view="grid" aria-label="Grid view" aria-pressed="true">
+                    <button type="button" class="pf-view on" data-view="grid" aria-label="Grid view" aria-pressed="true" data-i18n-attr="aria-label:p.grid">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
                     </button>
-                    <button type="button" class="pf-view" data-view="list" aria-label="List view" aria-pressed="false">
+                    <button type="button" class="pf-view" data-view="list" aria-label="List view" aria-pressed="false" data-i18n-attr="aria-label:p.list">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
                     </button>
                 </div>
@@ -137,6 +152,7 @@
                 <!--
                     HOW TO EDIT A PROJECT:
                     1. Change the data-* values (title, year, role, tags, description, url).
+                       The data-role-fa, data-tags-fa and data-desc-fa values are the Persian versions.
                     2. Replace the <svg> sample art with your own screenshot:
                        <img src="projects/my-project.jpg" alt="Project name">
                 -->
@@ -145,6 +161,9 @@
                     data-title="Aurora Studio" data-year="2026" data-role="Design and development"
                     data-tags="Web design,Development,Animation"
                     data-desc="A cinematic brand website for a creative studio, with smooth scroll animations and a fast, modern feel."
+                    data-role-fa="طراحی و توسعه"
+                    data-tags-fa="طراحی وب,توسعه,انیمیشن"
+                    data-desc-fa="وب‌سایت برند سینمایی برای یک استودیوی خلاق، با انیمیشن‌های اسکرول نرم و حس سریع و مدرن."
                     data-url="#">
                     <div class="pf-img">
                         <svg viewBox="0 0 600 214" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
@@ -165,7 +184,7 @@
                     <div class="pf-meta">
                         <span class="pf-rownum">01</span>
                         <div class="pf-txt">
-                            <p class="pf-cat">Web design &middot; 2026</p>
+                            <p class="pf-cat" data-i18n="p.cat2026">Web design &middot; 2026</p>
                             <p class="pf-title">Aurora Studio</p>
                         </div>
                         <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
@@ -176,6 +195,9 @@
                     data-title="Atlas Travel" data-year="2026" data-role="Design and development"
                     data-tags="Web design,UX,Responsive"
                     data-desc="A travel booking website with a clean search experience that works great on every screen."
+                    data-role-fa="طراحی و توسعه"
+                    data-tags-fa="طراحی وب,تجربه کاربری,واکنش‌گرا"
+                    data-desc-fa="وب‌سایت رزرو سفر با تجربه جست‌وجوی ساده که روی همه صفحه‌نمایش‌ها عالی کار می‌کند."
                     data-url="#">
                     <div class="pf-img">
                         <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
@@ -191,7 +213,7 @@
                     <div class="pf-meta">
                         <span class="pf-rownum">02</span>
                         <div class="pf-txt">
-                            <p class="pf-cat">Web design &middot; 2026</p>
+                            <p class="pf-cat" data-i18n="p.cat2026">Web design &middot; 2026</p>
                             <p class="pf-title">Atlas Travel</p>
                         </div>
                         <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
@@ -202,6 +224,9 @@
                     data-title="Nimbus Agency" data-year="2025" data-role="Design and development"
                     data-tags="Web design,Branding,Development"
                     data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
+                    data-role-fa="طراحی و توسعه"
+                    data-tags-fa="طراحی وب,برندینگ,توسعه"
+                    data-desc-fa="وب‌سایت سازمانی برای یک آژانس دیجیتال با ظاهری جسورانه، مدرن و ساختاری روشن."
                     data-url="#">
                     <div class="pf-img">
                         <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
@@ -222,7 +247,7 @@
                     <div class="pf-meta">
                         <span class="pf-rownum">03</span>
                         <div class="pf-txt">
-                            <p class="pf-cat">Web design &middot; 2025</p>
+                            <p class="pf-cat" data-i18n="p.cat2025">Web design &middot; 2025</p>
                             <p class="pf-title">Nimbus Agency</p>
                         </div>
                         <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
@@ -233,6 +258,9 @@
                     data-title="Pulse Store" data-year="2025" data-role="Design and development"
                     data-tags="E-commerce,UX,Performance"
                     data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
+                    data-role-fa="طراحی و توسعه"
+                    data-tags-fa="فروشگاه آنلاین,تجربه کاربری,عملکرد"
+                    data-desc-fa="فروشگاه آنلاین سریع با تجربه مرور محصول تمیز و فرآیند پرداخت ساده."
                     data-url="#">
                     <div class="pf-img">
                         <svg viewBox="0 0 600 214" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
@@ -252,7 +280,7 @@
                     <div class="pf-meta">
                         <span class="pf-rownum">04</span>
                         <div class="pf-txt">
-                            <p class="pf-cat">Web design &middot; 2025</p>
+                            <p class="pf-cat" data-i18n="p.cat2025">Web design &middot; 2025</p>
                             <p class="pf-title">Pulse Store</p>
                         </div>
                         <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
@@ -266,10 +294,10 @@
                 <div class="pf-detail-top">
                     <span class="pf-detail-count" id="pf-d-count">01 / 04</span>
                     <div class="pf-detail-nav">
-                        <button type="button" class="pf-nav" id="pf-prev" aria-label="Previous project">
+                        <button type="button" class="pf-nav" id="pf-prev" aria-label="Previous project" data-i18n-attr="aria-label:p.prev">
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                         </button>
-                        <button type="button" class="pf-nav" id="pf-next" aria-label="Next project">
+                        <button type="button" class="pf-nav" id="pf-next" aria-label="Next project" data-i18n-attr="aria-label:p.next">
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         </button>
                     </div>
@@ -281,7 +309,7 @@
                     <div class="pf-tags" id="pf-d-tags"></div>
                     <p class="pf-detail-meta"><span id="pf-d-role"></span> &middot; <span id="pf-d-year"></span></p>
                     <a href="#" class="pf-go" id="pf-d-link">
-                        View project
+                        <span data-i18n="p.view">View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </div>
@@ -294,11 +322,11 @@
     <!-- About me -->
 <section class="section" id="about">
     <div class="section-inner">
-        <p class="section-tag reveal">About me</p>
+        <p class="section-tag reveal" data-i18n="a.tag">About me</p>
 
         <h2 class="section-title">
-            <span class="line"><span>Designing the web,</span></span>
-            <span class="line"><span class="accent">one detail at a time</span></span>
+            <span class="line"><span data-i18n="a.l1">Designing the web,</span></span>
+            <span class="line"><span class="accent" data-i18n="a.l2">one detail at a time</span></span>
         </h2>
 
         <div class="about-grid">
@@ -307,31 +335,27 @@
             <div class="about-card reveal">
                 <div class="about-card-tilt" id="about-tilt">
                     <div class="about-photo">
-                        <img src="me.PNG" alt="Yasin Mirzaei" width="120" height="150">
+                        <img src="me.PNG" alt="Yasin Mirzaei" width="120" height="150" data-i18n-attr="alt:a.name">
                     </div>
                     <div class="about-info">
-                        <p class="about-name">Yasin Mirzaei</p>
-                        <p class="about-role">Web designer and developer</p>
+                        <p class="about-name" data-i18n="a.name">Yasin Mirzaei</p>
+                        <p class="about-role" data-i18n="a.role">Web designer and developer</p>
                         <span class="about-pill">
                             <span class="about-dot"></span>
-                            Available for projects
+                            <span data-i18n="a.pill">Available for projects</span>
                         </span>
                     </div>
                 </div>
             </div>
 
             <!-- Short bio -->
-            <p class="about-bio reveal" style="--delay: 0.1s">
-                I turn ideas into fast, modern and beautiful websites. Every project
-                starts with your goals, then I shape the design and the small animated
-                details that make it feel alive.
-            </p>
+            <p class="about-bio reveal" style="--delay: 0.1s" data-i18n="a.bio">I turn ideas into fast, modern and beautiful websites. Every project starts with your goals, then I shape the design and the small animated details that make it feel alive.</p>
 
             <!-- Download CV (put your file next to index.html, or delete this block) -->
             <div class="about-cv-wrap reveal" style="--delay: 0.15s">
                 <a href="cv.pdf" class="about-cv" download>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
-                    Download CV
+                    <span data-i18n="a.cv">Download CV</span>
                 </a>
             </div>
 
@@ -339,35 +363,35 @@
             <div class="about-stats">
                 <div class="about-stat reveal" style="--delay: 0s">
                     <p class="about-stat-num"><span class="about-cnt" data-to="3">3</span>+</p>
-                    <p class="about-stat-label">Projects delivered</p>
+                    <p class="about-stat-label" data-i18n="a.stat1">Projects delivered</p>
                 </div>
                 <div class="about-stat reveal" style="--delay: 0.12s">
                     <p class="about-stat-num"><span class="about-cnt" data-to="2">2</span>+</p>
-                    <p class="about-stat-label">Years of experience</p>
+                    <p class="about-stat-label" data-i18n="a.stat2">Years of experience</p>
                 </div>
             </div>
 
             <!-- Journey -->
             <div class="about-journey">
-                <p class="about-journey-title reveal">My journey</p>
+                <p class="about-journey-title reveal" data-i18n="a.jtitle">My journey</p>
                 <ul class="about-list">
                     <li class="about-step reveal" style="--delay: 0s">
                         <p class="about-step-year">2025</p>
-                        <p class="about-step-text">Started designing websites</p>
+                        <p class="about-step-text" data-i18n="a.j1">Started designing websites</p>
                     </li>
                     <li class="about-step reveal" style="--delay: 0.12s">
                         <p class="about-step-year">2025</p>
-                        <p class="about-step-text">Launched my first client projects</p>
+                        <p class="about-step-text" data-i18n="a.j2">Launched my first client projects</p>
                     </li>
                     <li class="about-step reveal" style="--delay: 0.24s">
                         <p class="about-step-year">2027</p>
-                        <p class="about-step-text">Building cinematic web experiences</p>
+                        <p class="about-step-text" data-i18n="a.j3">Building cinematic web experiences</p>
                     </li>
                 </ul>
             </div>
 
             <!-- Tools strip (the second set is a copy that makes the loop seamless) -->
-            <div class="about-marq reveal" aria-label="Tools I use">
+            <div class="about-marq reveal" aria-label="Tools I use" data-i18n-attr="aria-label:a.tools">
                 <div class="about-track">
                     <div class="about-set">
                         <span class="about-chip">HTML and CSS</span>
@@ -394,16 +418,14 @@
     <section class="section section-contact" id="contact">
         <div class="section-inner">
             <!-- Contact details -->
-<p class="section-tag reveal">Contact</p>
+<p class="section-tag reveal" data-i18n="c.tag">Contact</p>
 
 <h2 class="section-title">
-    <span class="line"><span>Let's create</span></span>
-    <span class="line"><span class="accent">something great</span></span>
+    <span class="line"><span data-i18n="c.l1">Let's create</span></span>
+    <span class="line"><span class="accent" data-i18n="c.l2">something great</span></span>
 </h2>
 
-<p class="section-text reveal">
-    Have an idea or a project in mind? Reach out in the way that suits you best.
-</p>
+<p class="section-text reveal" data-i18n="c.text">Have an idea or a project in mind? Reach out in the way that suits you best.</p>
 
 <div class="contact-info">
 
@@ -413,11 +435,11 @@
             <a href="mailto:yasinmirzaei715@gmail.com" class="info-main">
                 <span class="info-ico"><i class="ti ti-mail" aria-hidden="true"></i></span>
                 <span class="info-text">
-                    <span class="info-label">Email me</span>
+                    <span class="info-label" data-i18n="c.mail.label">Email me</span>
                     <span class="info-value info-email">yasinmirzaei715@gmail.com</span>
                 </span>
             </a>
-            <button type="button" class="info-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email">
+            <button type="button" class="info-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email" data-i18n-attr="aria-label:c.mail.copy">
                 <i class="ti ti-copy" aria-hidden="true"></i>
             </button>
         </div>
@@ -429,21 +451,21 @@
             <a href="tel:+989991049494" class="info-main">
                 <span class="info-ico"><i class="ti ti-phone" aria-hidden="true"></i></span>
                 <span class="info-text">
-                    <span class="info-label">Call or message</span>
+                    <span class="info-label" data-i18n="c.phone.label">Call or message</span>
                     <span class="info-value info-phone" dir="ltr">+98 999 104 9494</span>
                 </span>
             </a>
-            <button type="button" class="info-copy" data-copy="+98 999 104 9494" aria-label="Copy phone number">
+            <button type="button" class="info-copy" data-copy="+98 999 104 9494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy">
                 <i class="ti ti-copy" aria-hidden="true"></i>
             </button>
         </div>
 
         <div class="info-quick">
             <a href="https://wa.me/12345678900" class="info-q" target="_blank" rel="noopener">
-                <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>WhatsApp
+                <i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span data-i18n="c.wa">WhatsApp</span>
             </a>
             <a href="https://t.me/yourusername" class="info-q" target="_blank" rel="noopener">
-                <i class="ti ti-brand-telegram" aria-hidden="true"></i>Telegram
+                <i class="ti ti-brand-telegram" aria-hidden="true"></i><span data-i18n="c.tg">Telegram</span>
             </a>
         </div>
     </div>
@@ -453,7 +475,7 @@
 <div class="contact-meta reveal">
     <div class="contact-status">
         <span class="contact-dot"></span>
-        Usually replies within 9am-9pm
+        <span data-i18n="c.status">Usually replies within 9am-9pm</span>
     </div>
 
     <div class="contact-socials">
@@ -466,11 +488,11 @@
 
             <div class="contact-cta reveal">
                 <div>
-                    <p class="contact-cta-title">Have a project in mind?</p>
-                    <p class="contact-cta-text">Tell me about your idea and I will get back to you.</p>
+                    <p class="contact-cta-title" data-i18n="c.cta.t">Have a project in mind?</p>
+                    <p class="contact-cta-text" data-i18n="c.cta.p">Tell me about your idea and I will get back to you.</p>
                 </div>
                 <button type="button" class="pf-go" id="contact-toggle" aria-expanded="false" aria-controls="contact-panel">
-                    Let's talk
+                    <span data-i18n="c.cta.btn">Let's talk</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </button>
             </div>
@@ -479,29 +501,29 @@
                 <div class="contact-panel-inner">
                     <div class="contact-card">
 
-                        <button type="button" class="contact-close" id="contact-close" aria-label="Close form">&times;</button>
+                        <button type="button" class="contact-close" id="contact-close" aria-label="Close form" data-i18n-attr="aria-label:f.close">&times;</button>
 
                         <form id="contact-form" novalidate>
-                            <h3 class="contact-title">Let's talk about your project</h3>
-                            <p class="contact-sub">Fill in the form and I will contact you as soon as possible.</p>
+                            <h3 class="contact-title" data-i18n="f.title">Let's talk about your project</h3>
+                            <p class="contact-sub" data-i18n="f.sub">Fill in the form and I will contact you as soon as possible.</p>
 
                             <div class="form-grid">
                                 <div class="field">
-                                    <label for="f-name">Your Name</label>
-                                    <input id="f-name" name="name" type="text" autocomplete="name" placeholder="John Smith" maxlength="80">
+                                    <label for="f-name" data-i18n="f.name">Your Name</label>
+                                    <input id="f-name" name="name" type="text" autocomplete="name" placeholder="John Smith" maxlength="80" data-i18n-attr="placeholder:f.name.ph">
                                     <p class="field-error" id="err-name" aria-live="polite"></p>
                                 </div>
 
                                 <div class="field">
-                                    <label for="f-email">Email</label>
+                                    <label for="f-email" data-i18n="f.email">Email</label>
                                     <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" maxlength="120">
                                     <p class="field-error" id="err-email" aria-live="polite"></p>
                                 </div>
 
                                 <div class="field full">
-                                    <label for="f-phone">Phone number</label>
+                                    <label for="f-phone" data-i18n="f.phone">Phone number</label>
                                     <div class="phone-row">
-                                        <button type="button" class="cc-btn" id="cc-btn" aria-haspopup="true" aria-expanded="false" aria-controls="cc-wrap" aria-label="Choose country code">
+                                        <button type="button" class="cc-btn" id="cc-btn" aria-haspopup="true" aria-expanded="false" aria-controls="cc-wrap" aria-label="Choose country code" data-i18n-attr="aria-label:f.cc.aria">
                                             <span class="cc-iso" id="cc-iso">US</span>
                                             <span id="cc-dial">+1</span>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -510,7 +532,7 @@
                                         <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="501 234 567" maxlength="20">
 
                                         <div class="cc-wrap" id="cc-wrap">
-                                            <input type="text" class="cc-search" id="cc-search" placeholder="Search country or code" autocomplete="off" aria-label="Search country">
+                                            <input type="text" class="cc-search" id="cc-search" placeholder="Search country or code" autocomplete="off" aria-label="Search country" data-i18n-attr="placeholder:f.cc.search;aria-label:f.cc.search">
                                             <ul class="cc-list" id="cc-list"></ul>
                                         </div>
                                     </div>
@@ -518,8 +540,8 @@
                                 </div>
 
                                 <div class="field full">
-                                    <label for="f-message">Tell me about your project</label>
-                                    <textarea id="f-message" name="message" placeholder="What kind of website do you need? Add your goals, pages, deadline or anything else that helps." maxlength="2000"></textarea>
+                                    <label for="f-message" data-i18n="f.msg">Tell me about your project</label>
+                                    <textarea id="f-message" name="message" placeholder="What kind of website do you need? Add your goals, pages, deadline or anything else that helps." maxlength="2000" data-i18n-attr="placeholder:f.msg.ph"></textarea>
                                     <p class="field-error" id="err-message" aria-live="polite"></p>
                                 </div>
                             </div>
@@ -528,9 +550,9 @@
                             <input type="text" name="_gotcha" id="f-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                             <div class="form-actions">
-                                <p class="form-note">Your details are only used to reply to your message.</p>
+                                <p class="form-note" data-i18n="f.note">Your details are only used to reply to your message.</p>
                                 <button type="submit" class="pf-go" id="f-submit">
-                                    Send message
+                                    <span id="f-submit-label" data-i18n="form.send">Send message</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                                 </button>
                             </div>
@@ -542,9 +564,9 @@
                             <div class="success-mark">
                                 <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
                             </div>
-                            <h3 class="contact-title">Thank you, <span id="success-name"></span></h3>
-                            <p class="contact-sub">Your message has been sent. I will contact you very soon.</p>
-                            <button type="button" class="pf-go" id="send-another">Send another message</button>
+                            <h3 class="contact-title"><span data-i18n="success.title">Thank you,</span> <span id="success-name"></span></h3>
+                            <p class="contact-sub" data-i18n="success.sub">Your message has been sent. I will contact you very soon.</p>
+                            <button type="button" class="pf-go" id="send-another" data-i18n="success.another">Send another message</button>
                         </div>
 
                     </div>
@@ -554,6 +576,8 @@
         </div>
     </section>
 
+    <!-- i18n.js must load before script.js -->
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
