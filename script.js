@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* =========================================================
-   PORTFOLIO: project details, grid and list view
+   PORTFOLIO: glass cards that slide out of the folder
    ========================================================= */
 
 function tr(key, fallback) {
@@ -274,128 +274,126 @@ function isFa() {
 }
 
 function initPortfolio() {
-    const grid = document.getElementById('pf-grid');
-    if (!grid) return;
+    const showcase = document.getElementById('pf-showcase');
+    const grid = document.getElementById('pf-showcase-grid');
+    const folder = document.getElementById('pf-folder');
+    if (!showcase || !grid || !folder) return;
 
-    const cards = Array.prototype.slice.call(grid.querySelectorAll('.pf-card'));
-    const body = document.getElementById('pf-d-body');
-    const countEl = document.getElementById('pf-d-count');
-    const titleEl = document.getElementById('pf-d-title');
-    const descEl = document.getElementById('pf-d-desc');
-    const tagsEl = document.getElementById('pf-d-tags');
-    const roleEl = document.getElementById('pf-d-role');
-    const yearEl = document.getElementById('pf-d-year');
-    const linkEl = document.getElementById('pf-d-link');
+    const sheets = Array.prototype.slice.call(grid.querySelectorAll('.pf-sheet'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const total = sheets.length;
+    let heightTimer = 0;
+    let settleTimer = 0;
+    let scrollTimer = 0;
 
-    function pad(n) {
-        return String(n).padStart(2, '0');
-    }
+    sheets.forEach(function (sheet, index) {
+        sheet.style.setProperty('--i', index);
+        sheet.style.setProperty('--ri', total - 1 - index);
 
-    function showProject(card, animate) {
-        cards.forEach(function (c) {
-            c.classList.remove('sel');
-        });
-        card.classList.add('sel');
-
-        const index = cards.indexOf(card);
-        const url = card.dataset.url || '#';
-
-        // Persian texts (data-*-fa) are used when the Persian language is on
-        const fa = isFa();
-        const descText = (fa && card.dataset.descFa) || card.dataset.desc;
-        const roleText = (fa && card.dataset.roleFa) || card.dataset.role;
-        const tagsText = (fa && card.dataset.tagsFa) || card.dataset.tags;
-
-        countEl.textContent = pad(index + 1) + ' / ' + pad(cards.length);
-        titleEl.textContent = card.dataset.title;
-        descEl.textContent = descText;
-        roleEl.textContent = roleText;
-        yearEl.textContent = card.dataset.year;
-
-        tagsEl.innerHTML = '';
-        tagsText.split(',').forEach(function (tag) {
-            const span = document.createElement('span');
-            span.className = 'pf-tag';
-            span.textContent = tag.trim();
-            tagsEl.appendChild(span);
-        });
-
-        linkEl.setAttribute('href', url);
-        if (/^https?:/i.test(url)) {
-            linkEl.setAttribute('target', '_blank');
-            linkEl.setAttribute('rel', 'noopener');
-        } else {
-            linkEl.removeAttribute('target');
-            linkEl.removeAttribute('rel');
+        // Logo: if the picture is missing, a letter is shown instead
+        const logoBox = sheet.querySelector('.pf-logo');
+        const img = logoBox ? logoBox.querySelector('img') : null;
+        if (img) {
+            const fail = function () { logoBox.classList.add('no-img'); };
+            if (!sheet.dataset.logo) fail();
+            img.addEventListener('error', fail);
+            if (img.complete && img.naturalWidth === 0) fail();
         }
 
-        if (animate) {
-            body.classList.remove('swap');
-            void body.offsetWidth;   // restart the animation
-            body.classList.add('swap');
-        }
-    }
-
-    cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-            showProject(card, true);
-        });
-
-        card.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                showProject(card, true);
-            }
-        });
-    });
-
-    function step(direction) {
-        const current = cards.indexOf(grid.querySelector('.pf-card.sel'));
-        const next = (current + direction + cards.length) % cards.length;
-        showProject(cards[next], true);
-    }
-
-    document.getElementById('pf-prev').addEventListener('click', function () {
-        step(-1);
-    });
-    document.getElementById('pf-next').addEventListener('click', function () {
-        step(1);
-    });
-
-    // The "#" placeholder link would jump to the top of the page
-    linkEl.addEventListener('click', function (event) {
-        if (linkEl.getAttribute('href') === '#') {
-            event.preventDefault();
-        }
-    });
-
-    // Re-render the details when the language changes
-    document.addEventListener('sitelangchange', function () {
-        showProject(grid.querySelector('.pf-card.sel') || cards[0], false);
-    });
-
-    // Grid and list view
-    const viewButtons = document.querySelectorAll('.pf-view');
-    viewButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            viewButtons.forEach(function (b) {
-                b.classList.remove('on');
-                b.setAttribute('aria-pressed', 'false');
+        // "#" would jump to the top of the page
+        const link = sheet.querySelector('.pf-go');
+        if (link) {
+            link.addEventListener('click', function (event) {
+                if (link.getAttribute('href') === '#') event.preventDefault();
             });
-            button.classList.add('on');
-            button.setAttribute('aria-pressed', 'true');
-            grid.classList.toggle('list', button.dataset.view === 'list');
+        }
+
+        // Light that follows the pointer
+        sheet.addEventListener('pointermove', function (event) {
+            if (event.pointerType === 'touch') return;
+            const r = sheet.getBoundingClientRect();
+            sheet.style.setProperty('--mx', (event.clientX - r.left).toFixed(0) + 'px');
+            sheet.style.setProperty('--my', (event.clientY - r.top).toFixed(0) + 'px');
         });
     });
 
-    // Glass folder: choosing a file in the folder shows that project
-    initFolder(cards, function (card) {
-        showProject(card, true);
-        const detail = document.getElementById('pf-detail');
-        if (detail) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
+    // Persian or English description
+    function renderTexts() {
+        const fa = isFa();
+        sheets.forEach(function (sheet) {
+            const desc = sheet.querySelector('.pf-sheet-desc');
+            if (desc) desc.textContent = (fa && sheet.dataset.descFa) || sheet.dataset.desc;
+        });
+    }
+    renderTexts();
+    document.addEventListener('sitelangchange', renderTexts);
 
-    showProject(cards[0], false);
+    // The cards start from the middle of the folder and fly to their place
+    function aimAtFolder() {
+        const f = folder.getBoundingClientRect();
+        const g = grid.getBoundingClientRect();
+        const fcx = f.left + f.width / 2;
+        const fcy = f.top + f.height * 0.6;
+        sheets.forEach(function (sheet, index) {
+            const cx = g.left + sheet.offsetLeft + sheet.offsetWidth / 2;
+            const cy = g.top + sheet.offsetTop + sheet.offsetHeight / 2;
+            sheet.style.setProperty('--fx', (fcx - cx).toFixed(0) + 'px');
+            sheet.style.setProperty('--fy', (fcy - cy).toFixed(0) + 'px');
+            sheet.style.setProperty('--fr', ((index % 2 ? 1 : -1) * (6 + index * 2)) + 'deg');
+        });
+    }
+
+    function scrollToCards() {
+        const g = grid.getBoundingClientRect();
+        const room = window.innerHeight;
+        const target = g.height < room * 0.9
+            ? window.scrollY + g.top - (room - g.height) / 2
+            : window.scrollY + g.top - 90;
+        window.scrollTo({ top: Math.max(0, target), behavior: reduced ? 'auto' : 'smooth' });
+    }
+
+    function openCards() {
+        clearTimeout(heightTimer);
+        clearTimeout(settleTimer);
+        clearTimeout(scrollTimer);
+
+        showcase.classList.remove('settled');
+        showcase.style.height = showcase.offsetHeight + 'px';
+        aimAtFolder();
+        grid.removeAttribute('inert');
+        void showcase.offsetHeight;
+
+        showcase.classList.add('open');
+        showcase.style.height = grid.offsetHeight + 'px';
+
+        heightTimer = setTimeout(function () { showcase.style.height = 'auto'; }, reduced ? 0 : 900);
+        settleTimer = setTimeout(function () { showcase.classList.add('settled'); }, reduced ? 0 : 1000 + total * 120);
+        scrollTimer = setTimeout(scrollToCards, reduced ? 0 : 450);
+    }
+
+    function closeCards() {
+        clearTimeout(heightTimer);
+        clearTimeout(settleTimer);
+        clearTimeout(scrollTimer);
+
+        aimAtFolder();
+        grid.setAttribute('inert', '');
+        showcase.classList.remove('settled');
+        showcase.style.height = showcase.offsetHeight + 'px';
+        void showcase.offsetHeight;
+
+        showcase.classList.remove('open');
+        // the page closes up after the cards have gone back into the folder
+        showcase.style.transitionDelay = reduced ? '0s' : (.3 + total * .07) + 's';
+        showcase.style.height = '0px';
+        heightTimer = setTimeout(function () { showcase.style.transitionDelay = ''; }, 1400);
+    }
+
+    grid.setAttribute('inert', '');
+    initFolder(function (open) {
+        if (open) openCards();
+        else closeCards();
+    });
 }
 
 /* =========================================================
@@ -860,13 +858,6 @@ function initContact() {
         'p.tag': 'نمونه‌کارهای منتخب',
         'p.l1': 'وب‌سایت‌هایی که',
         'p.l2': 'به‌جای من حرف می‌زنند',
-        'p.count': '4 وب‌سایت · 2025 تا 2026',
-        'p.grid': 'نمای شبکه‌ای',
-        'p.list': 'نمای فهرستی',
-        'p.cat2026': 'طراحی وب · 2026',
-        'p.cat2025': 'طراحی وب · 2025',
-        'p.prev': 'پروژه قبلی',
-        'p.next': 'پروژه بعدی',
         'p.view': 'مشاهده پروژه',
         'p.folder': 'نمونه‌کارهای من',
         'p.folder.meta': '4 پروژه',
@@ -1276,12 +1267,11 @@ function gfPaint(canvas, recipe, seed, w, h, density, priority) {
     gfPump();
 }
 
-function initFolder(cards, onPick) {
+function initFolder(onToggle) {
     const root = document.getElementById('pf-folder');
     const hit = document.getElementById('gf-hit');
-    const filesEl = document.getElementById('gf-files');
     const backArt = document.getElementById('gf-back-art');
-    if (!root || !hit || !filesEl || !cards.length) return;
+    if (!root || !hit) return;
 
     const wrap = root.parentElement;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1297,69 +1287,17 @@ function initFolder(cards, onPick) {
 
     const density = Math.min(1.5, window.devicePixelRatio || 1) * k;
 
-    // Back panel artwork + one picture file for every project card
+    // Back panel artwork
     gfPaint(backArt, GF_PRESETS.dusk, 5, 364, 296, density, 0);
-
-    const presets = ['verdant', 'aurora', 'glacier', 'ember'];
-    const shown = cards.slice(0, 4);
-    const sheets = [];
-
-    shown.forEach(function (card, v) {
-        const slot = shown.length <= 1 ? 0 : (v / (shown.length - 1)) * 2 - 1;
-        const jitter = gfRng(gfHash(card.dataset.title) + v);
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'gf-sheet-slot';
-        wrapper.setAttribute('role', 'listitem');
-
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'gf-sheet';
-        btn.style.setProperty('--gf-slot', slot);
-        btn.style.setProperty('--gf-depth', shown.length - 1 - v);
-        btn.style.setProperty('--gf-jx', ((jitter() - 0.5) * 10).toFixed(2) + 'px');
-        btn.style.setProperty('--gf-jr', ((jitter() - 0.5) * 3.2).toFixed(2) + 'deg');
-        btn.style.zIndex = String(v + 1);
-
-        const canvas = document.createElement('canvas');
-        canvas.className = 'gf-sheet-art';
-        canvas.setAttribute('aria-hidden', 'true');
-        canvas.width = 272;
-        canvas.height = 184;
-
-        const head = document.createElement('span');
-        head.className = 'gf-sheet-head';
-        const name = document.createElement('span');
-        name.className = 'gf-sheet-name';
-        name.textContent = card.dataset.title;
-        const meta = document.createElement('span');
-        meta.className = 'gf-sheet-meta';
-        meta.textContent = card.dataset.year;
-        head.appendChild(name);
-        head.appendChild(meta);
-
-        btn.appendChild(canvas);
-        btn.appendChild(head);
-        wrapper.appendChild(btn);
-        filesEl.appendChild(wrapper);
-        sheets.push(btn);
-
-        gfPaint(canvas, GF_PRESETS[presets[v % presets.length]], gfHash(card.dataset.title) % 997, 272, 184, Math.min(density, 1.25), 1);
-
-        btn.addEventListener('click', function () {
-            onPick(card);
-            sheets.forEach(function (b) { b.classList.toggle('sel', b === btn); });
-        });
-    });
 
     /* ---------- open / close ---------- */
     function setOpen(open) {
         if (open) root.setAttribute('data-open', '');
         else root.removeAttribute('data-open');
         hit.setAttribute('aria-expanded', String(open));
-        filesEl.toggleAttribute('inert', !open);
+        if (onToggle) onToggle(open);
     }
-    setOpen(false);
+    root.removeAttribute('data-open');
 
     hit.addEventListener('click', function () {
         setOpen(!root.hasAttribute('data-open'));
@@ -1369,13 +1307,6 @@ function initFolder(cards, onPick) {
         if (event.key === 'Escape' && root.hasAttribute('data-open')) {
             setOpen(false);
             hit.focus();
-        }
-    });
-
-    document.addEventListener('pointerdown', function (event) {
-        if (root.hasAttribute('data-open') && !root.contains(event.target) &&
-            !document.getElementById('pf-detail').contains(event.target)) {
-            setOpen(false);
         }
     });
 

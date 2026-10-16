@@ -160,7 +160,7 @@
                                     </defs>
                                     <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-grad)"/>
                                 </svg>
-                                <button type="button" class="gf-hit" id="gf-hit" aria-expanded="false" aria-controls="gf-files"
+                                <button type="button" class="gf-hit" id="gf-hit" aria-expanded="false" aria-controls="pf-showcase"
                                     aria-label="Open the work folder" data-i18n-attr="aria-label:p.folder.aria"></button>
                                 <div class="gf-label">
                                     <span class="gf-title" data-i18n="p.folder">My Work</span>
@@ -168,190 +168,82 @@
                                 </div>
                             </div>
 
-                            <div class="gf-files" id="gf-files" role="list"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="pf-toolbar reveal">
-                <p class="pf-count" data-i18n="p.count">4 websites &middot; 2025 to 2026</p>
-
-                <div class="pf-views">
-                    <button type="button" class="pf-view on" data-view="grid" aria-label="Grid view" aria-pressed="true" data-i18n-attr="aria-label:p.grid">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
-                    </button>
-                    <button type="button" class="pf-view" data-view="list" aria-label="List view" aria-pressed="false" data-i18n-attr="aria-label:p.list">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="pf-grid" id="pf-grid">
-
-                <!--
-                    HOW TO EDIT A PROJECT:
-                    1. Change the data-* values (title, year, role, tags, description, url).
-                       The data-role-fa, data-tags-fa and data-desc-fa values are the Persian versions.
-                    2. Replace the <svg> sample art with your own screenshot:
-                       <img src="projects/my-project.jpg" alt="Project name">
-                -->
-
-                <article class="pf-card reveal sel" tabindex="0" style="--delay: 0s"
-                    data-title="Cactus Cafe" data-year="2026" data-role="Design and development"
-                    data-tags="Web design,Development,Animation"
+            <!-- Project cards: they slide out of the folder when it opens.
+                 HOW TO EDIT A PROJECT:
+                 - data-url: the website address (start with https://)
+                 - data-logo: path to the project logo (put it in the logos folder; PNG, SVG or JPG)
+                 - data-desc / data-desc-fa and the <p class="pf-sheet-desc"> text: the short description
+                 To add a project, copy one whole <article> block and change its values. -->
+            <div class="pf-showcase" id="pf-showcase">
+                <div class="pf-showcase-grid" id="pf-showcase-grid" role="list">
+                <article class="pf-sheet" style="--i: 0"
+                    data-title="Cactus Cafe" data-year="2026"
                     data-desc="A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations."
-                    data-role-fa="طراحی و توسعه"
-                    data-tags-fa="طراحی وب,توسعه,انیمیشن"
                     data-desc-fa="وب‌سایتی گرم و مدرن برای یک کافه با تم کاکتوس، همراه با نمایش منو و انیمیشن‌های اسکرول نرم."
-                    data-url="#">
-                    <div class="pf-img">
-                        <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cactus Cafe preview">
-                            <rect width="380" height="280" fill="#10281c"/>
-                            <circle cx="300" cy="70" r="30" fill="#E9C46A"/>
-                            <rect x="0" y="220" width="380" height="60" fill="#C9A66B"/>
-                            <rect x="170" y="90" width="40" height="140" rx="20" fill="#2D9B5F"/>
-                            <rect x="120" y="130" width="26" height="60" rx="13" fill="#2D9B5F"/>
-                            <rect x="120" y="170" width="70" height="22" rx="11" fill="#2D9B5F"/>
-                            <rect x="234" y="110" width="26" height="70" rx="13" fill="#2D9B5F"/>
-                            <rect x="190" y="160" width="70" height="22" rx="11" fill="#2D9B5F"/>
-                            <rect x="186" y="96" width="5" height="124" rx="2.5" fill="#6FD39A" opacity="0.6"/>
-                            <rect x="70" y="236" width="240" height="10" rx="5" fill="#A8854F"/>
-                        </svg>
-                        <span class="pf-num">01</span>
-                    </div>
-                    <div class="pf-meta">
-                        <span class="pf-rownum">01</span>
-                        <div class="pf-txt">
-                            <p class="pf-cat" data-i18n="p.cat2026">Web design &middot; 2026</p>
-                            <p class="pf-title">Cactus Cafe</p>
-                        </div>
-                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" tabindex="0" style="--delay: 0.08s"
-                    data-title="Shell Cafe" data-year="2026" data-role="Design and development"
-                    data-tags="Web design,UX,Responsive"
-                    data-desc="A seaside cafe website with a clean menu and booking experience that works great on every screen."
-                    data-role-fa="طراحی و توسعه"
-                    data-tags-fa="طراحی وب,تجربه کاربری,واکنش‌گرا"
-                    data-desc-fa="وب‌سایت یک کافه ساحلی با منوی ساده و تجربه رزرو روان که روی همه صفحه‌نمایش‌ها عالی کار می‌کند."
-                    data-url="#">
-                    <div class="pf-img">
-                        <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Shell Cafe preview">
-                            <rect width="380" height="280" fill="#13293d"/>
-                            <rect x="0" y="210" width="380" height="70" fill="#E8D3A8"/>
-                            <path d="M0 210 Q95 190 190 210 T380 210 V222 H0 Z" fill="#3E92CC" opacity="0.7"/>
-                            <path d="M190 70 C120 70 90 130 100 190 C130 205 250 205 280 190 C290 130 260 70 190 70 Z" fill="#F4B8A6"/>
-                            <path d="M190 70 L190 195 M190 70 L150 192 M190 70 L230 192 M190 70 L118 186 M190 70 L262 186" stroke="#D9826B" stroke-width="5" stroke-linecap="round" fill="none"/>
-                            <rect x="165" y="190" width="50" height="22" rx="8" fill="#D9826B"/>
-                            <circle cx="310" cy="60" r="22" fill="#FFE8B5"/>
-                        </svg>
-                        <span class="pf-num">02</span>
-                    </div>
-                    <div class="pf-meta">
-                        <span class="pf-rownum">02</span>
-                        <div class="pf-txt">
-                            <p class="pf-cat" data-i18n="p.cat2026">Web design &middot; 2026</p>
-                            <p class="pf-title">Shell Cafe</p>
-                        </div>
-                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" tabindex="0" style="--delay: 0.16s"
-                    data-title="Nimbus Agency" data-year="2025" data-role="Design and development"
-                    data-tags="Web design,Branding,Development"
-                    data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
-                    data-role-fa="طراحی و توسعه"
-                    data-tags-fa="طراحی وب,برندینگ,توسعه"
-                    data-desc-fa="وب‌سایت سازمانی برای یک آژانس دیجیتال با ظاهری جسورانه، مدرن و ساختاری روشن."
-                    data-url="#">
-                    <div class="pf-img">
-                        <svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
-                            <rect width="380" height="280" fill="#0f2e2a"/>
-                            <rect x="50" y="30" width="280" height="220" rx="12" fill="#085041"/>
-                            <rect x="50" y="30" width="280" height="24" rx="12" fill="#0F6E56"/>
-                            <circle cx="70" cy="42" r="4" fill="#9FE1CB"/>
-                            <circle cx="84" cy="42" r="4" fill="#9FE1CB"/>
-                            <circle cx="98" cy="42" r="4" fill="#9FE1CB"/>
-                            <rect x="70" y="70" width="240" height="60" rx="8" fill="#1D9E75"/>
-                            <rect x="70" y="146" width="150" height="10" rx="5" fill="#9FE1CB"/>
-                            <rect x="70" y="164" width="110" height="8" rx="4" fill="#5DCAA5"/>
-                            <rect x="70" y="190" width="112" height="46" rx="8" fill="#0F6E56"/>
-                            <rect x="198" y="190" width="112" height="46" rx="8" fill="#0F6E56"/>
-                        </svg>
-                        <span class="pf-num">03</span>
-                    </div>
-                    <div class="pf-meta">
-                        <span class="pf-rownum">03</span>
-                        <div class="pf-txt">
-                            <p class="pf-cat" data-i18n="p.cat2025">Web design &middot; 2025</p>
-                            <p class="pf-title">Nimbus Agency</p>
-                        </div>
-                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" tabindex="0" style="--delay: 0.24s"
-                    data-title="Pulse Store" data-year="2025" data-role="Design and development"
-                    data-tags="E-commerce,UX,Performance"
-                    data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
-                    data-role-fa="طراحی و توسعه"
-                    data-tags-fa="فروشگاه آنلاین,تجربه کاربری,عملکرد"
-                    data-desc-fa="فروشگاه آنلاین سریع با تجربه مرور محصول تمیز و فرآیند پرداخت ساده."
-                    data-url="#">
-                    <div class="pf-img">
-                        <svg viewBox="0 0 600 214" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample website preview">
-                            <rect width="600" height="214" fill="#10243a"/>
-                            <rect x="40" y="24" width="520" height="22" rx="11" fill="#185FA5"/>
-                            <rect x="40" y="64" width="112" height="96" rx="12" fill="#185FA5"/>
-                            <rect x="176" y="64" width="112" height="96" rx="12" fill="#378ADD"/>
-                            <rect x="312" y="64" width="112" height="96" rx="12" fill="#85B7EB"/>
-                            <rect x="448" y="64" width="112" height="96" rx="12" fill="#B5D4F4"/>
-                            <rect x="40" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
-                            <rect x="176" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
-                            <rect x="312" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
-                            <rect x="448" y="174" width="80" height="8" rx="4" fill="#378ADD"/>
-                        </svg>
-                        <span class="pf-num">04</span>
-                    </div>
-                    <div class="pf-meta">
-                        <span class="pf-rownum">04</span>
-                        <div class="pf-txt">
-                            <p class="pf-cat" data-i18n="p.cat2025">Web design &middot; 2025</p>
-                            <p class="pf-title">Pulse Store</p>
-                        </div>
-                        <span class="pf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Details of the selected project -->
-            <div class="pf-detail reveal" id="pf-detail">
-                <div class="pf-detail-top">
-                    <span class="pf-detail-count" id="pf-d-count">01 / 04</span>
-                    <div class="pf-detail-nav">
-                        <button type="button" class="pf-nav" id="pf-prev" aria-label="Previous project" data-i18n-attr="aria-label:p.prev">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                        </button>
-                        <button type="button" class="pf-nav" id="pf-next" aria-label="Next project" data-i18n-attr="aria-label:p.next">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="pf-detail-body" id="pf-d-body">
-                    <h3 id="pf-d-title"></h3>
-                    <p class="pf-d-desc" id="pf-d-desc"></p>
-                    <div class="pf-tags" id="pf-d-tags"></div>
-                    <p class="pf-detail-meta"><span id="pf-d-role"></span> &middot; <span id="pf-d-year"></span></p>
-                    <a href="#" class="pf-go" id="pf-d-link">
+                    data-url="#"
+                    data-logo="logos/cactus-cafe.svg">
+                    <span class="pf-year">2026</span>
+                    <div class="pf-logo"><img src="logos/cactus-cafe.svg" alt="Cactus Cafe logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">C</span></div>
+                    <h3 class="pf-sheet-title">Cactus Cafe</h3>
+                    <p class="pf-sheet-desc">A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations.</p>
+                    <a href="#" class="pf-go pf-go-sm">
                         <span data-i18n="p.view">View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
+                </article>
+
+                <article class="pf-sheet" style="--i: 1"
+                    data-title="Shell Cafe" data-year="2026"
+                    data-desc="A seaside cafe website with a clean menu and booking experience that works great on every screen."
+                    data-desc-fa="وب‌سایت یک کافه ساحلی با منوی ساده و تجربه رزرو روان که روی همه صفحه‌نمایش‌ها عالی کار می‌کند."
+                    data-url="#"
+                    data-logo="logos/shell-cafe.svg">
+                    <span class="pf-year">2026</span>
+                    <div class="pf-logo"><img src="logos/shell-cafe.svg" alt="Shell Cafe logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">S</span></div>
+                    <h3 class="pf-sheet-title">Shell Cafe</h3>
+                    <p class="pf-sheet-desc">A seaside cafe website with a clean menu and booking experience that works great on every screen.</p>
+                    <a href="#" class="pf-go pf-go-sm">
+                        <span data-i18n="p.view">View project</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                    </a>
+                </article>
+
+                <article class="pf-sheet" style="--i: 2"
+                    data-title="Nimbus Agency" data-year="2025"
+                    data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
+                    data-desc-fa="وب‌سایت سازمانی برای یک آژانس دیجیتال با ظاهری جسورانه، مدرن و ساختاری روشن."
+                    data-url="#"
+                    data-logo="logos/nimbus-agency.svg">
+                    <span class="pf-year">2025</span>
+                    <div class="pf-logo"><img src="logos/nimbus-agency.svg" alt="Nimbus Agency logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">N</span></div>
+                    <h3 class="pf-sheet-title">Nimbus Agency</h3>
+                    <p class="pf-sheet-desc">A corporate website for a digital agency with a bold, modern look and clear structure.</p>
+                    <a href="#" class="pf-go pf-go-sm">
+                        <span data-i18n="p.view">View project</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                    </a>
+                </article>
+
+                <article class="pf-sheet" style="--i: 3"
+                    data-title="Pulse Store" data-year="2025"
+                    data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
+                    data-desc-fa="فروشگاه آنلاین سریع با تجربه مرور محصول تمیز و فرآیند پرداخت ساده."
+                    data-url="#"
+                    data-logo="logos/pulse-store.svg">
+                    <span class="pf-year">2025</span>
+                    <div class="pf-logo"><img src="logos/pulse-store.svg" alt="Pulse Store logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">P</span></div>
+                    <h3 class="pf-sheet-title">Pulse Store</h3>
+                    <p class="pf-sheet-desc">A fast online store with a clean product browsing experience and a simple checkout flow.</p>
+                    <a href="#" class="pf-go pf-go-sm">
+                        <span data-i18n="p.view">View project</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                    </a>
+                </article>
                 </div>
             </div>
         </div>

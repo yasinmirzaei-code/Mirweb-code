@@ -696,312 +696,16 @@ header > * {
 }
 
 /* ---------- Portfolio ---------- */
-.pf-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin: 0 0 28px;
-}
 
-.pf-count {
-    margin: 0;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.pf-views {
-    display: flex;
-    gap: 8px;
-}
-
-.pf-view {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    background: transparent;
-    color: rgba(255, 255, 255, 0.65);
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.pf-view:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-.pf-view.on {
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.pf-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-}
 
 /* All cards are the same small size now */
-.pf-card.wide {
-    grid-column: auto;
-}
 
-.pf-card {
-    position: relative;
-    display: block;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    outline: none;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.pf-card.in-view {
-    transition:
-        opacity 1.2s var(--ease-cinema),
-        filter 1.2s var(--ease-cinema),
-        transform 0.5s var(--ease-cinema),
-        background 0.4s ease,
-        border-color 0.4s ease;
-    transition-delay: 0s;
-}
-
-.pf-card.in-view:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.35);
-}
-
-.pf-card.sel,
-.pf-card:focus-visible {
-    border-color: rgba(255, 255, 255, 0.85);
-}
-
-.pf-img {
-    position: relative;
-    height: 160px;
-    overflow: hidden;
-}
-
-.pf-img svg,
-.pf-img img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s var(--ease-cinema);
-}
-
-.pf-card:hover .pf-img svg,
-.pf-card:hover .pf-img img {
-    transform: scale(1.04);
-}
-
-.pf-num {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    background: rgba(10, 10, 10, 0.6);
-    color: #fff;
-}
-
-.pf-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 16px 16px;
-}
-
-.pf-txt {
-    flex: 1;
-    min-width: 0;
-}
-
-.pf-rownum {
-    display: none;
-}
-
-.pf-cat {
-    margin: 0 0 3px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.pf-title {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.pf-arrow {
-    width: 32px;
-    height: 32px;
-    flex: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: background 0.4s ease, transform 0.4s var(--ease-cinema);
-}
-
-.pf-card:hover .pf-arrow {
-    background: rgba(255, 255, 255, 0.18);
-    transform: rotate(45deg);
-}
 
 /* List view */
-.pf-grid.list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-}
 
-.pf-grid.list .pf-card,
-.pf-grid.list .pf-card.wide {
-    grid-column: auto;
-    border-radius: 0;
-    border-width: 0 0 1px 0;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-.pf-grid.list .pf-card.in-view:hover {
-    transform: none;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.pf-grid.list .pf-card.sel {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.18);
-}
-
-.pf-grid.list .pf-img {
-    display: none;
-}
-
-.pf-grid.list .pf-rownum {
-    display: block;
-    width: 44px;
-    flex: none;
-    font-family: var(--font-heading);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
-}
-
-.pf-grid.list .pf-meta {
-    padding: 22px 12px;
-}
 
 /* Project details */
-.pf-detail {
-    margin-top: 24px;
-    padding: 28px 32px 32px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
 
-.pf-detail-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 20px;
-}
-
-.pf-detail-count {
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.55);
-}
-
-.pf-detail-nav {
-    display: flex;
-    gap: 8px;
-}
-
-.pf-nav {
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.pf-nav:hover {
-    background: rgba(255, 255, 255, 0.16);
-}
-
-.pf-detail-body h3 {
-    margin: 0 0 12px;
-    font-family: var(--font-heading);
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.pf-d-desc {
-    max-width: 620px;
-    margin: 0 0 20px;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.78);
-}
-
-.pf-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0 0 18px;
-}
-
-.pf-tag {
-    padding: 5px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.pf-detail-meta {
-    margin: 0 0 24px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.55);
-}
 
 @keyframes pfSwap {
     from {
@@ -1012,10 +716,6 @@ header > * {
         opacity: 1;
         transform: none;
     }
-}
-
-.pf-detail-body.swap {
-    animation: pfSwap 0.5s var(--ease-cinema);
 }
 
 /* ---------- Contact ---------- */
@@ -1532,19 +1232,6 @@ header > * {
         padding-bottom: 110px;
     }
 
-    .pf-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-    }
-
-    .pf-img {
-        height: 150px;
-    }
-
-    .pf-detail {
-        padding: 24px;
-    }
-
     .contact-card {
         padding: 30px;
     }
@@ -1665,8 +1352,7 @@ header > * {
     }
 
     /* Touch feedback instead of hover */
-    .card.in-view:hover,
-    .pf-card.in-view:hover {
+    .card.in-view:hover {
         transform: none;
     }
 
@@ -1676,52 +1362,7 @@ header > * {
     }
 
     /* Portfolio on phones */
-    .pf-toolbar {
-        margin-bottom: 18px;
-    }
-
-    .pf-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .pf-card.wide {
-        grid-column: auto;
-    }
-
-    .pf-img {
-        height: 110px;
-    }
-
-    .pf-meta {
-        padding: 10px 12px 12px;
-    }
-
-    .pf-cat {
-        font-size: 11px;
-    }
-
-    .pf-title {
-        font-size: 15px;
-    }
-
-    .pf-arrow {
-        display: none;
-    }
-
-    .pf-card.in-view:active {
-        transform: scale(0.98);
-    }
-
-    .pf-detail {
-        margin-top: 16px;
-        padding: 20px 18px 22px;
-        border-radius: 20px;
-    }
-
-    .pf-d-desc {
-        font-size: 15px;
-    }
+    
 
     /* Contact on phones */
     .section-contact {
@@ -1782,8 +1423,6 @@ header > * {
     .glass-nav,
     .hero-btn,
     .card,
-    .pf-card,
-    .pf-detail,
     .contact-card {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -1806,8 +1445,6 @@ header > * {
     }
 
     .card,
-    .pf-card,
-    .pf-detail,
     .contact-card {
         background: rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
@@ -2611,10 +2248,6 @@ header > * {
 }
 
 
-
-
-
-
 /* =========================================================
    lang.css: language button + Persian (RTL) support
    Load this AFTER style.css. style.css does not change.
@@ -2796,15 +2429,8 @@ html[dir="rtl"] #contact-toggle[aria-expanded="true"]:hover svg {
     transform: rotate(90deg);
 }
  
-html[dir="rtl"] .pf-nav svg {
-    transform: scaleX(-1);
-}
- 
 /* Portfolio */
-html[dir="rtl"] .pf-num {
-    left: auto;
-    right: 16px;
-}
+
  
 /* Contact form */
 html[dir="rtl"] .contact-close {
@@ -2920,7 +2546,7 @@ html[dir="rtl"] .about-marq {
     transition: height .8s var(--gf-ease);
 }
 .gf-root:hover, .gf-root:focus-within { --gf-head: 74px; --gf-hinge: -11deg; --gf-lift: -34px; --gf-spread: 8px; --gf-fan: 1.4deg; --gf-stack: 10px; }
-.gf-root[data-open] { --gf-head: 128px; --gf-hinge: -24deg; --gf-lift: -96px; --gf-spread: 40px; --gf-fan: 5deg; --gf-stack: 30px; }
+.gf-root[data-open] { --gf-head: 74px; --gf-hinge: -26deg; }
 
 .gf-stage {
     position: absolute;
@@ -2990,96 +2616,6 @@ html[dir="rtl"] .about-marq {
 .gf-back-rim { width: 340px; height: 272px; }
 .gf-back-rim path { stroke: rgba(255, 255, 255, .16); stroke-width: 1; }
 
-/* files */
-.gf-files {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    clip-path: inset(-400px -400px 10px -400px);
-}
-.gf-sheet-slot { display: contents; }
-.gf-sheet {
-    all: unset;
-    box-sizing: border-box;
-    position: absolute;
-    left: 34px;
-    top: 96px;
-    width: 272px;
-    height: 184px;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    pointer-events: auto;
-    background: #1a1a1d;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 0 0 .5px rgba(255, 255, 255, .08), 0 12px 28px -8px rgba(0, 0, 0, .7);
-    transform-origin: 50% 100%;
-    transform:
-        translate(calc(var(--gf-jx) + var(--gf-slot) * var(--gf-spread)), calc(var(--gf-lift) + var(--gf-depth) * var(--gf-stack) * -1))
-        rotate(calc(var(--gf-jr) + var(--gf-slot) * var(--gf-fan)));
-    transition:
-        transform .75s var(--gf-spring) calc(var(--gf-depth) * 40ms),
-        box-shadow .4s var(--gf-ease),
-        translate .9s var(--gf-ease) calc(.18s + var(--gf-depth) * 90ms),
-        opacity .9s var(--gf-ease) calc(.18s + var(--gf-depth) * 90ms);
-}
-.gf-root[data-open] .gf-sheet:hover,
-.gf-root[data-open] .gf-sheet:focus-visible,
-.gf-root[data-open] .gf-sheet.sel {
-    transform:
-        translate(calc(var(--gf-jx) + var(--gf-slot) * var(--gf-spread)), calc(var(--gf-lift) + var(--gf-depth) * var(--gf-stack) * -1 - 18px))
-        rotate(calc(var(--gf-slot) * var(--gf-fan) * .6));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 0 0 .5px rgba(255, 255, 255, .25), 0 22px 40px -12px rgba(0, 0, 0, .8);
-    transition-delay: 0s;
-}
-.gf-sheet:focus-visible { outline: 2px solid #4c8dff; outline-offset: 2px; }
-.gf-sheet-art {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 272px;
-    height: 184px;
-    max-width: none;
-    opacity: 0;
-    filter: blur(10px);
-    transition: opacity .9s var(--gf-ease), filter .9s var(--gf-ease);
-}
-.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
-.gf-sheet::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(180deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 38%);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2);
-    pointer-events: none;
-}
-.gf-sheet-head {
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    top: 11px;
-    z-index: 1;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    white-space: nowrap;
-}
-.gf-sheet-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #fafafa;
-}
-.gf-sheet-meta {
-    flex: none;
-    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 10px;
-    letter-spacing: .02em;
-    color: rgba(250, 250, 250, .7);
-}
 
 /* frosted front panel */
 .gf-front {
@@ -3150,7 +2686,6 @@ html[dir="rtl"] .about-marq {
 /* entrance: the folder assembles itself */
 .gf-root:not([data-entered]) .gf-back,
 .gf-root:not([data-entered]) .gf-back-rim { translate: 0 22px; opacity: 0; }
-.gf-root:not([data-entered]) .gf-sheet { translate: 0 -120px; opacity: 0; }
 .gf-root:not([data-entered]) .gf-front { translate: 0 46px; opacity: 0; }
 .gf-root:not([data-entered]) .gf-shadow { opacity: 0; }
 .gf-back, .gf-back-rim { transition: translate 1s var(--gf-ease), opacity .9s var(--gf-ease); }
@@ -3162,4 +2697,218 @@ html[dir="rtl"] .about-marq {
         animation: none !important;
     }
     .gf-tilt { transform: none; }
+}
+
+
+/* =========================================================
+   Portfolio cards: frosted glass sheets that slide out of the folder
+   Each card is the same size as the folder (340 x 272)
+   ========================================================= */
+.pf-folder-wrap {
+    position: relative;
+    z-index: 2;            /* the folder stays in front, the cards come out from behind it */
+}
+
+.pf-showcase {
+    --pf-ease: cubic-bezier(.2, .8, .2, 1);
+    --pf-spring: cubic-bezier(.34, 1.4, .5, 1);
+    position: relative;
+    z-index: 1;
+    height: 0;
+    transition: height .85s var(--pf-ease);
+}
+
+.pf-showcase-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 340px);
+    justify-content: center;
+    gap: 26px;
+    padding: 34px 0 6px;
+}
+
+.pf-sheet {
+    --fx: 0px;
+    --fy: 0px;
+    --fr: 0deg;
+    --mx: 50%;
+    --my: 20%;
+    position: relative;
+    box-sizing: border-box;
+    width: min(340px, 100%);
+    height: 272px;
+    padding: 24px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 22px;
+    color: #fff;
+    font-family: var(--font-body);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, .17) 0%, rgba(255, 255, 255, .05) 52%, rgba(255, 255, 255, .1) 100%);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, .24);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .38),
+        inset 0 -1px 0 rgba(255, 255, 255, .06),
+        0 26px 50px -20px rgba(0, 0, 0, .65);
+    /* closed: tucked into the folder */
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(var(--fx), var(--fy)) scale(.45) rotate(var(--fr));
+    transform-origin: 50% 50%;
+    transition:
+        transform .55s cubic-bezier(.5, 0, .75, 0) calc(var(--ri, 0) * 70ms),
+        opacity .4s ease calc(var(--ri, 0) * 70ms + .1s),
+        box-shadow .4s ease,
+        border-color .4s ease;
+}
+
+/* open: cards fly out one after another and settle into the grid */
+.pf-showcase.open .pf-sheet {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition:
+        transform .95s var(--pf-spring) calc(var(--i, 0) * 120ms),
+        opacity .5s ease calc(var(--i, 0) * 120ms),
+        box-shadow .4s ease,
+        border-color .4s ease;
+}
+
+.pf-showcase.open.settled .pf-sheet {
+    transition: transform .45s var(--pf-ease), box-shadow .4s ease, border-color .4s ease;
+}
+.pf-showcase.open.settled .pf-sheet:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, .42);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .5),
+        inset 0 -1px 0 rgba(255, 255, 255, .08),
+        0 34px 56px -20px rgba(0, 0, 0, .7);
+}
+
+/* light that follows the pointer */
+.pf-sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(220px 180px at var(--mx) var(--my), rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity .4s ease;
+    pointer-events: none;
+}
+.pf-showcase.open.settled .pf-sheet:hover::before { opacity: 1; }
+
+.pf-year {
+    position: absolute;
+    top: 16px;
+    inset-inline-end: 18px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .04em;
+    color: rgba(255, 255, 255, .6);
+}
+
+/* the logo spot */
+.pf-logo {
+    position: relative;
+    flex: none;
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .26);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.pf-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.pf-mono {
+    display: none;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+}
+.pf-logo.no-img img { display: none; }
+.pf-logo.no-img .pf-mono { display: block; }
+
+.pf-sheet-title {
+    margin: 12px 0 0;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: .01em;
+}
+
+.pf-sheet-desc {
+    margin: 6px 0 0;
+    max-width: 280px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, .74);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pf-go-sm {
+    margin-top: auto;
+    padding: 10px 20px;
+    gap: 8px;
+    font-size: 13px;
+}
+.pf-go-sm svg {
+    width: 15px;
+    height: 15px;
+}
+
+.pf-sheet:focus-within {
+    border-color: rgba(255, 255, 255, .5);
+}
+
+/* Persian: the arrow in the button flips with the reading direction */
+html[dir="rtl"] .pf-go-sm svg {
+    transform: scaleX(-1);
+}
+html[dir="rtl"] .pf-go-sm:hover svg {
+    transform: scaleX(-1) translate(3px, -3px);
+}
+
+/* Narrow screens: one card per row */
+@media (max-width: 760px) {
+    .pf-showcase-grid {
+        grid-template-columns: minmax(0, 340px);
+        gap: 20px;
+    }
+}
+
+/* Phones and touch devices: no blur recalculated over the playing video */
+@media (max-width: 1000px), (hover: none) {
+    .pf-sheet {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .07));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-showcase,
+    .pf-sheet {
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+    }
 }
