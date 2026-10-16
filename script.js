@@ -265,6 +265,14 @@ document.addEventListener('DOMContentLoaded', function () {
    PORTFOLIO: project details, grid and list view
    ========================================================= */
 
+function tr(key, fallback) {
+    return (window.I18N && window.I18N.t) ? window.I18N.t(key) : fallback;
+}
+
+function isFa() {
+    return Boolean(window.I18N) && window.I18N.lang === 'fa';
+}
+
 function initPortfolio() {
     const grid = document.getElementById('pf-grid');
     if (!grid) return;
@@ -292,14 +300,20 @@ function initPortfolio() {
         const index = cards.indexOf(card);
         const url = card.dataset.url || '#';
 
+        // Persian texts (data-*-fa) are used when the Persian language is on
+        const fa = isFa();
+        const descText = (fa && card.dataset.descFa) || card.dataset.desc;
+        const roleText = (fa && card.dataset.roleFa) || card.dataset.role;
+        const tagsText = (fa && card.dataset.tagsFa) || card.dataset.tags;
+
         countEl.textContent = pad(index + 1) + ' / ' + pad(cards.length);
         titleEl.textContent = card.dataset.title;
-        descEl.textContent = card.dataset.desc;
-        roleEl.textContent = card.dataset.role;
+        descEl.textContent = descText;
+        roleEl.textContent = roleText;
         yearEl.textContent = card.dataset.year;
 
         tagsEl.innerHTML = '';
-        card.dataset.tags.split(',').forEach(function (tag) {
+        tagsText.split(',').forEach(function (tag) {
             const span = document.createElement('span');
             span.className = 'pf-tag';
             span.textContent = tag.trim();
@@ -346,6 +360,18 @@ function initPortfolio() {
     });
     document.getElementById('pf-next').addEventListener('click', function () {
         step(1);
+    });
+
+    // The "#" placeholder link would jump to the top of the page
+    linkEl.addEventListener('click', function (event) {
+        if (linkEl.getAttribute('href') === '#') {
+            event.preventDefault();
+        }
+    });
+
+    // Re-render the details when the language changes
+    document.addEventListener('sitelangchange', function () {
+        showProject(grid.querySelector('.pf-card.sel') || cards[0], false);
     });
 
     // Grid and list view
@@ -457,7 +483,7 @@ function initContact() {
 
     const emptyItem = document.createElement('li');
     emptyItem.className = 'cc-empty';
-    emptyItem.textContent = 'No country found';
+    emptyItem.textContent = tr('cc.empty', 'No country found');
     emptyItem.hidden = true;
 
     const fragment = document.createDocumentFragment();
@@ -490,6 +516,10 @@ function initContact() {
     fragment.appendChild(emptyItem);
     ccList.appendChild(fragment);
 
+    document.addEventListener('sitelangchange', function () {
+        emptyItem.textContent = tr('cc.empty', 'No country found');
+    });
+
     function selectCountry(iso) {
         const found = countries.filter(function (c) {
             return c.iso === iso;
@@ -512,6 +542,7 @@ function initContact() {
             const locale = (navigator.languages && navigator.languages[0]) || navigator.language || '';
             const match = locale.match(/[-_]([A-Za-z]{2})$/);
             if (match) region = match[1].toUpperCase();
+            else if (/^fa/i.test(locale)) region = 'IR';
         } catch (error) {
             region = '';
         }
@@ -659,16 +690,16 @@ function initContact() {
         setError('message', '');
 
         if (name.length < 2) {
-            fail('name', 'Please enter your name.');
+            fail('name', tr('err.name', 'Please enter your name.'));
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-            fail('email', 'Please enter a valid email address.');
+            fail('email', tr('err.email', 'Please enter a valid email address.'));
         }
         if (digits.length < 5 || digits.length > 14) {
-            fail('phone', 'Please enter a valid phone number.');
+            fail('phone', tr('err.phone', 'Please enter a valid phone number.'));
         }
         if (message.length < 10) {
-            fail('message', 'Please tell me a little more about your project.');
+            fail('message', tr('err.message', 'Please tell me a little more about your project.'));
         }
 
         if (firstInvalid) {
@@ -689,7 +720,12 @@ function initContact() {
     /* ---------- Sending ---------- */
     function setBusy(isBusy) {
         submitBtn.setAttribute('aria-busy', String(isBusy));
-        submitBtn.firstChild.textContent = isBusy ? 'Sending... ' : 'Send message ';
+        const label = document.getElementById('f-submit-label');
+        if (label) {
+            label.textContent = isBusy
+                ? tr('form.sending', 'Sending...')
+                : tr('form.send', 'Send message');
+        }
     }
 
     function showSuccess(name) {
@@ -716,7 +752,7 @@ function initContact() {
 
         if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
             console.error('Contact form is not connected: set FORM_ENDPOINT at the top of script.js');
-            statusEl.textContent = 'The contact form is not connected yet.';
+            statusEl.textContent = tr('status.notconnected', 'The contact form is not connected yet.');
             return;
         }
 
@@ -739,7 +775,7 @@ function initContact() {
             })
             .catch(function (error) {
                 console.error(error);
-                statusEl.textContent = 'Something went wrong. Please check your connection and try again.';
+                statusEl.textContent = tr('status.failed', 'Something went wrong. Please check your connection and try again.');
             })
             .then(function () {
                 sending = false;
@@ -794,7 +830,7 @@ function initContact() {
         'lang.aria': 'تغییر زبان به انگلیسی',
  
         // Hero
-        'hero.tag': 'راهکار دیجیتال',
+        'hero.tag': 'تجربه دیجیتال',
         'hero.l1': 'از ایده تا',
         'hero.l2': 'واقعیت دیجیتال',
         'hero.text': 'من وب‌سایت، اپلیکیشن وب و تجربه‌های دیجیتال مدرن طراحی و توسعه می‌دهم تا ایده‌های شما به راهکارهای واقعی تبدیل شوند.',
@@ -802,9 +838,9 @@ function initContact() {
         'hero.scroll': 'اسکرول',
  
         // Services
-        's.tag': 'کارهایی که انجام می‌دهم',
-        's.l1': 'ساخت تجربه‌های دیجیتال',
-        's.l2': 'که اهمیت دارند',
+        's.tag': 'خدمات',
+        's.l1': 'طراحی‌شده برای',
+        's.l2': 'متمایز بودن',
         's.text': 'از اولین طرح تا راه‌اندازی نهایی، وب‌سایت‌هایی سریع، مدرن و زیبا می‌سازم که کسب‌وکار شما را متمایز می‌کنند.',
         's.c1.t': 'طراحی وب',
         's.c1.p': 'رابط‌های تمیز و مدرن، طراحی‌شده بر اساس برند و مخاطبان شما.',
@@ -816,7 +852,7 @@ function initContact() {
         // Portfolio
         'p.tag': 'نمونه‌کارهای منتخب',
         'p.l1': 'وب‌سایت‌هایی که',
-        'p.l2': 'به جای من حرف می‌زنند',
+        'p.l2': 'به‌جای من حرف می‌زنند',
         'p.count': '4 وب‌سایت · 2025 تا 2026',
         'p.grid': 'نمای شبکه‌ای',
         'p.list': 'نمای فهرستی',
@@ -829,11 +865,11 @@ function initContact() {
         // About
         'a.tag': 'درباره من',
         'a.l1': 'طراحی وب،',
-        'a.l2': 'با دقت در هر جزئیات',
+        'a.l2': 'با وسواس در تک‌تک جزئیات',
         'a.name': 'یاسین میرزایی',
         'a.role': 'طراح و توسعه‌دهنده وب',
-        'a.pill': 'آماده همکاری در پروژه‌ها',
-        'a.bio': 'ایده‌های شما را به وب‌سایت‌هایی سریع، مدرن و زیبا تبدیل می‌کنم. هر پروژه از اهداف شما شروع می‌شود و بعد طراحی و جزئیات انیمیشنی کوچکی را می‌سازم که آن را زنده می‌کنند.',
+        'a.pill': 'آماده پذیرش پروژه جدید',
+        'a.bio': 'ایده‌های شما را به وب‌سایت‌هایی سریع، مدرن و زیبا تبدیل می‌کنم. هر پروژه از اهداف شما شروع می‌شود؛ بعد طراحی را شکل می‌دهم و جزئیات انیمیشنی کوچکی اضافه می‌کنم که آن را زنده می‌کنند.',
         'a.cv': 'دانلود رزومه',
         'a.stat1': 'پروژه تحویل‌شده',
         'a.stat2': 'سال تجربه',
@@ -844,11 +880,11 @@ function initContact() {
         'a.tools': 'ابزارهایی که استفاده می‌کنم',
  
         // Contact
-        'c.tag': 'تماس',
+        'c.tag': 'تماس با من',
         'c.l1': 'بیایید چیزی',
         'c.l2': 'عالی بسازیم',
         'c.text': 'ایده یا پروژه‌ای در ذهن دارید؟ از هر راهی که برایتان راحت‌تر است با من در تماس باشید.',
-        'c.mail.label': 'ایمیل بزنید',
+        'c.mail.label': 'ایمیل بفرستید',
         'c.mail.copy': 'کپی ایمیل',
         'c.phone.label': 'تماس یا پیام',
         'c.phone.copy': 'کپی شماره تلفن',
@@ -873,7 +909,7 @@ function initContact() {
         'f.msg.ph': 'چه نوع وب‌سایتی نیاز دارید؟ اهداف، صفحات، مهلت زمانی یا هر چیز دیگری که کمک می‌کند بنویسید.',
         'f.note': 'اطلاعات شما فقط برای پاسخ به پیامتان استفاده می‌شود.',
         'form.send': 'ارسال پیام',
-        'success.title': 'سپاس،',
+        'success.title': 'ممنونم،',
         'success.sub': 'پیامتان ارسال شد. به‌زودی با شما تماس می‌گیرم.',
         'success.another': 'ارسال پیام دیگر',
  

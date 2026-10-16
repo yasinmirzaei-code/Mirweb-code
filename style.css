@@ -744,18 +744,19 @@ header > * {
 
 .pf-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
 }
 
+/* All cards are the same small size now */
 .pf-card.wide {
-    grid-column: span 2;
+    grid-column: auto;
 }
 
 .pf-card {
     position: relative;
     display: block;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     outline: none;
@@ -791,7 +792,7 @@ header > * {
 
 .pf-img {
     position: relative;
-    height: 280px;
+    height: 160px;
     overflow: hidden;
 }
 
@@ -811,11 +812,11 @@ header > * {
 
 .pf-num {
     position: absolute;
-    top: 16px;
-    left: 16px;
-    padding: 4px 12px;
+    top: 12px;
+    left: 12px;
+    padding: 3px 10px;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     background: rgba(10, 10, 10, 0.6);
     color: #fff;
@@ -824,8 +825,8 @@ header > * {
 .pf-meta {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px 22px 20px;
+    gap: 10px;
+    padding: 14px 16px 16px;
 }
 
 .pf-txt {
@@ -838,22 +839,22 @@ header > * {
 }
 
 .pf-cat {
-    margin: 0 0 4px;
-    font-size: 13px;
+    margin: 0 0 3px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
 }
 
 .pf-title {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
 
 .pf-arrow {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     flex: none;
     display: flex;
     align-items: center;
@@ -1533,11 +1534,11 @@ header > * {
 
     .pf-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
+        gap: 16px;
     }
 
     .pf-img {
-        height: 240px;
+        height: 150px;
     }
 
     .pf-detail {
@@ -1680,8 +1681,8 @@ header > * {
     }
 
     .pf-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
     }
 
     .pf-card.wide {
@@ -1689,20 +1690,23 @@ header > * {
     }
 
     .pf-img {
-        height: 190px;
+        height: 110px;
     }
 
     .pf-meta {
-        padding: 14px 16px 16px;
+        padding: 10px 12px 12px;
+    }
+
+    .pf-cat {
+        font-size: 11px;
     }
 
     .pf-title {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .pf-arrow {
-        width: 36px;
-        height: 36px;
+        display: none;
     }
 
     .pf-card.in-view:active {
