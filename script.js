@@ -8,7 +8,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
 // Country code that is selected when the browser language gives no hint
 // (use a two-letter country code, for example 'US', 'GB', 'DE', 'TR')
-const DEFAULT_COUNTRY = 'US';
+const DEFAULT_COUNTRY = 'IR';
 
 // Name | ISO code | dial code
 const COUNTRY_DATA = [
@@ -134,6 +134,17 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } else {
             moveBubbleTo(activeLink);
+        }
+    });
+
+    // Language switch changes link widths and fonts: measure the bubble again
+    document.addEventListener('sitelangchange', function () {
+        moveBubbleTo(activeLink);
+        setTimeout(function () { moveBubbleTo(activeLink); }, 250);
+        if (document.fonts && document.fonts.ready) {
+            setTimeout(function () {
+                document.fonts.ready.then(function () { moveBubbleTo(activeLink); });
+            }, 100);
         }
     });
 
@@ -400,6 +411,13 @@ function initPortfolio() {
    CONTACT: opening panel, country codes, validation, sending
    ========================================================= */
 
+/* Persian and Arabic digits are turned into normal digits (so typing in Persian works) */
+function toLatinDigits(text) {
+    return String(text)
+        .replace(/[\u06F0-\u06F9]/g, function (ch) { return String(ch.charCodeAt(0) - 0x06F0); })
+        .replace(/[\u0660-\u0669]/g, function (ch) { return String(ch.charCodeAt(0) - 0x0660); });
+}
+
 function initContact() {
     const toggle = document.getElementById('contact-toggle');
     const panel = document.getElementById('contact-panel');
@@ -656,7 +674,7 @@ function initContact() {
 
     // Only digits, spaces, dashes and brackets are allowed in the phone field
     fields.phone.addEventListener('input', function () {
-        const cleaned = fields.phone.value.replace(/[^\d\s\-()]/g, '');
+        const cleaned = toLatinDigits(fields.phone.value).replace(/[^\d\s\-()]/g, '');
         if (cleaned !== fields.phone.value) {
             fields.phone.value = cleaned;
         }
@@ -680,7 +698,7 @@ function initContact() {
     function validate() {
         const name = fields.name.value.trim();
         const email = fields.email.value.trim();
-        const digits = fields.phone.value.replace(/\D/g, '');
+        const digits = toLatinDigits(fields.phone.value).replace(/\D/g, '');
         const message = fields.message.value.trim();
         let firstInvalid = null;
 
@@ -1287,7 +1305,7 @@ function initFolder(onToggle) {
     const density = Math.min(1.5, window.devicePixelRatio || 1) * k;
 
     // Back panel artwork
-    gfPaint(backArt, GF_PRESETS.dusk, 5, 364, 296, density, 0);
+    // The back panel is plain transparent glass now (no painted artwork)
 
     /* ---------- open / close ---------- */
     function setOpen(open) {

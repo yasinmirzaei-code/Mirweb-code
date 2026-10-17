@@ -3286,3 +3286,99 @@ html[lang="fa"] .about-pill {
         height: 13px;
     }
 }
+
+
+/* =========================================================
+   FOLDER FIXES
+   - plain transparent glass (no artwork)
+   - fixed height: the page below no longer jumps when the folder is hovered or opened
+   - cards never paint over the text under the showcase while it opens or closes
+   ========================================================= */
+.gf-root {
+    height: calc((272px + 74px) * var(--gf-k));
+    transition: none;
+}
+
+.gf-art { display: none; }
+
+.gf-back {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .05) 100%);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
+    backdrop-filter: blur(10px) saturate(1.4);
+}
+
+.gf-back-sheen {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .14) 0%, rgba(255, 255, 255, 0) 30%);
+}
+
+.gf-back-rim path { stroke: rgba(255, 255, 255, .38); }
+
+.gf-tint {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .15) 0%, rgba(255, 255, 255, .05) 100%);
+}
+
+.gf-front {
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+}
+
+.gf-spec { opacity: .1; }
+.gf-front-rim { opacity: .9; }
+.gf-shadow { background: rgba(0, 0, 0, .28); }
+
+/* cut anything that would hang below the showcase box; sides and top stay open for the fly-out */
+.pf-showcase {
+    clip-path: inset(-700px -300px 0 -300px);
+}
+
+.pf-showcase-grid {
+    padding-bottom: 44px !important;
+}
+
+
+/* =========================================================
+   TECH LOGOS: safe sizes on every phone browser
+   ========================================================= */
+.about-tech {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
+
+.about-tech.reveal.in-view {
+    filter: none;              /* a leftover blur filter makes Safari repaint the floating tiles badly */
+}
+
+.tech-item {
+    box-sizing: border-box;
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+.tech-item svg {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+@keyframes techFloat {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -7px, 0); }
+}
+
+@media (max-width: 600px) {
+    .tech-item svg {
+        width: 26px;
+        height: 26px;
+        max-width: 26px;
+        max-height: 26px;
+    }
+}
+
+/* touch screens: no hover name bubble that stays stuck after a tap */
+@media (hover: none) {
+    .tech-item::after { display: none; }
+    .tech-item:hover svg { transform: none; }
+}
