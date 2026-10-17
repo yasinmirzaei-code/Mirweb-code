@@ -3444,3 +3444,55 @@ html[dir="rtl"] .pf-carousel .pf-sheet { direction: rtl; }
 /* contact section is now only the "Let's talk" card + form */
 .section-contact { padding-bottom: 60px; }
 @media (min-width: 1001px) { .section-contact { padding-bottom: 80px; } }
+
+
+/* ---------- Hero: liquid sculpture layer (WebGL) ----------
+   Fixed behind the whole page (above the video, below every section).
+   --sc-p (0 -> 1) is set by hero-sculpture.js while scrolling: the sculpture
+   gets blurred and dimmed, like it sits behind frosted glass. */
+.hero-sculpture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    will-change: filter, opacity;
+    filter: blur(calc(var(--sc-p, 0) * 14px));
+    opacity: calc(1 - var(--sc-p, 0) * 0.55);
+}
+
+.hero-sculpture * {
+    pointer-events: none !important;
+}
+
+/* Frosted veil that fades in over the sculpture while scrolling */
+.hero-sculpture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: var(--sc-p, 0);
+}
+
+/* Text sits above the sculpture */
+.hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero .scroll-hint {
+    z-index: 1;   /* keeps its own absolute position */
+}
+
+/* Phones: text is at the bottom, so the sculpture uses the upper part */
+@media (max-width: 600px) {
+    .hero-sculpture {
+        height: 62vh;
+        height: 62lvh;
+    }
+}

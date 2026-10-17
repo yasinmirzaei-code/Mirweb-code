@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="style.css?v=7">
     <link rel="stylesheet" href="ai-orb.css?v=1">
-    <link rel="stylesheet" href="footer.css?v=1">
+    <link rel="stylesheet" href="footer.css?v=2">
 </head>
 <body>
 
@@ -71,6 +71,9 @@
 
     <!-- First section -->
     <section class="hero" id="home">
+        <!-- Liquid sculpture (WebGL): decorative background layer, mounted by hero-sculpture.js -->
+        <div class="hero-sculpture" id="hero-sculpture" aria-hidden="true"></div>
+
         <div class="hero-content">
             <p class="hero-tag" data-i18n="hero.tag">Digital Experience</p>
 
@@ -284,7 +287,7 @@
     <section class="section section-contact" id="contact">
         <div class="section-inner">
             <!-- Contact details -->
-<p class="section-tag reveal" data-i18n="c.tag">Contact</p>
+
 
 
 
@@ -390,31 +393,31 @@
             <nav class="hwf-col" aria-label="Social">
                 <h3 data-i18n="ft.social">Social</h3>
                 <ul>
-                    <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
-                    <li><a href="https://t.me/yasinmiirzaei" target="_blank" rel="noopener">Telegram</a></li>
-                    <li><a href="https://instagram.com/yourname" target="_blank" rel="noopener">Instagram</a></li>
-                    <li><a href="https://wa.me/989991049494" target="_blank" rel="noopener">WhatsApp</a></li>
+                    <li><a href="https://github.com/yourname" target="_blank" rel="noopener"><i class="ti ti-brand-github hwf-ic" aria-hidden="true"></i><span>GitHub</span></a></li>
+                    <li><a href="https://t.me/yasinmiirzaei" target="_blank" rel="noopener"><i class="ti ti-brand-telegram hwf-ic" aria-hidden="true"></i><span>Telegram</span></a></li>
+                    <li><a href="https://instagram.com/yourname" target="_blank" rel="noopener"><i class="ti ti-brand-instagram hwf-ic" aria-hidden="true"></i><span>Instagram</span></a></li>
+                    <li><a href="https://wa.me/989991049494" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp hwf-ic" aria-hidden="true"></i><span>WhatsApp</span></a></li>
                 </ul>
             </nav>
             <nav class="hwf-col" aria-label="Pages">
                 <h3 data-i18n="ft.pages">Pages</h3>
                 <ul>
-                    <li><a href="#home" data-i18n="nav.home">Home</a></li>
-                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                    <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
-                    <li><a href="#about" data-i18n="nav.about">About Me</a></li>
-                    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#home"><i class="ti ti-home hwf-ic" aria-hidden="true"></i><span data-i18n="nav.home">Home</span></a></li>
+                    <li><a href="#services"><i class="ti ti-tools hwf-ic" aria-hidden="true"></i><span data-i18n="nav.services">Services</span></a></li>
+                    <li><a href="#portfolio"><i class="ti ti-briefcase hwf-ic" aria-hidden="true"></i><span data-i18n="nav.portfolio">Portfolio</span></a></li>
+                    <li><a href="#about"><i class="ti ti-user hwf-ic" aria-hidden="true"></i><span data-i18n="nav.about">About Me</span></a></li>
+                    <li><a href="#contact"><i class="ti ti-message-circle hwf-ic" aria-hidden="true"></i><span data-i18n="nav.contact">Contact</span></a></li>
                 </ul>
             </nav>
             <div class="hwf-col hwf-contact">
                 <h3 data-i18n="ft.contact">Contact</h3>
                 <ul>
                     <li>
-                        <a href="mailto:yasinmirzaei715@gmail.com" class="hwf-small">yasinmirzaei715@gmail.com</a>
+                        <a href="mailto:yasinmirzaei715@gmail.com" class="hwf-small"><i class="ti ti-mail hwf-ic" aria-hidden="true"></i><span>yasinmirzaei715@gmail.com</span></a>
                         <button type="button" class="hwf-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email" data-i18n-attr="aria-label:c.mail.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
                     </li>
                     <li>
-                        <a href="tel:+989991049494" class="hwf-small" dir="ltr">+98 999 104 9494</a>
+                        <a href="tel:+989991049494" class="hwf-small" dir="ltr"><i class="ti ti-phone hwf-ic" aria-hidden="true"></i><span>+98 999 104 9494</span></a>
                         <button type="button" class="hwf-copy" data-copy="+989991049494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
                     </li>
                 </ul>
@@ -428,5 +431,6 @@
     <script src="script.js?v=7"></script>
     <script src="footer.js?v=2"></script>
     <script src="ai-orb.js?v=3"></script>
+    <script src="hero-sculpture.js?v=2" defer></script>
 </body>
 </html>
