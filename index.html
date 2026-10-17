@@ -23,7 +23,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&family=Lalezar&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="ai-orb.css?v=1">
+    <link rel="stylesheet" href="footer.css?v=1">
 </head>
 <body>
 
@@ -135,52 +137,14 @@
                 <span class="line"><span class="accent" data-i18n="p.l2">speak for me</span></span>
             </h2>
 
-            <!-- Glass folder: the projects live inside it. Files are built from the cards below by script.js -->
-            <div class="pf-folder-wrap reveal">
-                <div class="gf-root" id="pf-folder" data-tone="dark">
-                    <div class="gf-stage">
-                        <div class="gf-tilt">
-                            <div class="gf-shadow" aria-hidden="true"></div>
-                            <div class="gf-back" aria-hidden="true">
-                                <canvas class="gf-art" id="gf-back-art" width="364" height="296"></canvas>
-                                <div class="gf-back-sheen"></div>
-                            </div>
-                            <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true"><path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"/></svg>
-
-                            <div class="gf-front">
-                                <div class="gf-tint" aria-hidden="true"></div>
-                                <div class="gf-spec" aria-hidden="true"></div>
-                                <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
-                                    <defs>
-                                        <linearGradient id="gf-rim-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"/>
-                                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"/>
-                                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-grad)"/>
-                                </svg>
-                                <button type="button" class="gf-hit" id="gf-hit" aria-expanded="false" aria-controls="pf-showcase"
-                                    aria-label="Open the work folder" data-i18n-attr="aria-label:p.folder.aria"></button>
-                                <div class="gf-label">
-                                    <span class="gf-title" data-i18n="p.folder">My Work</span>
-                                    <span class="gf-meta" data-i18n="p.folder.meta">4 projects</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project cards: they slide out of the folder when it opens.
+            <!-- Project cards: they glide by in a curved, self-moving slider.
                  HOW TO EDIT A PROJECT:
                  - data-url: the website address (start with https://)
                  - data-logo: path to the project logo (put it in the logos folder; PNG, SVG or JPG)
                  - data-desc / data-desc-fa and the <p class="pf-sheet-desc"> text: the short description
                  To add a project, copy one whole <article> block and change its values. -->
-            <div class="pf-showcase" id="pf-showcase">
-                <div class="pf-showcase-grid" id="pf-showcase-grid" role="list">
+            <div class="pf-carousel" id="pf-carousel" aria-roledescription="carousel">
+                <div class="pf-stage" id="pf-stage" role="list">
                 <article class="pf-sheet" style="--i: 0"
                     data-title="Cactus Cafe" data-year="2026"
                     data-desc="A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations."
@@ -277,6 +241,16 @@
                             <span data-i18n="a.pill">Available for projects</span>
                         </span>
                     </div>
+                    <div class="about-stats">
+                <div class="about-stat reveal" style="--delay: 0s">
+                    <p class="about-stat-num"><span class="about-cnt" data-to="4">4</span></p>
+                    <p class="about-stat-label" data-i18n="a.stat1">Projects delivered</p>
+                </div>
+                <div class="about-stat reveal" style="--delay: 0.12s">
+                    <p class="about-stat-num"><span class="about-cnt" data-to="2">2</span>+</p>
+                    <p class="about-stat-label" data-i18n="a.stat2">Years of experience</p>
+                </div>
+            </div>
                 </div>
             </div>
 
@@ -289,37 +263,6 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
                     <span data-i18n="a.cv">Download CV</span>
                 </a>
-            </div>
-
-            <!-- Stats -->
-            <div class="about-stats">
-                <div class="about-stat reveal" style="--delay: 0s">
-                    <p class="about-stat-num"><span class="about-cnt" data-to="4">4</span></p>
-                    <p class="about-stat-label" data-i18n="a.stat1">Projects delivered</p>
-                </div>
-                <div class="about-stat reveal" style="--delay: 0.12s">
-                    <p class="about-stat-num"><span class="about-cnt" data-to="2">2</span>+</p>
-                    <p class="about-stat-label" data-i18n="a.stat2">Years of experience</p>
-                </div>
-            </div>
-
-            <!-- Journey -->
-            <div class="about-journey">
-                <p class="about-journey-title reveal" data-i18n="a.jtitle">My journey</p>
-                <ul class="about-list">
-                    <li class="about-step reveal" style="--delay: 0s">
-                        <p class="about-step-year">2025</p>
-                        <p class="about-step-text" data-i18n="a.j1">Started designing websites</p>
-                    </li>
-                    <li class="about-step reveal" style="--delay: 0.12s">
-                        <p class="about-step-year">2025</p>
-                        <p class="about-step-text" data-i18n="a.j2">Launched my first client projects</p>
-                    </li>
-                    <li class="about-step reveal" style="--delay: 0.24s">
-                        <p class="about-step-year">2026</p>
-                        <p class="about-step-text" data-i18n="a.j3">Building cinematic web experiences</p>
-                    </li>
-                </ul>
             </div>
 
             <!-- Tools: small floating colored logos -->
@@ -344,64 +287,7 @@
 <p class="section-tag reveal" data-i18n="c.tag">Contact</p>
 
 
-<div class="contact-info">
 
-    <!-- Email -->
-    <div class="info-card reveal" style="--delay: 0s">
-        <div class="info-row">
-            <a href="mailto:yasinmirzaei715@gmail.com" class="info-main">
-                <span class="info-ico"><i class="ti ti-mail" aria-hidden="true"></i></span>
-                <span class="info-text">
-                    <span class="info-label" data-i18n="c.mail.label">Email me</span>
-                    <span class="info-value info-email">yasinmirzaei715@gmail.com</span>
-                </span>
-            </a>
-            <button type="button" class="info-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email" data-i18n-attr="aria-label:c.mail.copy">
-                <i class="ti ti-copy" aria-hidden="true"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Phone -->
-    <div class="info-card reveal" style="--delay: 0.12s">
-        <div class="info-row">
-            <a href="tel:+989991049494" class="info-main">
-                <span class="info-ico"><i class="ti ti-phone" aria-hidden="true"></i></span>
-                <span class="info-text">
-                    <span class="info-label" data-i18n="c.phone.label">Call or message</span>
-                    <span class="info-value info-phone" dir="ltr">+98 999 104 9494</span>
-                </span>
-            </a>
-            <button type="button" class="info-copy" data-copy="+989991049494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy">
-                <i class="ti ti-copy" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <div class="info-quick">
-            <a href="https://wa.me/989991049494" class="info-q" target="_blank" rel="noopener">
-                <i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span data-i18n="c.wa">WhatsApp</span>
-            </a>
-            <a href="https://t.me/yasinmiirzaei" class="info-q" target="_blank" rel="noopener">
-                <i class="ti ti-brand-telegram" aria-hidden="true"></i><span data-i18n="c.tg">Telegram</span>
-            </a>
-        </div>
-    </div>
-
-</div>
-
-<div class="contact-meta reveal">
-    <div class="contact-status">
-        <span class="contact-dot"></span>
-        <span data-i18n="c.status">replies between 9am and 9pm</span>
-    </div>
-
-    <div class="contact-socials">
-        <a href="https://instagram.com/yourname" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
-        <a href="https://linkedin.com/in/yourname" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
-        <a href="https://github.com/yourname" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
-        <a href="https://t.me/yasinmiirzaei" class="social-link" target="_blank" rel="noopener" aria-label="Telegram"><i class="ti ti-brand-telegram" aria-hidden="true"></i></a>
-    </div>
-</div>
 
             <div class="contact-cta reveal">
                 <div>
@@ -493,6 +379,54 @@
         </div>
     </section>
 
-    <script src="script.js?v=4"></script>
+    <!-- Footer: halftone wordmark. Texts: data-i18n keys in script.js. Wordmark word: footer.js (WORD). -->
+    <footer class="hwf-root" id="site-footer">
+        <span class="hwf-sr">MIRWEB</span>
+        <div class="hwf-top">
+            <div class="hwf-brand">
+                <strong>MIRWEB</strong>
+                <span data-i18n="ft.meta">©2026 · Yasin Mirzaei · Web design and development</span>
+            </div>
+            <nav class="hwf-col" aria-label="Social">
+                <h3 data-i18n="ft.social">Social</h3>
+                <ul>
+                    <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://t.me/yasinmiirzaei" target="_blank" rel="noopener">Telegram</a></li>
+                    <li><a href="https://instagram.com/yourname" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://wa.me/989991049494" target="_blank" rel="noopener">WhatsApp</a></li>
+                </ul>
+            </nav>
+            <nav class="hwf-col" aria-label="Pages">
+                <h3 data-i18n="ft.pages">Pages</h3>
+                <ul>
+                    <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                    <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+                    <li><a href="#about" data-i18n="nav.about">About Me</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hwf-col hwf-contact">
+                <h3 data-i18n="ft.contact">Contact</h3>
+                <ul>
+                    <li>
+                        <a href="mailto:yasinmirzaei715@gmail.com" class="hwf-small">yasinmirzaei715@gmail.com</a>
+                        <button type="button" class="hwf-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email" data-i18n-attr="aria-label:c.mail.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+                    </li>
+                    <li>
+                        <a href="tel:+989991049494" class="hwf-small" dir="ltr">+98 999 104 9494</a>
+                        <button type="button" class="hwf-copy" data-copy="+989991049494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="hwf-rule">
+            <button type="button" class="hwf-up" id="hwf-up"><span data-i18n="ft.top">Back to top</span> ↑</button>
+        </div>
+    </footer>
+
+    <script src="script.js?v=7"></script>
+    <script src="footer.js?v=2"></script>
+    <script src="ai-orb.js?v=3"></script>
 </body>
 </html>
