@@ -17,10 +17,10 @@
         } catch (e) {}
     </script>
 
-    <!-- Fonts: Syne (headings) + Inter (body text) + Vazirmatn (Persian) -->
+    <!-- Fonts: Syne (headings) + Inter (body text) + Lalezar and Vazirmatn (Persian) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&family=Lalezar&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -184,7 +184,7 @@
                 <article class="pf-sheet" style="--i: 0"
                     data-title="Cactus Cafe" data-year="2026"
                     data-desc="A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations."
-                    data-desc-fa="وب‌سایتی گرم و مدرن برای یک کافه با تم کاکتوس، همراه با نمایش منو و انیمیشن‌های اسکرول نرم."
+                    data-desc-fa="سایتی گرم و دلنشین برای یک کافه با حال‌وهوای کویری؛ منوی تصویری و حرکت‌های نرم هنگام اسکرول."
                     data-url="#"
                     data-logo="logos/cactus-cafe.svg">
                     <span class="pf-year">2026</span>
@@ -200,7 +200,7 @@
                 <article class="pf-sheet" style="--i: 1"
                     data-title="Shell Cafe" data-year="2026"
                     data-desc="A seaside cafe website with a clean menu and booking experience that works great on every screen."
-                    data-desc-fa="وب‌سایت یک کافه ساحلی با منوی ساده و تجربه رزرو روان که روی همه صفحه‌نمایش‌ها عالی کار می‌کند."
+                    data-desc-fa="سایت یک کافه ساحلی با منوی مرتب و رزرو آسان که روی همه‌ی صفحه‌ها خوب دیده می‌شود."
                     data-url="#"
                     data-logo="logos/shell-cafe.svg">
                     <span class="pf-year">2026</span>
@@ -216,7 +216,7 @@
                 <article class="pf-sheet" style="--i: 2"
                     data-title="Nimbus Agency" data-year="2025"
                     data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
-                    data-desc-fa="وب‌سایت سازمانی برای یک آژانس دیجیتال با ظاهری جسورانه، مدرن و ساختاری روشن."
+                    data-desc-fa="سایت سازمانی یک آژانس دیجیتال؛ ظاهری جسور و امروزی با ساختاری روشن و منظم."
                     data-url="#"
                     data-logo="logos/nimbus-agency.svg">
                     <span class="pf-year">2025</span>
@@ -232,7 +232,7 @@
                 <article class="pf-sheet" style="--i: 3"
                     data-title="Pulse Store" data-year="2025"
                     data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
-                    data-desc-fa="فروشگاه آنلاین سریع با تجربه مرور محصول تمیز و فرآیند پرداخت ساده."
+                    data-desc-fa="فروشگاه آنلاین سریع با مرور راحت محصولات و خریدی که در چند قدم تمام می‌شود."
                     data-url="#"
                     data-logo="logos/pulse-store.svg">
                     <span class="pf-year">2025</span>
@@ -322,22 +322,13 @@
                 </ul>
             </div>
 
-            <!-- Tools strip (the second set is a copy that makes the loop seamless) -->
-            <div class="about-marq reveal" aria-label="Tools I use" data-i18n-attr="aria-label:a.tools">
-                <div class="about-track">
-                    <div class="about-set">
-                        <span class="about-chip">HTML and CSS</span>
-                        <span class="about-chip">JavaScript</span>
-                        <span class="about-chip">WordPress</span>
-                        <span class="about-chip">Git</span>
-                    </div>
-                    <div class="about-set" aria-hidden="true">
-                        <span class="about-chip">HTML and CSS</span>
-                        <span class="about-chip">JavaScript</span>
-                        <span class="about-chip">WordPress</span>
-                        <span class="about-chip">Git</span>
-                    </div>
-                </div>
+            <!-- Tools: small floating colored logos -->
+            <div class="about-tech reveal" role="list" aria-label="Tools I use" data-i18n-attr="aria-label:a.tools">
+                <span class="tech-item" role="listitem" style="--n: 0" data-name="HTML" title="HTML"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#E34F26" d="M5 3h22l-2 22.5L16 29l-9-3.5z"/><path fill="#EF652A" d="M16 5.2v21.6l7.3-2.4L25 5.2z"/><path fill="#fff" d="M10 9h12.2l-.3 3H13.2l.2 3h8.2l-.6 7-5 1.6-5-1.6-.3-4h3l.2 2 2.1.7 2.1-.7.2-2.7H10z"/></svg></span>
+                <span class="tech-item" role="listitem" style="--n: 1" data-name="CSS" title="CSS"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#1572B6" d="M5 3h22l-2 22.5L16 29l-9-3.5z"/><path fill="#33A9DC" d="M16 5.2v21.6l7.3-2.4L25 5.2z"/><path fill="#fff" d="M22.3 9H10l.3 3h8.6l-.3 3h-8l.3 3h7.4l-.4 4-3 1-3-1-.2-2h-3l.4 4.7 5.8 1.9 5.8-1.9z"/></svg></span>
+                <span class="tech-item" role="listitem" style="--n: 2" data-name="JavaScript" title="JavaScript"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="3" fill="#F7DF1E"/><text x="27" y="27" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="13" fill="#1a1a1a">JS</text></svg></span>
+                <span class="tech-item" role="listitem" style="--n: 3" data-name="WordPress" title="WordPress"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5" fill="#21759B"/><circle cx="16" cy="16" r="11.2" fill="none" stroke="#fff" stroke-width="1.2"/><text x="16" y="21.8" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#fff">W</text></svg></span>
+                <span class="tech-item" role="listitem" style="--n: 4" data-name="Git" title="Git"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="6" width="20" height="20" rx="3.5" transform="rotate(45 16 16)" fill="#F05032"/><path d="M12.5 11v10M12.5 13.5c0 2 2 2.5 4.5 2.5" stroke="#fff" stroke-width="1.5" fill="none"/><g fill="#fff"><circle cx="12.5" cy="11" r="1.8"/><circle cx="12.5" cy="21" r="1.8"/><circle cx="19.2" cy="16" r="1.8"/></g></svg></span>
             </div>
 
         </div>
@@ -381,7 +372,7 @@
                     <span class="info-value info-phone" dir="ltr">+98 999 104 9494</span>
                 </span>
             </a>
-            <button type="button" class="info-copy" data-copy="+98 999 104 9494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy">
+            <button type="button" class="info-copy" data-copy="+989991049494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy">
                 <i class="ti ti-copy" aria-hidden="true"></i>
             </button>
         </div>
@@ -390,7 +381,7 @@
             <a href="https://wa.me/989991049494" class="info-q" target="_blank" rel="noopener">
                 <i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span data-i18n="c.wa">WhatsApp</span>
             </a>
-            <a href="https://t.me/yourusername" class="info-q" target="_blank" rel="noopener">
+            <a href="https://t.me/yasinmiirzaei" class="info-q" target="_blank" rel="noopener">
                 <i class="ti ti-brand-telegram" aria-hidden="true"></i><span data-i18n="c.tg">Telegram</span>
             </a>
         </div>
@@ -408,7 +399,7 @@
         <a href="https://instagram.com/yourname" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
         <a href="https://linkedin.com/in/yourname" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></a>
         <a href="https://github.com/yourname" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
-        <a href="https://t.me/yourusername" class="social-link" target="_blank" rel="noopener" aria-label="Telegram"><i class="ti ti-brand-telegram" aria-hidden="true"></i></a>
+        <a href="https://t.me/yasinmiirzaei" class="social-link" target="_blank" rel="noopener" aria-label="Telegram"><i class="ti ti-brand-telegram" aria-hidden="true"></i></a>
     </div>
 </div>
 
