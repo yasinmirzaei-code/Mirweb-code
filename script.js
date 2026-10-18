@@ -888,3 +888,27 @@ function initContact() {
         });
     });
 })();
+
+
+/* =========================================================
+   BACKGROUND VIDEO: show it only when the first frame is ready (no grey flash on refresh)
+   ========================================================= */
+(function () {
+    'use strict';
+
+    var video = document.querySelector('.video-bg video');
+    if (!video) return;
+
+    var shown = false;
+    function show() {
+        if (shown) return;
+        shown = true;
+        video.classList.add('is-ready');
+    }
+
+    if (video.readyState >= 2) show();
+    video.addEventListener('loadeddata', show);
+    video.addEventListener('playing', show);
+    video.addEventListener('error', show);
+    setTimeout(show, 4000);   // safety net: never leave the page without the opening animation
+})();

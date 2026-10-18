@@ -32,6 +32,7 @@ body {
 
 /* ---------- Background video ---------- */
 .video-bg {
+    background: #000;
     position: fixed;
     top: 0;
     left: 0;
@@ -48,7 +49,14 @@ body {
     object-fit: cover;
     object-position: center center;
 
-    /* Cinematic opening: fades in from black with a slow zoom-out */
+    /* Stays hidden (pure black behind it) until the first frame is ready, then the
+       cinematic opening runs: fades in from black with a slow zoom-out.
+       This stops any grey flash while the video is still loading. */
+    background: #000;
+    opacity: 0;
+}
+
+.video-bg video.is-ready {
     animation: videoIn 2.8s var(--ease-cinema) both;
 }
 
@@ -3333,3 +3341,11 @@ header > * {
     .contact-panel,
     .contact-cta { max-width: 640px; }
 }
+
+/* The sculpture's placeholder image has a light grey backdrop: it flashed on every refresh
+   until WebGL was ready. It is now hidden; it only appears if WebGL is unavailable. */
+.hero-sculpture .sh-root:not([data-gl="off"]) .sh-fallback {
+    opacity: 0 !important;
+    transition: none !important;
+}
+.hero-sculpture .sh-root { background: transparent !important; }
