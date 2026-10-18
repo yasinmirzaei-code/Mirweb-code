@@ -7,14 +7,13 @@
     <meta name="description" content="Modern, creative and functional website design and development.">
     <link rel="icon" href="logo.png">
 
-
     <!-- Fonts: Syne (headings) + Inter (body text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=11">
     <link rel="stylesheet" href="ai-orb.css?v=1">
     <link rel="stylesheet" href="footer.css?v=2">
 </head>
@@ -52,7 +51,7 @@
 
     <!-- First section -->
     <section class="hero" id="home">
-        <!-- Liquid sculpture (WebGL): decorative background layer, mounted by hero-sculpture.js -->
+        <!-- Anomalous matter (WebGL): decorative background layer, drawn by hero-matter.js -->
         <div class="hero-sculpture" id="hero-sculpture" aria-hidden="true"></div>
 
         <div class="hero-content">
@@ -145,36 +144,27 @@
                 <span class="line"><span class="accent">speak for me</span></span>
             </h2>
 
-            <!-- Project cards: they glide by in a curved, self-moving slider.
-                 HOW TO EDIT A PROJECT:
-                 - data-url: the website address (start with https://)
-                 - data-logo: path to the project logo (put it in the logos folder; PNG, SVG or JPG)
-                 - data-desc / data-desc-fa and the <p class="pf-sheet-desc"> text: the short description
-                 To add a project, copy one whole <article> block and change its values. -->
+            <!-- Project cards: a curved, self-moving slider.
+                 To edit a project: change the title, text and link in its <article>.
+                 To add one, copy a whole <article> block and change --i to the next number.
+                 Logo: put the image in the folder and use <img>; without an image the first letter is shown. -->
             <div class="pf-carousel" id="pf-carousel" aria-roledescription="carousel">
                 <div class="pf-stage" id="pf-stage" role="list">
                 <article class="pf-sheet" style="--i: 0"
-                    data-title="Cactus Cafe" data-year="2026"
-                    data-desc="A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations."
-                    data-url="#"
-                    data-logo="logos/cactus-cafe.svg">
+                    data-logo="cactus.logo.png">
                     <span class="pf-year">2026</span>
                     <div class="pf-logo"><img src="cactus.logo.png" alt="Cactus Cafe logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">C</span></div>
                     <h3 class="pf-sheet-title">Cactus Cafe</h3>
                     <p class="pf-sheet-desc">A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations.</p>
-                    <a href="https://cactus1202.com" class="pf-go pf-go-sm">
+                    <a href="https://cactus1202.com" class="pf-go pf-go-sm" target="_blank" rel="noopener">
                         <span>View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </article>
 
-                <article class="pf-sheet" style="--i: 1"
-                    data-title="Shell Cafe" data-year="2026"
-                    data-desc="A seaside cafe website with a clean menu and booking experience that works great on every screen."
-                    data-url="#"
-                    data-logo="logos/shell-cafe.svg">
+                <article class="pf-sheet" style="--i: 1">
                     <span class="pf-year">2026</span>
-                    <div class="pf-logo"><img src="logos/shell-cafe.svg" alt="Shell Cafe logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">S</span></div>
+                    <div class="pf-logo no-img"><span class="pf-mono" aria-hidden="true">S</span></div>
                     <h3 class="pf-sheet-title">Shell Cafe</h3>
                     <p class="pf-sheet-desc">A seaside cafe website with a clean menu and booking experience that works great on every screen.</p>
                     <a href="#" class="pf-go pf-go-sm">
@@ -183,13 +173,9 @@
                     </a>
                 </article>
 
-                <article class="pf-sheet" style="--i: 2"
-                    data-title="Nimbus Agency" data-year="2025"
-                    data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
-                    data-url="#"
-                    data-logo="logos/nimbus-agency.svg">
+                <article class="pf-sheet" style="--i: 2">
                     <span class="pf-year">2025</span>
-                    <div class="pf-logo"><img src="logos/nimbus-agency.svg" alt="Nimbus Agency logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">N</span></div>
+                    <div class="pf-logo no-img"><span class="pf-mono" aria-hidden="true">N</span></div>
                     <h3 class="pf-sheet-title">Nimbus Agency</h3>
                     <p class="pf-sheet-desc">A corporate website for a digital agency with a bold, modern look and clear structure.</p>
                     <a href="#" class="pf-go pf-go-sm">
@@ -198,13 +184,9 @@
                     </a>
                 </article>
 
-                <article class="pf-sheet" style="--i: 3"
-                    data-title="Pulse Store" data-year="2025"
-                    data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
-                    data-url="#"
-                    data-logo="logos/pulse-store.svg">
+                <article class="pf-sheet" style="--i: 3">
                     <span class="pf-year">2025</span>
-                    <div class="pf-logo"><img src="logos/pulse-store.svg" alt="Pulse Store logo" width="64" height="64" loading="lazy"><span class="pf-mono" aria-hidden="true">P</span></div>
+                    <div class="pf-logo no-img"><span class="pf-mono" aria-hidden="true">P</span></div>
                     <h3 class="pf-sheet-title">Pulse Store</h3>
                     <p class="pf-sheet-desc">A fast online store with a clean product browsing experience and a simple checkout flow.</p>
                     <a href="#" class="pf-go pf-go-sm">
@@ -216,8 +198,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- About me -->
 <section class="section" id="about">
@@ -235,7 +215,7 @@
             <div class="about-card reveal">
                 <div class="about-card-tilt" id="about-tilt">
                     <div class="about-photo">
-                        <img src="me.PNG" alt="Yasin Mirzaei" width="120" height="150">
+                        <img src="me.webp" alt="Yasin Mirzaei" width="120" height="150">
                     </div>
                     <div class="about-info">
                         <p class="about-name">Yasin Mirzaei</p>
@@ -277,16 +257,10 @@
     </div>
 </section>
 
-
-
     <!-- Contact -->
     <section class="section section-contact" id="contact">
         <div class="section-inner">
             <!-- Contact details -->
-
-
-
-
 
             <div class="contact-cta reveal">
                 <div>
@@ -426,9 +400,9 @@
         </div>
     </footer>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
     <script src="footer.js?v=2"></script>
     <script src="ai-orb.js?v=3"></script>
-    <script src="hero-sculpture.js?v=3" defer></script>
+    <script src="hero-matter.js?v=5" defer></script>
 </body>
 </html>

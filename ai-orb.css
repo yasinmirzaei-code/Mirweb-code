@@ -324,8 +324,10 @@
 @media (max-width: 600px) {
     .mo-launch { right: 14px; bottom: 14px; width: 46px; height: 46px; }
     .mo-close { top: 12px; right: 12px; }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
     .mo-root *, .mo-launch { animation: none !important; }
+
 }

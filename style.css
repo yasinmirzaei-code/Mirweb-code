@@ -88,6 +88,7 @@ body {
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
     }
+
 }
 
 /* Dark overlay for text readability (stronger on the left) */
@@ -646,15 +647,11 @@ header > * {
 
 /* ---------- Portfolio ---------- */
 
-
 /* All cards are the same small size now */
-
 
 /* List view */
 
-
 /* Project details */
-
 
 @keyframes pfSwap {
     from {
@@ -1159,6 +1156,7 @@ header > * {
     .nav-bubble {
         display: none;
     }
+
 }
 
 /* Tablets */
@@ -1184,6 +1182,7 @@ header > * {
     .contact-card {
         padding: 30px;
     }
+
 }
 
 /* Phones */
@@ -1326,6 +1325,7 @@ header > * {
     .form-note {
         max-width: none;
     }
+
 }
 
 /* ---------- Performance mode: phones, tablets and touch devices ---------- */
@@ -1378,6 +1378,7 @@ header > * {
     .reveal.in-view {
         filter: none;
     }
+
 }
 
 /* Respect users who prefer reduced motion */
@@ -1402,27 +1403,11 @@ header > * {
     .section-tag::before {
         transform: none;
     }
+
 }
 /* ================= About me ================= */
 
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-        "card   stats"
-        "bio    journey"
-        "cv     journey"
-        "marq   marq";
-    gap: 28px 56px;
-    align-items: start;
-}
-
 .about-card     { grid-area: card; }
-.about-bio      { grid-area: bio; }
-.about-cv-wrap  { grid-area: cv; }
-.about-stats    { grid-area: stats; }
-.about-journey  { grid-area: journey; }
-.about-marq     { grid-area: marq; }
 
 /* Profile card (the whole glass card tilts on desktop) */
 .about-card-tilt {
@@ -1586,125 +1571,7 @@ header > * {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Journey */
-.about-journey-title {
-    margin: 0 0 20px;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-}
-
-.about-list {
-    position: relative;
-    margin: 0;
-    padding: 0 0 0 24px;
-    list-style: none;
-}
-
-.about-list::before {
-    content: "";
-    position: absolute;
-    left: 3px;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.22);
-}
-
-.about-step {
-    position: relative;
-    margin: 0 0 24px;
-}
-
-.about-step:last-child {
-    margin-bottom: 0;
-}
-
-.about-step::before {
-    content: "";
-    position: absolute;
-    left: -24px;
-    top: 7px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #fff;
-}
-
-.about-step-year {
-    margin: 0 0 2px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.about-step-text {
-    margin: 0;
-    font-size: 17px;
-}
-
-/* Tools strip */
-.about-marq {
-    overflow: hidden;
-    padding: 14px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.about-track {
-    display: flex;
-    width: max-content;
-    animation: aboutScroll 26s linear infinite;
-}
-
-.about-marq:hover .about-track {
-    animation-play-state: paused;
-}
-
-@keyframes aboutScroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
-
-.about-set {
-    display: flex;
-    gap: 12px;
-    padding-right: 12px;
-}
-
-.about-chip {
-    flex: none;
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: rgba(255, 255, 255, 0.85);
-}
-
-/* Tablets and phones: one column */
-@media (max-width: 900px) {
-    .about-grid {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "card"
-            "bio"
-            "marq"
-            "stats"
-            "journey"
-            "cv";
-        gap: 24px;
-    }
-
-    .about-bio {
-        max-width: none;
-    }
-}
-
 @media (max-width: 600px) {
-    .about-grid {
-        gap: 20px;
-    }
-
     .about-card-tilt {
         gap: 14px;
         padding: 12px;
@@ -1749,19 +1616,11 @@ header > * {
         font-size: 26px;
     }
 
-    .about-step-text {
-        font-size: 15px;
-    }
-
-    .about-chip {
-        padding: 6px 16px;
-        font-size: 13px;
-    }
-
     .about-cv {
         width: 100%;
         justify-content: center;
     }
+
 }
 
 /* Performance mode for phones and touch devices (no blur) */
@@ -1773,15 +1632,16 @@ header > * {
         background: rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
+
 }
 
 /* Reduced motion: stop the looping animations */
 @media (prefers-reduced-motion: reduce) {
-    .about-track,
     .about-pill,
     .about-dot::after {
         animation: none !important;
     }
+
 }
 
 /* ================= Contact details ================= */
@@ -1793,100 +1653,6 @@ header > * {
 
 .section-contact .section-text {
     margin-bottom: 40px;
-}
-
-.contact-info {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    margin: 0 0 28px;
-}
-
-.info-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 22px 24px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.info-card.in-view {
-    transition:
-        opacity 1.2s var(--ease-cinema),
-        filter 1.2s var(--ease-cinema),
-        transform 0.5s var(--ease-cinema),
-        background 0.4s ease,
-        border-color 0.4s ease;
-    transition-delay: 0s;
-}
-
-.info-card.in-view:hover {
-    transform: translateY(-6px);
-    background: rgba(255, 255, 255, 0.09);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.info-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.info-main {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
-    min-width: 0;
-    color: inherit;
-    text-decoration: none;
-}
-
-.info-ico {
-    width: 52px;
-    height: 52px;
-    flex: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 24px;
-    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-}
-
-.info-card:hover .info-ico {
-    background: #fff;
-    color: #0a0a0a;
-    border-color: #fff;
-}
-
-.info-text {
-    display: block;
-    min-width: 0;
-}
-
-.info-label {
-    display: block;
-    margin: 0 0 4px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.55);
-}
-
-.info-value {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: clamp(18px, 2vw, 22px);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    overflow-wrap: anywhere;
 }
 
 /* Copy button */
@@ -1919,121 +1685,12 @@ header > * {
     border-color: #fff;
 }
 
-/* WhatsApp and Telegram quick actions */
-.info-quick {
-    display: flex;
-    gap: 10px;
-    margin: 18px 0 0;
-    padding: 18px 0 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.info-q {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.info-q:hover {
-    background: rgba(255, 255, 255, 0.14);
-}
-
-.info-q i {
-    font-size: 18px;
-}
-
-/* Status line and social icons */
-.contact-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin: 0 0 56px;
-    padding: 24px 0 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.contact-status {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.72);
-}
-
-.contact-dot {
-    position: relative;
-    width: 8px;
-    height: 8px;
-    flex: none;
-    border-radius: 50%;
-    background: #5DCAA5;
-}
-
-.contact-dot::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: #5DCAA5;
-    animation: contactPulse 2s ease-out infinite;
-}
-
-@keyframes contactPulse {
-    0%   { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(2.6); opacity: 0; }
-}
-
-.contact-socials {
-    display: flex;
-    gap: 12px;
-}
-
-.social-link {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    font-size: 21px;
-    text-decoration: none;
-    transition: transform 0.4s var(--ease-cinema), background 0.3s ease, color 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.social-link:hover {
-    transform: translateY(-4px);
-    background: #fff;
-    color: #0a0a0a;
-}
-
 /* Tablets */
 @media (max-width: 900px) {
     .section-contact {
         padding: 110px 30px;
     }
 
-    .contact-info {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 18px;
-    }
-
-    .contact-meta {
-        margin-bottom: 40px;
-    }
 }
 
 /* Phones */
@@ -2046,175 +1703,12 @@ header > * {
         margin-bottom: 28px;
     }
 
-    .contact-info {
-        gap: 12px;
-        margin-bottom: 22px;
-    }
-
-    .info-card {
-        padding: 16px;
-        border-radius: 20px;
-    }
-
-    .info-row,
-    .info-main {
-        gap: 12px;
-    }
-
-    .info-ico {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-    }
-
-    .info-value {
-        font-size: 17px;
-    }
-
     .info-copy {
         width: 38px;
         height: 38px;
         font-size: 17px;
     }
 
-    .info-quick {
-        gap: 8px;
-        margin-top: 14px;
-        padding-top: 14px;
-    }
-
-    .info-q {
-        padding: 9px 10px;
-        font-size: 13px;
-    }
-
-    .contact-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        margin-bottom: 32px;
-        padding-top: 20px;
-    }
-
-    .social-link {
-        width: 46px;
-        height: 46px;
-    }
-
-    .info-card.in-view:hover {
-        transform: none;
-    }
-}
-
-/* Performance mode for phones and touch devices (no blur) */
-@media (max-width: 1000px), (hover: none) {
-    .info-card {
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .contact-dot::after {
-        animation: none !important;
-    }
-}
-/* ---------- Contact details: tidy phone number ---------- */
-
-/* Only the email may break anywhere; the phone number never breaks */
-.info-value {
-    overflow-wrap: normal;
-}
-
-.info-email {
-    overflow-wrap: anywhere;
-}
-
-.info-phone {
-    font-family: var(--font-body);
-    font-size: clamp(18px, 1.9vw, 22px);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    direction: ltr;
-    unicode-bidi: isolate;               /* keeps "+" at the start */
-    font-variant-numeric: tabular-nums;  /* all digits have the same width */
-}
-
-/* Very small phones: keep the number on one line */
-@media (max-width: 380px) {
-    .info-phone {
-        font-size: 15px;
-        letter-spacing: 0;
-    }
-
-    .info-q {
-        font-size: 12px;
-    }
-}
-
-
-/* =========================================================
-   lang.css: language button + Persian (RTL) support
-   Load this AFTER style.css. style.css does not change.
-   ========================================================= */
- 
-/* ---------- Language button + hamburger group ---------- */
- 
-/* Tablets and phones: the button sits right beside the hamburger */
- 
-/* Phones and touch devices: no blur (same as the rest of the site) */
- 
-/* ---------- Persian font and typography ---------- */
- 
-/* Letter spacing breaks the joined Persian letters, so it is turned off */
- 
-/* Persian glyphs are taller: more line height so the mask does not cut them */
- 
-/* ---------- Right-to-left layout ---------- */
- 
-/* Dark gradient behind the text moves to the right side */
- 
-/* Arrows point the other way */
- 
-/* Portfolio */
-
- 
-/* Contact form */
- 
-/* Phone number and email are always typed left to right */
- 
-/* About: timeline line moves to the right */
- 
-/* The tools strip keeps scrolling left to right so the loop stays seamless */
-
-/* =========================================================
-   Portfolio cards: frosted glass sheets that slide out of the folder
-   Each card is the same size as the folder (340 x 272)
-   ========================================================= */
-.pf-folder-wrap {
-    position: relative;
-    z-index: 2;            /* the folder stays in front, the cards come out from behind it */
-}
-
-.pf-showcase {
-    --pf-ease: cubic-bezier(.2, .8, .2, 1);
-    --pf-spring: cubic-bezier(.34, 1.4, .5, 1);
-    position: relative;
-    z-index: 1;
-    height: 0;
-    transition: height .85s var(--pf-ease);
-}
-
-.pf-showcase-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 340px);
-    justify-content: center;
-    gap: 26px;
-    padding: 34px 0 6px;
 }
 
 .pf-sheet {
@@ -2245,7 +1739,7 @@ header > * {
         inset 0 1px 0 rgba(255, 255, 255, .38),
         inset 0 -1px 0 rgba(255, 255, 255, .06),
         0 26px 50px -20px rgba(0, 0, 0, .65);
-    /* closed: tucked into the folder */
+    /* closed state */
     opacity: 0;
     pointer-events: none;
     transform: translate(var(--fx), var(--fy)) scale(.45) rotate(var(--fr));
@@ -2255,30 +1749,6 @@ header > * {
         opacity .4s ease calc(var(--ri, 0) * 70ms + .1s),
         box-shadow .4s ease,
         border-color .4s ease;
-}
-
-/* open: cards fly out one after another and settle into the grid */
-.pf-showcase.open .pf-sheet {
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    transition:
-        transform .95s var(--pf-spring) calc(var(--i, 0) * 120ms),
-        opacity .5s ease calc(var(--i, 0) * 120ms),
-        box-shadow .4s ease,
-        border-color .4s ease;
-}
-
-.pf-showcase.open.settled .pf-sheet {
-    transition: transform .45s var(--pf-ease), box-shadow .4s ease, border-color .4s ease;
-}
-.pf-showcase.open.settled .pf-sheet:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, .42);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, .5),
-        inset 0 -1px 0 rgba(255, 255, 255, .08),
-        0 34px 56px -20px rgba(0, 0, 0, .7);
 }
 
 /* light that follows the pointer */
@@ -2292,7 +1762,6 @@ header > * {
     transition: opacity .4s ease;
     pointer-events: none;
 }
-.pf-showcase.open.settled .pf-sheet:hover::before { opacity: 1; }
 
 .pf-year {
     position: absolute;
@@ -2370,16 +1839,6 @@ header > * {
     border-color: rgba(255, 255, 255, .5);
 }
 
-/* Persian: the arrow in the button flips with the reading direction */
-
-/* Narrow screens: one card per row */
-@media (max-width: 760px) {
-    .pf-showcase-grid {
-        grid-template-columns: minmax(0, 340px);
-        gap: 20px;
-    }
-}
-
 /* Phones and touch devices: no blur recalculated over the playing video */
 @media (max-width: 1000px), (hover: none) {
     .pf-sheet {
@@ -2387,23 +1846,22 @@ header > * {
         backdrop-filter: none;
         background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .07));
     }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .pf-showcase,
     .pf-sheet {
         transition-duration: 0s !important;
         transition-delay: 0s !important;
     }
-}
 
+}
 
 /* =========================================================
    REDESIGN PATCH
    1) Desktop layout (>= 1001px): content fills the screen, same side edges everywhere
    2) Tech logos: small, colored, floating
-   3) Smaller portfolio cards (folder-sized), desktop and tablet only
-   4) Persian font and typography
+   3) Smaller portfolio cards, desktop and tablet only
    Phones (<= 760px) are not touched.
    ========================================================= */
 
@@ -2445,13 +1903,6 @@ header > * {
         max-width: 720px;
     }
 
-    .about-grid {
-        gap: 36px 80px;
-    }
-
-    .about-bio {
-        max-width: 640px;
-    }
 }
 
 /* ---------- 2) Floating colored tech logos ---------- */
@@ -2524,11 +1975,6 @@ header > * {
     transform: translateX(-50%) translateY(0);
 }
 
-@keyframes techFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50%      { transform: translateY(-9px) rotate(2.5deg); }
-}
-
 @media (max-width: 600px) {
     .about-tech {
         gap: 14px;
@@ -2542,21 +1988,18 @@ header > * {
         width: 26px;
         height: 26px;
     }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
     .tech-item {
         animation: none !important;
     }
+
 }
 
-/* ---------- 3) Smaller portfolio cards (about the size of the folder) ---------- */
+/* ---------- 3) Smaller portfolio cards ---------- */
 @media (min-width: 761px) {
-    .pf-showcase-grid {
-        grid-template-columns: repeat(2, 238px);
-        gap: 20px;
-        padding: 28px 0 6px;
-    }
 
     .pf-sheet {
         width: 238px;
@@ -2604,21 +2047,11 @@ header > * {
         width: 13px;
         height: 13px;
     }
+
 }
 
-@media (min-width: 1001px) {
-    .pf-showcase-grid {
-        grid-template-columns: repeat(4, 238px);
-    }
-}
-
-/* ---------- Phones: smaller portfolio cards (folder-sized) ---------- */
+/* ---------- Phones: smaller portfolio cards ---------- */
 @media (max-width: 760px) {
-    .pf-showcase-grid {
-        grid-template-columns: minmax(0, 238px);
-        gap: 16px;
-        padding: 24px 0 6px;
-    }
 
     .pf-sheet {
         width: min(238px, 100%);
@@ -2666,8 +2099,8 @@ header > * {
         width: 13px;
         height: 13px;
     }
-}
 
+}
 
 /* =========================================================
    TECH LOGOS: safe sizes on every phone browser
@@ -2708,15 +2141,15 @@ header > * {
         max-width: 26px;
         max-height: 26px;
     }
+
 }
 
 /* touch screens: no hover name bubble that stays stuck after a tap */
 @media (hover: none) {
     .tech-item::after { display: none; }
     .tech-item:hover svg { transform: none; }
+
 }
-
-
 
 /* =========================================================
    PORTFOLIO SLIDER: curved cards that move by themselves
@@ -2774,12 +2207,13 @@ header > * {
         --ch: 192px;
     }
     .pf-stage { perspective: 900px; }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
     .pf-carousel .pf-sheet { will-change: auto; }
-}
 
+}
 
 /* =========================================================
    CONTACT: compact and tidy
@@ -2787,23 +2221,13 @@ header > * {
 
 /* Desktop and tablet: cards stay in a neat, narrower column instead of stretching across the screen */
 @media (min-width: 901px) {
-    .contact-info,
-    .contact-meta,
     .contact-cta,
     .contact-panel {
         max-width: 920px;
     }
-
-    .contact-info { gap: 18px; margin-bottom: 22px; }
-    .info-card { padding: 16px 20px; border-radius: 20px; }
-    .info-ico { width: 46px; height: 46px; font-size: 21px; }
-    .info-value { font-size: clamp(16px, 1.5vw, 19px); }
     .info-copy { width: 38px; height: 38px; font-size: 16px; }
-    .info-quick { margin-top: 14px; padding-top: 14px; }
-    .info-q { padding: 8px 12px; font-size: 14px; }
-    .contact-meta { margin-bottom: 32px; padding-top: 18px; }
-    .social-link { width: 42px; height: 42px; font-size: 19px; }
     .contact-cta { padding: 22px 26px; border-radius: 20px; }
+
 }
 
 /* Phones: everything smaller and closer together */
@@ -2815,42 +2239,7 @@ header > * {
 
     .section-contact .section-tag { margin-bottom: 14px; }
 
-    .contact-info { gap: 10px; margin-bottom: 14px; }
-
-    .info-card { padding: 12px 14px; border-radius: 18px; }
-    .info-card.in-view:hover { transform: none; }
-
-    .info-row,
-    .info-main { gap: 10px; }
-
-    .info-ico { width: 38px; height: 38px; font-size: 18px; }
-
-    .info-text { overflow: hidden; }
-    .info-label { margin-bottom: 1px; font-size: 11.5px; }
-
-    .info-value {
-        font-size: 14.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        overflow-wrap: normal;
-        text-overflow: ellipsis;
-    }
-
     .info-copy { width: 34px; height: 34px; font-size: 15px; }
-
-    .info-quick { gap: 8px; margin-top: 10px; padding-top: 10px; }
-    .info-q { padding: 7px 10px; gap: 6px; font-size: 13px; }
-
-    .contact-meta {
-        flex-wrap: wrap;
-        gap: 10px 12px;
-        margin-bottom: 16px;
-        padding-top: 12px;
-    }
-    .contact-status { gap: 8px; font-size: 12.5px; }
-    .contact-socials { gap: 8px; }
-    .social-link { width: 32px; height: 32px; font-size: 15px; }
-    .social-link:hover { transform: none; }
 
     .contact-cta { gap: 10px; padding: 14px 16px; border-radius: 18px; }
     .contact-cta-title { margin-bottom: 3px; font-size: 17px; }
@@ -2871,8 +2260,8 @@ header > * {
     .form-actions { gap: 10px; }
     .form-note { font-size: 11.5px; line-height: 1.5; }
     .form-actions .pf-go { padding: 11px 18px; font-size: 14px; }
-}
 
+}
 
 /* =========================================================
    CONTACT on phones: extra small and tight
@@ -2880,31 +2269,7 @@ header > * {
 @media (max-width: 600px) {
     .section-contact { padding-top: 14px; padding-bottom: 40px; }
     .section-contact .section-tag { margin-bottom: 10px; }
-
-    .contact-info { gap: 8px; margin-bottom: 10px; }
-
-    .info-card { padding: 9px 12px; border-radius: 15px; }
-    .info-row, .info-main { gap: 9px; }
-    .info-ico { width: 32px; height: 32px; font-size: 16px; }
-    .info-label { font-size: 10.5px; }
-    .info-value { font-size: 13px; }
     .info-copy { width: 30px; height: 30px; font-size: 13px; }
-
-    .info-quick { gap: 6px; margin-top: 8px; padding-top: 8px; }
-    .info-q { padding: 5px 8px; gap: 5px; font-size: 12px; border-radius: 999px; }
-    .info-q i { font-size: 14px; }
-
-    .contact-meta {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 10px;
-        padding-top: 9px;
-    }
-    .contact-status { min-width: 0; gap: 6px; font-size: 11px; line-height: 1.4; }
-    .contact-socials { flex: none; gap: 6px; }
-    .social-link { width: 28px; height: 28px; font-size: 14px; }
 
     .contact-cta {
         flex-direction: row;
@@ -2932,34 +2297,12 @@ header > * {
     .contact-title { font-size: 17px; }
     .contact-sub { margin-bottom: 10px; font-size: 12px; }
     .form-grid { gap: 10px; }
-}
 
-/* phones: status text and social icons share one row */
-@media (max-width: 600px) {
-    .contact-meta {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 10px;
-        padding-top: 9px;
-    }
-    .contact-status { flex: 1; min-width: 0; }
-    .contact-socials { flex: none; }
 }
-
 
 /* =========================================================
-   ABOUT: stats live inside the photo card, "My journey" is gone
+   ABOUT: stats live inside the photo card
    ========================================================= */
-.about-grid {
-    grid-template-areas:
-        "card bio"
-        "card cv"
-        "marq marq";
-}
-
 .about-card-tilt { flex-wrap: wrap; }
 
 .about-card-tilt .about-stats {
@@ -2984,32 +2327,23 @@ header > * {
 .about-card-tilt .about-stat-num { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; }
 .about-card-tilt .about-stat-label { margin-top: 2px; font-size: 12px; line-height: 1.4; }
 
-@media (max-width: 900px) {
-    .about-grid {
-        grid-template-areas:
-            "card"
-            "bio"
-            "marq"
-            "cv";
-    }
-}
-
 @media (max-width: 600px) {
     .about-card-tilt .about-stats { gap: 8px; padding-top: 12px; }
     .about-card-tilt .about-stat { padding: 8px 10px; border-radius: 12px; }
     .about-card-tilt .about-stat-num { font-size: 22px; }
     .about-card-tilt .about-stat-label { font-size: 11px; }
+
 }
 
 /* contact section is now only the "Let's talk" card + form */
 .section-contact { padding-bottom: 60px; }
 @media (min-width: 1001px) { .section-contact { padding-bottom: 80px; }
-}
 
+}
 
 /* ---------- Hero: liquid sculpture layer (WebGL) ----------
    Fixed behind the whole page (above the video, below every section).
-   --sc-p (0 -> 1) is set by hero-sculpture.js while scrolling: the sculpture
+   --sc-p (0 -> 1) is set by hero-matter.js while scrolling: the sculpture
    gets blurred and dimmed, like it sits behind frosted glass. */
 .hero-sculpture {
     position: fixed;
@@ -3063,8 +2397,8 @@ header > * {
         image-rendering: auto;
         transform: translateZ(0);
     }
-}
 
+}
 
 /* =========================================================
    Services: six small glass cards (Discover > Launch)
@@ -3128,6 +2462,7 @@ header > * {
         opacity: 0.95;
         transform: translate(12%, 12%);
     }
+
 }
 
 .svc-num {
@@ -3181,6 +2516,7 @@ header > * {
         gap: 14px;
         max-width: 640px;
     }
+
 }
 
 @media (max-width: 600px) {
@@ -3201,14 +2537,15 @@ header > * {
     .svc-card p { font-size: 12.5px; line-height: 1.5; }
 
     .svc-card.in-view:active { transform: scale(0.97); }
+
 }
 
 /* very narrow phones: keep two columns but tighter text */
 @media (max-width: 360px) {
     .svc-card { padding: 14px 12px 16px; }
     .svc-card p { font-size: 12px; }
-}
 
+}
 
 /* =========================================================
    FINAL PASS: about card (bio inside), services list on phones,
@@ -3245,11 +2582,13 @@ header > * {
         gap: 20px;
     }
     .about-tech { justify-content: center; }
+
 }
 
 @media (max-width: 600px) {
     .about-card-tilt .about-bio { font-size: 14px; padding-top: 12px; }
     .about-card-tilt .about-cv { width: 100%; justify-content: center; }
+
 }
 
 /* ---------- Services: one card per row on phones ---------- */
@@ -3274,11 +2613,13 @@ header > * {
     .svc-card h3 { grid-column: 2; margin: 0; font-size: 16px; }
     .svc-card p { grid-column: 2; font-size: 12.5px; line-height: 1.45; }
     .svc-num { top: 50%; right: 14px; transform: translateY(-50%); font-size: 11px; }
+
 }
 
 /* ---------- Footer: rounded top corners ---------- */
 .hwf-root { border-radius: 36px 36px 0 0; }
-@media (max-width: 640px) { .hwf-root { border-radius: 26px 26px 0 0; } }
+@media (max-width: 640px) { .hwf-root { border-radius: 26px 26px 0 0; } 
+}
 
 /* ---------- Contact: plain card for the CTA ---------- */
 .contact-cta {
@@ -3323,16 +2664,19 @@ header > * {
 @media (min-width: 901px) {
     .contact-panel { max-width: 620px; }
     .contact-cta { max-width: 920px; }
+
 }
 
 @media (max-width: 600px) {
     .contact-cta { padding: 14px 16px; border-radius: 16px; }
     .contact-card { padding: 16px 14px 14px; border-radius: 16px; }
+
 }
 
 @media (max-width: 600px) {
     .contact-card .field input,
     .contact-card .field textarea { font-size: 16px; }
+
 }
 .contact-card .field label { margin-bottom: 0; }
 
@@ -3340,12 +2684,36 @@ header > * {
 @media (min-width: 901px) {
     .contact-panel,
     .contact-cta { max-width: 640px; }
+
 }
 
-/* The sculpture's placeholder image has a light grey backdrop: it flashed on every refresh
-   until WebGL was ready. It is now hidden; it only appears if WebGL is unavailable. */
-.hero-sculpture .sh-root:not([data-gl="off"]) .sh-fallback {
-    opacity: 0 !important;
-    transition: none !important;
+/* ---------- Hero background canvas (hero-matter.js) ---------- */
+.hero-sculpture .matter-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 1.4s ease;
 }
-.hero-sculpture .sh-root { background: transparent !important; }
+.hero-sculpture.matter-ready .matter-canvas { opacity: 1; }
+.hero-sculpture.matter-off { display: none; }
+
+/* ---------- Headline texts cannot be selected or copied ---------- */
+h1, h2, h3,
+.hero-tag,
+.section-tag,
+.section-title,
+.hero-content h1,
+.pf-sheet-title,
+.about-name,
+.contact-cta-title,
+.contact-title,
+.hwf-brand strong,
+.hwf-col h3 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}

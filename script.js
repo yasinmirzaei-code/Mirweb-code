@@ -262,12 +262,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* =========================================================
-   PORTFOLIO: glass cards that slide out of the folder
+   PORTFOLIO: glass cards in a curved, self-moving slider
    ========================================================= */
-
-function tr(key, fallback) {
-    return fallback;
-}
 
 function initPortfolio() {
     const carousel = document.getElementById('pf-carousel');
@@ -356,6 +352,12 @@ function initPortfolio() {
     function frame(now) {
         const dt = Math.min(0.05, (now - (last || now)) / 1000);
         last = now;
+
+        // Off screen and idle: nothing to animate, skip the layout work
+        if (!visible && !dragging && !velocity) {
+            requestAnimationFrame(frame);
+            return;
+        }
 
         if (!dragging) {
             if (Math.abs(velocity) > 0.0004) {
@@ -529,7 +531,7 @@ function initContact() {
 
     const emptyItem = document.createElement('li');
     emptyItem.className = 'cc-empty';
-    emptyItem.textContent = tr('cc.empty', 'No country found');
+    emptyItem.textContent = 'No country found';
     emptyItem.hidden = true;
 
     const fragment = document.createDocumentFragment();
@@ -732,16 +734,16 @@ function initContact() {
         setError('message', '');
 
         if (name.length < 2) {
-            fail('name', tr('err.name', 'Please enter your name.'));
+            fail('name', 'Please enter your name.');
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-            fail('email', tr('err.email', 'Please enter a valid email address.'));
+            fail('email', 'Please enter a valid email address.');
         }
         if (digits.length < 5 || digits.length > 14) {
-            fail('phone', tr('err.phone', 'Please enter a valid phone number.'));
+            fail('phone', 'Please enter a valid phone number.');
         }
         if (message.length < 10) {
-            fail('message', tr('err.message', 'Please tell me a little more about your project.'));
+            fail('message', 'Please tell me a little more about your project.');
         }
 
         if (firstInvalid) {
@@ -765,8 +767,8 @@ function initContact() {
         const label = document.getElementById('f-submit-label');
         if (label) {
             label.textContent = isBusy
-                ? tr('form.sending', 'Sending...')
-                : tr('form.send', 'Send message');
+                ? 'Sending...'
+                : 'Send message';
         }
     }
 
@@ -794,7 +796,7 @@ function initContact() {
 
         if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
             console.error('Contact form is not connected: set FORM_ENDPOINT at the top of script.js');
-            statusEl.textContent = tr('status.notconnected', 'The contact form is not connected yet.');
+            statusEl.textContent = 'The contact form is not connected yet.';
             return;
         }
 
@@ -817,7 +819,7 @@ function initContact() {
             })
             .catch(function (error) {
                 console.error(error);
-                statusEl.textContent = tr('status.failed', 'Something went wrong. Please check your connection and try again.');
+                statusEl.textContent = 'Something went wrong. Please check your connection and try again.';
             })
             .then(function () {
                 sending = false;

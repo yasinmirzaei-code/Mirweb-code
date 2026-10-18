@@ -140,6 +140,7 @@
 @media (max-width: 1000px) {
     .hwf-top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hwf-brand { grid-column: 1 / -1; }
+
 }
 
 /* ---------- Phones ---------- */
@@ -162,8 +163,10 @@
 
     .hwf-rule { padding: 14px 22px calc(92px + env(safe-area-inset-bottom, 0px)); font-size: 11px; flex-wrap: wrap; }
     .hwf-up { white-space: nowrap; }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
     .hwf-col a, .hwf-up, .hwf-copy { transition: none; }
+
 }
