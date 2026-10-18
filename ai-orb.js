@@ -9,59 +9,52 @@
 (function () {
     'use strict';
 
-    /* ---------- copy (English / Persian) ---------- */
+    /* ---------- copy ---------- */
     var TEXT = {
         en: { placeholder: 'Ask anything…', labels: ['Thinking', 'Searching', 'Analyzing', 'Composing'], done: 'Done', answerTitle: 'Answer', reset: 'New question', send: 'Send', open: 'Ask AI', close: 'Close', fallback: 'The answer goes here' },
-        fa: { placeholder: 'هر چیزی بپرس…', labels: ['در حال فکر کردن', 'در حال جست‌وجو', 'در حال تحلیل', 'در حال نوشتن'], done: 'انجام شد', answerTitle: 'پاسخ', reset: 'پرسش تازه', send: 'ارسال', open: 'از هوش مصنوعی بپرس', close: 'بستن', fallback: 'پاسخ اینجا نمایش داده می‌شود' }
     };
     var COPY = {};
-    function isFa() { return document.documentElement.lang === 'fa'; }
-    function loadCopy() { var s = TEXT[isFa() ? 'fa' : 'en']; for (var k in s) COPY[k] = s[k]; }
+    function loadCopy() { var s = TEXT.en; for (var k in s) COPY[k] = s[k]; }
     loadCopy();
 
     /* ---------- built-in answers (only facts that are on this site) ----------
-       Each topic has keywords (English + Persian). The topic with the most matching
+       Each topic has keywords (English). The topic with the most matching
        keywords wins; if two topics tie, both answers are joined (when short enough).
        To teach the assistant something new, add an entry below. */
     var FAQ = [
-        { k: ['hello', 'hey', 'hi', 'سلام', 'درود', 'خوبی'], en: 'Hi! Ask me about the services, tools, projects, process or contact details on this site.', fa: 'سلام! درباره‌ی خدمات، ابزارها، نمونه‌کارها، روند کار یا راه‌های تماس همین سایت بپرس.' },
-        { k: ['thanks', 'thank', 'bye', 'مرسی', 'ممنون', 'خداحافظ', 'سپاس'], en: "You're welcome! If you have a project in mind, the contact form is the quickest way to reach Yasin.", fa: 'خواهش می‌کنم! اگه پروژه‌ای در سر داری، فرم تماس سریع‌ترین راه برای رسیدن به یاسین است.' },
-        { k: ['who are you', 'what are you', 'are you ai', 'bot', 'assistant', 'تو کی', 'ربات', 'هوش مصنوعی', 'دستیار'], en: "I'm a small assistant on this site. I answer from the information on it: services, tools, projects and how to get in touch.", fa: 'من یک دستیار کوچک همین سایتم و فقط از اطلاعات خود سایت جواب می‌دهم: خدمات، ابزارها، نمونه‌کارها و راه‌های تماس.' },
-        { k: ['who is', 'yasin', 'mirzaei', 'introduce', 'about you', 'about yasin', 'یاسین', 'میرزایی', 'کیست', 'معرفی', 'درباره‌ی یاسین', 'درباره تو', 'اسمت'], en: 'Yasin Mirzaei is a web designer and developer. He builds fast, modern, good-looking websites: he starts from your goals, then shapes the design and the small animated details.', fa: 'یاسین میرزایی طراح و برنامه‌نویس وب است و سایت‌های سریع، مدرن و زیبا می‌سازد. اول هدف شما را می‌شناسد، بعد طراحی و جزئیات متحرک را می‌سازد.' },
-        { k: ['service', 'offer', 'what do you do', 'design', 'develop', 'build', 'خدمات', 'طراحی', 'چه کار', 'چیکار', 'می‌سازی', 'برنامه‌نویسی'], en: 'Yasin offers web design, web development and digital experiences: fast, responsive sites with smooth animations.', fa: 'یاسین طراحی سایت، برنامه‌نویسی وب و ساخت تجربه‌های دیجیتال انجام می‌دهد؛ سایت‌های سریع و واکنش‌گرا با انیمیشن‌های نرم.' },
-        { k: ['tool', 'tech', 'stack', 'wordpress', 'html', 'css', 'javascript', 'git', 'language', 'ابزار', 'تکنولوژی', 'وردپرس', 'جاوااسکریپت'], en: 'The main tools are HTML, CSS, JavaScript, WordPress and Git.', fa: 'ابزارهای اصلی: HTML، CSS، جاوااسکریپت، وردپرس و Git.' },
-        { k: ['price', 'cost', 'rate', 'quote', 'budget', 'how much', 'هزینه', 'قیمت', 'تعرفه', 'بودجه', 'چقدر'], en: 'Pricing depends on the project. Describe your idea in the contact form and Yasin will reply.', fa: 'هزینه به پروژه بستگی دارد. ایده‌ات را از طریق فرم تماس بنویس تا یاسین پاسخ بدهد.' },
-        { k: ['how long', 'deadline', 'delivery', 'duration', 'turnaround', 'چقدر طول', 'زمان', 'مدت', 'تحویل', 'ددلاین'], en: "Timing depends on the size of the project. Describe what you need in the contact form and Yasin will tell you what's realistic.", fa: 'زمان به بزرگی پروژه بستگی دارد. نیازت را در فرم تماس بنویس تا یاسین زمان واقعی را بگوید.' },
-        { k: ['email', 'mail', 'gmail', 'ایمیل', 'جیمیل'], en: 'Email: yasinmirzaei715@gmail.com. You can copy it with the copy button in the contact section.', fa: 'ایمیل: yasinmirzaei715@gmail.com . با دکمه‌ی کپی در بخش تماس می‌توانی آن را کپی کنی.' },
-        { k: ['phone', 'number', 'whatsapp', 'call', 'mobile', 'شماره', 'تلفن', 'واتس', 'تماس تلفنی', 'موبایل'], en: 'Phone and WhatsApp: +98 999 104 9494. There are WhatsApp and Telegram buttons in the contact section.', fa: 'تلفن و واتس‌اپ: \u200E+98 999 104 9494\u200E . در بخش تماس دکمه‌های واتس‌اپ و تلگرام هم هست.' },
-        { k: ['telegram', 'تلگرام', 'تلگرم'], en: 'Telegram: @yasinmiirzaei (there is a Telegram button in the contact section).', fa: 'تلگرام: \u200E@yasinmiirzaei\u200E (در بخش تماس دکمه‌ی تلگرام هم هست).' },
-        { k: ['contact', 'hire', 'reach', 'get in touch', 'message', 'form', 'تماس', 'ارتباط', 'استخدام', 'پیام', 'فرم'], en: 'You can reach Yasin by email (yasinmirzaei715@gmail.com), Telegram (@yasinmiirzaei), WhatsApp, or the "Let\'s talk" form in the contact section.', fa: 'می‌توانی از راه ایمیل (yasinmirzaei715@gmail.com)، تلگرام (\u200E@yasinmiirzaei\u200E)، واتس‌اپ یا فرم «شروع گفتگو» در بخش تماس با یاسین در ارتباط باشی.' },
-        { k: ['available', 'availability', 'free', 'open to', 'new project', 'آزاد', 'وقت دارد', 'پذیرای', 'پروژه جدید'], en: 'Yes, Yasin is currently available for new projects.', fa: 'بله، یاسین الان پذیرای پروژه‌های تازه است.' },
-        { k: ['experience', 'years', 'how many', 'تجربه', 'سابقه', 'سال'], en: 'More than 2 years of experience and 4 projects delivered so far.', fa: 'بیش از ۲ سال تجربه و ۴ پروژه‌ی تحویل‌شده.' },
-        { k: ['journey', 'history', 'started', 'career', 'timeline', 'مسیر', 'شروع', 'سابقه کاری', 'تاریخچه'], en: 'Journey: 2025, started designing websites. 2025, launched the first client projects. 2026, building cinematic, detail-rich web experiences.', fa: 'مسیر کاری: ۲۰۲۵ شروع طراحی سایت. ۲۰۲۵ اولین پروژه‌های مشتری. ۲۰۲۶ ساخت سایت‌های سینمایی و پرجزئیات.' },
-        { k: ['process', 'workflow', 'how do you work', 'start a project', 'steps', 'روند', 'مراحل', 'چطور کار', 'چگونه کار', 'شروع پروژه'], en: 'Yasin first learns your goals and audience, then builds the design and the small animated details. To start, send a short description through the "Let\'s talk" form.', fa: 'یاسین اول هدف و مخاطب شما را می‌شناسد، بعد طراحی و جزئیات متحرک را می‌سازد. برای شروع، یک توضیح کوتاه از طریق فرم «شروع گفتگو» بفرست.' },
-        { k: ['mobile', 'responsive', 'phone screen', 'screen', 'device', 'ریسپانسیو', 'گوشی', 'واکنش‌گرا', 'صفحه'], en: 'The sites are built to look good and work well on every screen, from phones to desktops.', fa: 'سایت‌ها طوری ساخته می‌شوند که روی همه‌ی صفحه‌ها، از گوشی تا دسکتاپ، خوب دیده شوند و کار کنند.' },
-        { k: ['animation', 'animated', 'motion', 'effect', 'style', 'cinematic', 'انیمیشن', 'حرکت', 'افکت', 'سینمایی', 'سبک'], en: 'Yasin likes smooth scroll animations and small animated details, which give the sites a cinematic, alive feel.', fa: 'یاسین به انیمیشن‌های نرم هنگام اسکرول و جزئیات متحرک اهمیت می‌دهد تا سایت حس سینمایی و زنده داشته باشد.' },
-        { k: ['persian', 'farsi', 'english', 'translate', 'فارسی', 'انگلیسی', 'زبان'], en: 'This site is available in English and Persian. Use the EN / FA button at the top.', fa: 'این سایت انگلیسی و فارسی است. با دکمه‌ی EN / FA بالای صفحه زبان را عوض کن.' },
-        { w: 2, k: ['cactus', 'کاکتوس'], en: 'Cactus Cafe (2026): a warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations.', fa: 'Cactus Cafe (۲۰۲۶): وب‌سایتی گرم و مدرن برای یک کافه با تم کویری، با منوی تصویری و انیمیشن‌های نرم هنگام اسکرول.' },
-        { w: 2, k: ['shell', 'seaside', 'booking', 'reservation', 'رزرو', 'ساحلی'], en: 'Shell Cafe (2026): a seaside cafe website with a clean menu and a booking experience that works great on every screen.', fa: 'Shell Cafe (۲۰۲۶): سایت یک کافه ساحلی با منوی مرتب و تجربه‌ی رزرو که روی همه‌ی صفحه‌ها عالی کار می‌کند.' },
-        { w: 2, k: ['nimbus', 'agency', 'corporate', 'company', 'آژانس', 'شرکتی', 'سازمانی'], en: 'Nimbus Agency (2025): a corporate website for a digital agency, with a bold, modern look and a clear structure.', fa: 'Nimbus Agency (۲۰۲۵): سایت سازمانی یک آژانس دیجیتال با ظاهری جسور و مدرن و ساختاری روشن.' },
-        { w: 2, k: ['pulse', 'store', 'shop', 'ecommerce', 'e-commerce', 'checkout', 'online store', 'فروشگاه', 'خرید', 'پالس'], en: 'Pulse Store (2025): a fast online store with clean product browsing and a simple checkout flow.', fa: 'Pulse Store (۲۰۲۵): فروشگاه آنلاین سریع با مرور راحت محصولات و فرایند خرید ساده.' },
-        { k: ['cafe', 'restaurant', 'menu', 'کافه', 'رستوران', 'منو'], en: 'Cafe work: Cactus Cafe (desert theme, menu showcase) and Shell Cafe (seaside, menu and booking). See them in the Portfolio section.', fa: 'نمونه‌کارهای کافه: Cactus Cafe (تم کویری و منوی تصویری) و Shell Cafe (ساحلی با منو و رزرو). در بخش نمونه‌کارها ببینشان.' },
-        { k: ['portfolio', 'projects', 'your work', 'samples', 'examples', 'نمونه', 'پروژه‌ها', 'کارها'], en: 'Selected work: Cactus Cafe, Shell Cafe, Nimbus Agency and Pulse Store. Ask about any of them or see the Portfolio section.', fa: 'نمونه‌کارها: Cactus Cafe، Shell Cafe، Nimbus Agency و Pulse Store. درباره‌ی هرکدام بپرس یا بخش نمونه‌کارها را ببین.' }
+        { k: ['hello', 'hey', 'hi'], en: 'Hi! Ask me about the services, tools, projects, process or contact details on this site.' },
+        { k: ['thanks', 'thank', 'bye'], en: "You're welcome! If you have a project in mind, the contact form is the quickest way to reach Yasin." },
+        { k: ['who are you', 'what are you', 'are you ai', 'bot', 'assistant'], en: "I'm a small assistant on this site. I answer from the information on it: services, tools, projects and how to get in touch." },
+        { k: ['who is', 'yasin', 'mirzaei', 'introduce', 'about you', 'about yasin'], en: 'Yasin Mirzaei is a web designer and developer. He builds fast, modern, good-looking websites: he starts from your goals, then shapes the design and the small animated details.' },
+        { k: ['service', 'offer', 'what do you do', 'design', 'develop', 'build'], en: 'Process in six steps: Discover, Strategy, Design, Development, Test and Launch. Fast, responsive sites with smooth animations.' },
+        { k: ['tool', 'tech', 'stack', 'wordpress', 'html', 'css', 'javascript', 'git', 'language'], en: 'The main tools are HTML, CSS, JavaScript, WordPress and Git.' },
+        { k: ['price', 'cost', 'rate', 'quote', 'budget', 'how much'], en: 'Pricing depends on the project. Describe your idea in the contact form and Yasin will reply.' },
+        { k: ['how long', 'deadline', 'delivery', 'duration', 'turnaround'], en: "Timing depends on the size of the project. Describe what you need in the contact form and Yasin will tell you what's realistic." },
+        { k: ['email', 'mail', 'gmail'], en: 'Email: yasinmirzaei715@gmail.com. You can copy it with the copy button in the contact section.' },
+        { k: ['phone', 'number', 'whatsapp', 'call', 'mobile'], en: 'Phone and WhatsApp: +98 999 104 9494. There are WhatsApp and Telegram buttons in the contact section.' },
+        { k: ['telegram'], en: 'Telegram: @yasinmiirzaei (there is a Telegram button in the contact section).' },
+        { k: ['contact', 'hire', 'reach', 'get in touch', 'message', 'form'], en: 'You can reach Yasin by email (yasinmirzaei715@gmail.com), Telegram (@yasinmiirzaei), WhatsApp, or the "Let\'s talk" form in the contact section.' },
+        { k: ['available', 'availability', 'free', 'open to', 'new project'], en: 'Yes, Yasin is currently available for new projects.' },
+        { k: ['experience', 'years', 'how many'], en: 'More than 2 years of experience and 4 projects delivered so far.' },
+        { k: ['journey', 'history', 'started', 'career', 'timeline'], en: 'Journey: 2025, started designing websites. 2025, launched the first client projects. 2026, building cinematic, detail-rich web experiences.' },
+        { k: ['process', 'workflow', 'how do you work', 'start a project', 'steps'], en: 'The process has six steps: Discover, Strategy, Design, Development, Test and Launch. To start, send a short description through the "Let\'s talk" form.' },
+        { k: ['mobile', 'responsive', 'phone screen', 'screen', 'device'], en: 'The sites are built to look good and work well on every screen, from phones to desktops.' },
+        { k: ['animation', 'animated', 'motion', 'effect', 'style', 'cinematic'], en: 'Yasin likes smooth scroll animations and small animated details, which give the sites a cinematic, alive feel.' },
+        { w: 2, k: ['cactus'], en: 'Cactus Cafe (2026): a warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations.' },
+        { w: 2, k: ['shell', 'seaside', 'booking', 'reservation'], en: 'Shell Cafe (2026): a seaside cafe website with a clean menu and a booking experience that works great on every screen.' },
+        { w: 2, k: ['nimbus', 'agency', 'corporate', 'company'], en: 'Nimbus Agency (2025): a corporate website for a digital agency, with a bold, modern look and a clear structure.' },
+        { w: 2, k: ['pulse', 'store', 'shop', 'ecommerce', 'e-commerce', 'checkout', 'online store'], en: 'Pulse Store (2025): a fast online store with clean product browsing and a simple checkout flow.' },
+        { k: ['cafe', 'restaurant', 'menu'], en: 'Cafe work: Cactus Cafe (desert theme, menu showcase) and Shell Cafe (seaside, menu and booking). See them in the Portfolio section.' },
+        { k: ['portfolio', 'projects', 'your work', 'samples', 'examples'], en: 'Selected work: Cactus Cafe, Shell Cafe, Nimbus Agency and Pulse Store. Ask about any of them or see the Portfolio section.' }
     ];
 
     function hasKeyword(text, kw, tokens) {
         if (/^[a-z]+$/.test(kw) && kw.length <= 3) return new RegExp('(^|[^a-z])' + kw + '([^a-z]|$)').test(text);
-        if (/[\u0600-\u06FF]/.test(kw) && kw.length <= 3) {
-            // short Persian words must match a whole word (so "منو" does not match inside "ممنون")
-            return tokens.some(function (t) { return t === kw || (t.indexOf(kw) === 0 && t.length <= kw.length + 2); });
-        }
         return text.indexOf(kw) !== -1;
     }
     function localAnswer(q) {
-        var fa = isFa(), text = q.toLowerCase(), scored = [];
-        var tokens = text.split(/[^a-z0-9\u0600-\u06FF\u200c]+/).filter(Boolean);
+        var text = q.toLowerCase(), scored = [];
+        var tokens = text.split(/[^a-z0-9]+/).filter(Boolean);
         FAQ.forEach(function (item, idx) {
             var score = 0;
             item.k.forEach(function (kw) { if (hasKeyword(text, kw, tokens)) score += 1 + (kw.length > 6 ? 0.5 : 0); });
@@ -69,13 +62,12 @@
             if (score > 0) scored.push({ item: item, score: score, idx: idx });
         });
         if (!scored.length) {
-            return fa ? 'این را دقیق نمی‌دانم. درباره‌ی خدمات، ابزارها، نمونه‌کارها، روند کار یا راه‌های تماس بپرس.'
-                      : "I'm not sure about that. Try asking about services, tools, projects, process or how to get in touch.";
+            return "I'm not sure about that. Try asking about services, tools, projects, process or how to get in touch.";
         }
         scored.sort(function (a, b) { return b.score - a.score || a.idx - b.idx; });
-        var first = scored[0].item[fa ? 'fa' : 'en'];
+        var first = scored[0].item.en;
         if (scored[1] && scored[1].score >= scored[0].score * 0.5) {
-            var both = first + ' ' + scored[1].item[fa ? 'fa' : 'en'];
+            var both = first + ' ' + scored[1].item.en;
             if (both.length <= 330) return both;
         }
         return first;
@@ -746,11 +738,9 @@
             launch.title = COPY.open;
             answerEl.setAttribute('aria-label', COPY.answerTitle);
             root.querySelector('.mo-a-title').textContent = COPY.answerTitle;
-            root.setAttribute('data-lang', isFa() ? 'fa' : 'en');
             if (phase === 'idle') { status.innerHTML = ''; curName = null; curLab = null; }
         }
         applyLang();
-        document.addEventListener('sitelangchange', applyLang);
 
         function openWidget() {
             if (isOpen) return;

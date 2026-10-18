@@ -7,20 +7,11 @@
     <meta name="description" content="Modern, creative and functional website design and development.">
     <link rel="icon" href="logo.png">
 
-    <!-- Applies the saved language before the page paints (no flash of left-to-right layout) -->
-    <script>
-        try {
-            if (localStorage.getItem('site-lang') === 'fa') {
-                document.documentElement.lang = 'fa';
-                document.documentElement.dir = 'rtl';
-            }
-        } catch (e) {}
-    </script>
 
-    <!-- Fonts: Syne (headings) + Inter (body text) + Lalezar and Vazirmatn (Persian) -->
+    <!-- Fonts: Syne (headings) + Inter (body text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&family=Lalezar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 
     <link rel="stylesheet" href="style.css?v=7">
@@ -38,34 +29,24 @@
 
     <!-- Logo: outside the header, so it scrolls away with the first page -->
     <a href="#home" class="MIRWEB">
-        <img src="logo.png" alt="Website logo" data-i18n-attr="alt:logo.alt">
+        <img src="logo.png" alt="Website logo">
     </a>
 
-    <!-- Header: language button, hamburger button and navigation -->
+    <!-- Header: hamburger button and navigation -->
     <header>
-        <div class="header-actions">
-            <!-- Language switch: shows the language you can switch to -->
-            <button type="button" class="lang-toggle" id="lang-toggle"
-                aria-label="Switch language to Persian" title="Switch language to Persian"
-                data-i18n-attr="aria-label:lang.aria;title:lang.aria">
-                <i class="ti ti-language" aria-hidden="true"></i>
-                <span data-i18n="lang.label">FA</span>
-            </button>
-
-            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" data-i18n-attr="aria-label:menu.aria">
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-        </div>
 
         <nav class="glass-nav">
             <span class="nav-bubble"></span>
-            <a href="#home" class="active" data-i18n="nav.home">Home</a>
-            <a href="#services" data-i18n="nav.services">Services</a>
-            <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-            <a href="#about" data-i18n="nav.about">About Me</a>
-            <a href="#contact" data-i18n="nav.contact">Contact</a>
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
@@ -75,56 +56,80 @@
         <div class="hero-sculpture" id="hero-sculpture" aria-hidden="true"></div>
 
         <div class="hero-content">
-            <p class="hero-tag" data-i18n="hero.tag">Digital Experience</p>
+            <p class="hero-tag">Digital Experience</p>
 
             <h1>
-                <span class="line"><span data-i18n="hero.l1">Ideas</span></span>
-                <span class="line"><span class="accent" data-i18n="hero.l2">Made Digital</span></span>
+                <span class="line"><span>Ideas</span></span>
+                <span class="line"><span class="accent">Made Digital</span></span>
             </h1>
 
-            <p class="hero-text" data-i18n="hero.text">I design and develop modern websites, web apps and digital experiences that turn your ideas into real solutions.</p>
+            <p class="hero-text">I design and develop modern websites, web apps and digital experiences that turn your ideas into real solutions.</p>
 
             <a href="#portfolio" class="hero-btn">
-                <span data-i18n="hero.btn">View My Work</span>
+                <span>View My Work</span>
                 <span class="arrow">&rarr;</span>
             </a>
         </div>
 
         <div class="scroll-hint">
             <span class="bar"></span>
-            <span data-i18n="hero.scroll">Scroll</span>
+            <span>Scroll</span>
         </div>
     </section>
 
     <!-- Services -->
     <section class="section" id="services">
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="s.tag">Services</p>
+            <p class="section-tag reveal">Services</p>
 
             <h2 class="section-title">
-                <span class="line"><span data-i18n="s.l1">Designed to</span></span>
-                <span class="line"><span class="accent" data-i18n="s.l2">Stand Out</span></span>
+                <span class="line"><span>From idea</span></span>
+                <span class="line"><span class="accent">to launch</span></span>
             </h2>
 
-            <p class="section-text reveal" data-i18n="s.text">From the first sketch to the final launch, I build fast, modern and beautiful websites that make your business stand out.</p>
+            <p class="section-text reveal">A simple six-step process that takes your project from the first conversation to a live, polished website.</p>
 
-            <div class="cards">
-                <article class="card reveal" style="--delay: 0s">
-                    <span class="card-number">01</span>
-                    <h3 data-i18n="s.c1.t">Web Design</h3>
-                    <p data-i18n="s.c1.p">Clean and modern interfaces designed around your brand and your visitors.</p>
+            <div class="svc-grid">
+                <article class="svc-card reveal" style="--delay: 0s">
+                    <span class="svc-num">01</span>
+                    <span class="svc-icon"><i class="ti ti-compass" aria-hidden="true"></i></span>
+                    <h3>Discover</h3>
+                    <p>We talk about your goals, audience and what makes you different.</p>
                 </article>
 
-                <article class="card reveal" style="--delay: 0.15s">
-                    <span class="card-number">02</span>
-                    <h3 data-i18n="s.c2.t">Development</h3>
-                    <p data-i18n="s.c2.p">Fast, responsive websites and web applications built with modern technologies.</p>
+                <article class="svc-card reveal" style="--delay: 0.08s">
+                    <span class="svc-num">02</span>
+                    <span class="svc-icon"><i class="ti ti-route" aria-hidden="true"></i></span>
+                    <h3>Strategy</h3>
+                    <p>A clear plan for structure, content and features before any design starts.</p>
                 </article>
 
-                <article class="card reveal" style="--delay: 0.3s">
-                    <span class="card-number">03</span>
-                    <h3 data-i18n="s.c3.t">Digital Experience</h3>
-                    <p data-i18n="s.c3.p">Smooth animations and details that turn a simple page into a memorable experience.</p>
+                <article class="svc-card reveal" style="--delay: 0.16s">
+                    <span class="svc-num">03</span>
+                    <span class="svc-icon"><i class="ti ti-palette" aria-hidden="true"></i></span>
+                    <h3>Design</h3>
+                    <p>Clean, modern interfaces shaped around your brand and your visitors.</p>
+                </article>
+
+                <article class="svc-card reveal" style="--delay: 0.24s">
+                    <span class="svc-num">04</span>
+                    <span class="svc-icon"><i class="ti ti-code" aria-hidden="true"></i></span>
+                    <h3>Development</h3>
+                    <p>Fast, responsive code with smooth animations and clean details.</p>
+                </article>
+
+                <article class="svc-card reveal" style="--delay: 0.32s">
+                    <span class="svc-num">05</span>
+                    <span class="svc-icon"><i class="ti ti-bug" aria-hidden="true"></i></span>
+                    <h3>Test</h3>
+                    <p>Checked on real phones, tablets and browsers so everything works.</p>
+                </article>
+
+                <article class="svc-card reveal" style="--delay: 0.4s">
+                    <span class="svc-num">06</span>
+                    <span class="svc-icon"><i class="ti ti-rocket" aria-hidden="true"></i></span>
+                    <h3>Launch</h3>
+                    <p>Your site goes live, and I stay close for tweaks and support.</p>
                 </article>
             </div>
         </div>
@@ -133,11 +138,11 @@
     <!-- Portfolio -->
     <section class="section" id="portfolio">
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="p.tag">Selected work</p>
+            <p class="section-tag reveal">Selected work</p>
 
             <h2 class="section-title">
-                <span class="line"><span data-i18n="p.l1">Websites that</span></span>
-                <span class="line"><span class="accent" data-i18n="p.l2">speak for me</span></span>
+                <span class="line"><span>Websites that</span></span>
+                <span class="line"><span class="accent">speak for me</span></span>
             </h2>
 
             <!-- Project cards: they glide by in a curved, self-moving slider.
@@ -151,7 +156,6 @@
                 <article class="pf-sheet" style="--i: 0"
                     data-title="Cactus Cafe" data-year="2026"
                     data-desc="A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations."
-                    data-desc-fa="سایتی گرم و دلنشین برای یک کافه با حال‌وهوای کویری؛ منوی تصویری و حرکت‌های نرم هنگام اسکرول."
                     data-url="#"
                     data-logo="logos/cactus-cafe.svg">
                     <span class="pf-year">2026</span>
@@ -159,7 +163,7 @@
                     <h3 class="pf-sheet-title">Cactus Cafe</h3>
                     <p class="pf-sheet-desc">A warm, modern website for a desert-themed cafe, with a menu showcase and smooth scroll animations.</p>
                     <a href="https://cactus1202.com" class="pf-go pf-go-sm">
-                        <span data-i18n="p.view">View project</span>
+                        <span>View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </article>
@@ -167,7 +171,6 @@
                 <article class="pf-sheet" style="--i: 1"
                     data-title="Shell Cafe" data-year="2026"
                     data-desc="A seaside cafe website with a clean menu and booking experience that works great on every screen."
-                    data-desc-fa="سایت یک کافه ساحلی با منوی مرتب و رزرو آسان که روی همه‌ی صفحه‌ها خوب دیده می‌شود."
                     data-url="#"
                     data-logo="logos/shell-cafe.svg">
                     <span class="pf-year">2026</span>
@@ -175,7 +178,7 @@
                     <h3 class="pf-sheet-title">Shell Cafe</h3>
                     <p class="pf-sheet-desc">A seaside cafe website with a clean menu and booking experience that works great on every screen.</p>
                     <a href="#" class="pf-go pf-go-sm">
-                        <span data-i18n="p.view">View project</span>
+                        <span>View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </article>
@@ -183,7 +186,6 @@
                 <article class="pf-sheet" style="--i: 2"
                     data-title="Nimbus Agency" data-year="2025"
                     data-desc="A corporate website for a digital agency with a bold, modern look and clear structure."
-                    data-desc-fa="سایت سازمانی یک آژانس دیجیتال؛ ظاهری جسور و امروزی با ساختاری روشن و منظم."
                     data-url="#"
                     data-logo="logos/nimbus-agency.svg">
                     <span class="pf-year">2025</span>
@@ -191,7 +193,7 @@
                     <h3 class="pf-sheet-title">Nimbus Agency</h3>
                     <p class="pf-sheet-desc">A corporate website for a digital agency with a bold, modern look and clear structure.</p>
                     <a href="#" class="pf-go pf-go-sm">
-                        <span data-i18n="p.view">View project</span>
+                        <span>View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </article>
@@ -199,7 +201,6 @@
                 <article class="pf-sheet" style="--i: 3"
                     data-title="Pulse Store" data-year="2025"
                     data-desc="A fast online store with a clean product browsing experience and a simple checkout flow."
-                    data-desc-fa="فروشگاه آنلاین سریع با مرور راحت محصولات و خریدی که در چند قدم تمام می‌شود."
                     data-url="#"
                     data-logo="logos/pulse-store.svg">
                     <span class="pf-year">2025</span>
@@ -207,7 +208,7 @@
                     <h3 class="pf-sheet-title">Pulse Store</h3>
                     <p class="pf-sheet-desc">A fast online store with a clean product browsing experience and a simple checkout flow.</p>
                     <a href="#" class="pf-go pf-go-sm">
-                        <span data-i18n="p.view">View project</span>
+                        <span>View project</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                     </a>
                 </article>
@@ -221,11 +222,11 @@
     <!-- About me -->
 <section class="section" id="about">
     <div class="section-inner">
-        <p class="section-tag reveal" data-i18n="a.tag">About me</p>
+        <p class="section-tag reveal">About me</p>
 
         <h2 class="section-title">
-            <span class="line"><span data-i18n="a.l1">Designing the web,</span></span>
-            <span class="line"><span class="accent" data-i18n="a.l2">one detail at a time</span></span>
+            <span class="line"><span>Designing the web,</span></span>
+            <span class="line"><span class="accent">one detail at a time</span></span>
         </h2>
 
         <div class="about-grid">
@@ -234,42 +235,37 @@
             <div class="about-card reveal">
                 <div class="about-card-tilt" id="about-tilt">
                     <div class="about-photo">
-                        <img src="me.PNG" alt="Yasin Mirzaei" width="120" height="150" data-i18n-attr="alt:a.name">
+                        <img src="me.PNG" alt="Yasin Mirzaei" width="120" height="150">
                     </div>
                     <div class="about-info">
-                        <p class="about-name" data-i18n="a.name">Yasin Mirzaei</p>
-                        <p class="about-role" data-i18n="a.role">Web designer and developer</p>
+                        <p class="about-name">Yasin Mirzaei</p>
+                        <p class="about-role">Web designer and developer</p>
                         <span class="about-pill">
                             <span class="about-dot"></span>
-                            <span data-i18n="a.pill">Available for projects</span>
+                            <span>Available for projects</span>
                         </span>
                     </div>
+                    <p class="about-bio">I turn ideas into fast, modern and beautiful websites. Every project starts with your goals, then I shape the design and the small animated details that make it feel alive.</p>
+                    <div class="about-cv-wrap">
+                <a href="cv.pdf" class="about-cv" download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
+                    <span>Download CV</span>
+                </a>
+            </div>
                     <div class="about-stats">
                 <div class="about-stat reveal" style="--delay: 0s">
                     <p class="about-stat-num"><span class="about-cnt" data-to="4">4</span></p>
-                    <p class="about-stat-label" data-i18n="a.stat1">Projects delivered</p>
+                    <p class="about-stat-label">Projects delivered</p>
                 </div>
                 <div class="about-stat reveal" style="--delay: 0.12s">
                     <p class="about-stat-num"><span class="about-cnt" data-to="2">2</span>+</p>
-                    <p class="about-stat-label" data-i18n="a.stat2">Years of experience</p>
+                    <p class="about-stat-label">Years of experience</p>
                 </div>
             </div>
                 </div>
             </div>
-
-            <!-- Short bio -->
-            <p class="about-bio reveal" style="--delay: 0.1s" data-i18n="a.bio">I turn ideas into fast, modern and beautiful websites. Every project starts with your goals, then I shape the design and the small animated details that make it feel alive.</p>
-
-            <!-- Download CV (put your file next to index.html, or delete this block) -->
-            <div class="about-cv-wrap reveal" style="--delay: 0.15s">
-                <a href="cv.pdf" class="about-cv" download>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
-                    <span data-i18n="a.cv">Download CV</span>
-                </a>
-            </div>
-
             <!-- Tools: small floating colored logos -->
-            <div class="about-tech reveal" role="list" aria-label="Tools I use" data-i18n-attr="aria-label:a.tools">
+            <div class="about-tech reveal" role="list" aria-label="Tools I use">
                 <span class="tech-item" role="listitem" style="--n: 0" data-name="HTML" title="HTML"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false"><path fill="#E34F26" d="M5 3h22l-2 22.5L16 29l-9-3.5z"/><path fill="#EF652A" d="M16 5.2v21.6l7.3-2.4L25 5.2z"/><path fill="#fff" d="M10 9h12.2l-.3 3H13.2l.2 3h8.2l-.6 7-5 1.6-5-1.6-.3-4h3l.2 2 2.1.7 2.1-.7.2-2.7H10z"/></svg></span>
                 <span class="tech-item" role="listitem" style="--n: 1" data-name="CSS" title="CSS"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false"><path fill="#1572B6" d="M5 3h22l-2 22.5L16 29l-9-3.5z"/><path fill="#33A9DC" d="M16 5.2v21.6l7.3-2.4L25 5.2z"/><path fill="#fff" d="M22.3 9H10l.3 3h8.6l-.3 3h-8l.3 3h7.4l-.4 4-3 1-3-1-.2-2h-3l.4 4.7 5.8 1.9 5.8-1.9z"/></svg></span>
                 <span class="tech-item" role="listitem" style="--n: 2" data-name="JavaScript" title="JavaScript"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false"><rect x="3" y="3" width="26" height="26" rx="3" fill="#F7DF1E"/><text x="27" y="27" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="13" fill="#1a1a1a">JS</text></svg></span>
@@ -294,11 +290,11 @@
 
             <div class="contact-cta reveal">
                 <div>
-                    <p class="contact-cta-title" data-i18n="c.cta.t">Have a project in mind?</p>
-                    <p class="contact-cta-text" data-i18n="c.cta.p">Tell me about your idea and I will get back to you.</p>
+                    <p class="contact-cta-title">Have a project in mind?</p>
+                    <p class="contact-cta-text">Tell me about your idea and I will get back to you.</p>
                 </div>
                 <button type="button" class="pf-go" id="contact-toggle" aria-expanded="false" aria-controls="contact-panel">
-                    <span data-i18n="c.cta.btn">Let's talk</span>
+                    <span>Let's talk</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </button>
             </div>
@@ -307,29 +303,29 @@
                 <div class="contact-panel-inner">
                     <div class="contact-card">
 
-                        <button type="button" class="contact-close" id="contact-close" aria-label="Close form" data-i18n-attr="aria-label:f.close">&times;</button>
+                        <button type="button" class="contact-close" id="contact-close" aria-label="Close form">&times;</button>
 
                         <form id="contact-form" novalidate>
-                            <h3 class="contact-title" data-i18n="f.title">Let's talk about your project</h3>
-                            <p class="contact-sub" data-i18n="f.sub">Fill in the form and I will contact you as soon as possible.</p>
+                            <h3 class="contact-title">Let's talk about your project</h3>
+                            <p class="contact-sub">Fill in the form and I will contact you as soon as possible.</p>
 
                             <div class="form-grid">
                                 <div class="field">
-                                    <label for="f-name" data-i18n="f.name">Your Name</label>
-                                    <input id="f-name" name="name" type="text" autocomplete="name" placeholder="John Smith" maxlength="80" data-i18n-attr="placeholder:f.name.ph">
+                                    <label for="f-name">Your Name</label>
+                                    <input id="f-name" name="name" type="text" autocomplete="name" placeholder="John Smith" maxlength="80">
                                     <p class="field-error" id="err-name" aria-live="polite"></p>
                                 </div>
 
                                 <div class="field">
-                                    <label for="f-email" data-i18n="f.email">Email</label>
+                                    <label for="f-email">Email</label>
                                     <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" maxlength="120">
                                     <p class="field-error" id="err-email" aria-live="polite"></p>
                                 </div>
 
                                 <div class="field full">
-                                    <label for="f-phone" data-i18n="f.phone">Phone number</label>
+                                    <label for="f-phone">Phone number</label>
                                     <div class="phone-row">
-                                        <button type="button" class="cc-btn" id="cc-btn" aria-haspopup="true" aria-expanded="false" aria-controls="cc-wrap" aria-label="Choose country code" data-i18n-attr="aria-label:f.cc.aria">
+                                        <button type="button" class="cc-btn" id="cc-btn" aria-haspopup="true" aria-expanded="false" aria-controls="cc-wrap" aria-label="Choose country code">
                                             <span class="cc-iso" id="cc-iso">US</span>
                                             <span id="cc-dial">+1</span>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -338,7 +334,7 @@
                                         <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="501 234 567" maxlength="20">
 
                                         <div class="cc-wrap" id="cc-wrap">
-                                            <input type="text" class="cc-search" id="cc-search" placeholder="Search country or code" autocomplete="off" aria-label="Search country" data-i18n-attr="placeholder:f.cc.search;aria-label:f.cc.search">
+                                            <input type="text" class="cc-search" id="cc-search" placeholder="Search country or code" autocomplete="off" aria-label="Search country">
                                             <ul class="cc-list" id="cc-list"></ul>
                                         </div>
                                     </div>
@@ -346,8 +342,8 @@
                                 </div>
 
                                 <div class="field full">
-                                    <label for="f-message" data-i18n="f.msg">Tell me about your project</label>
-                                    <textarea id="f-message" name="message" placeholder="What kind of website do you need? Add your goals, pages, deadline or anything else that helps." maxlength="2000" data-i18n-attr="placeholder:f.msg.ph"></textarea>
+                                    <label for="f-message">Tell me about your project</label>
+                                    <textarea id="f-message" name="message" placeholder="What kind of website do you need? Add your goals, pages, deadline or anything else that helps." maxlength="2000"></textarea>
                                     <p class="field-error" id="err-message" aria-live="polite"></p>
                                 </div>
                             </div>
@@ -356,9 +352,9 @@
                             <input type="text" name="_gotcha" id="f-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                             <div class="form-actions">
-                                <p class="form-note" data-i18n="f.note">Your details are only used to reply to your message.</p>
+                                <p class="form-note">Your details are only used to reply to your message.</p>
                                 <button type="submit" class="pf-go" id="f-submit">
-                                    <span id="f-submit-label" data-i18n="form.send">Send message</span>
+                                    <span id="f-submit-label">Send message</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
                                 </button>
                             </div>
@@ -370,9 +366,9 @@
                             <div class="success-mark">
                                 <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
                             </div>
-                            <h3 class="contact-title"><span data-i18n="success.title">Thank you,</span> <span id="success-name"></span></h3>
-                            <p class="contact-sub" data-i18n="success.sub">Your message has been sent. I will contact you very soon.</p>
-                            <button type="button" class="pf-go" id="send-another" data-i18n="success.another">Send another message</button>
+                            <h3 class="contact-title"><span>Thank you,</span> <span id="success-name"></span></h3>
+                            <p class="contact-sub">Your message has been sent. I will contact you very soon.</p>
+                            <button type="button" class="pf-go" id="send-another">Send another message</button>
                         </div>
 
                     </div>
@@ -382,16 +378,16 @@
         </div>
     </section>
 
-    <!-- Footer: halftone wordmark. Texts: data-i18n keys in script.js. Wordmark word: footer.js (WORD). -->
+    <!-- Footer: halftone wordmark. Wordmark word: footer.js (WORD). -->
     <footer class="hwf-root" id="site-footer">
         <span class="hwf-sr">MIRWEB</span>
         <div class="hwf-top">
             <div class="hwf-brand">
                 <strong>MIRWEB</strong>
-                <span data-i18n="ft.meta">©2026 · Yasin Mirzaei · Web design and development</span>
+                <span>Yasin Mirzaei. Web design and development.</span>
             </div>
             <nav class="hwf-col" aria-label="Social">
-                <h3 data-i18n="ft.social">Social</h3>
+                <h3>Social</h3>
                 <ul>
                     <li><a href="https://github.com/yourname" target="_blank" rel="noopener"><i class="ti ti-brand-github hwf-ic" aria-hidden="true"></i><span>GitHub</span></a></li>
                     <li><a href="https://t.me/yasinmiirzaei" target="_blank" rel="noopener"><i class="ti ti-brand-telegram hwf-ic" aria-hidden="true"></i><span>Telegram</span></a></li>
@@ -400,31 +396,33 @@
                 </ul>
             </nav>
             <nav class="hwf-col" aria-label="Pages">
-                <h3 data-i18n="ft.pages">Pages</h3>
+                <h3>Pages</h3>
                 <ul>
-                    <li><a href="#home"><i class="ti ti-home hwf-ic" aria-hidden="true"></i><span data-i18n="nav.home">Home</span></a></li>
-                    <li><a href="#services"><i class="ti ti-tools hwf-ic" aria-hidden="true"></i><span data-i18n="nav.services">Services</span></a></li>
-                    <li><a href="#portfolio"><i class="ti ti-briefcase hwf-ic" aria-hidden="true"></i><span data-i18n="nav.portfolio">Portfolio</span></a></li>
-                    <li><a href="#about"><i class="ti ti-user hwf-ic" aria-hidden="true"></i><span data-i18n="nav.about">About Me</span></a></li>
-                    <li><a href="#contact"><i class="ti ti-message-circle hwf-ic" aria-hidden="true"></i><span data-i18n="nav.contact">Contact</span></a></li>
+                    <li><a href="#home"><i class="ti ti-home hwf-ic" aria-hidden="true"></i><span>Home</span></a></li>
+                    <li><a href="#services"><i class="ti ti-tools hwf-ic" aria-hidden="true"></i><span>Services</span></a></li>
+                    <li><a href="#portfolio"><i class="ti ti-briefcase hwf-ic" aria-hidden="true"></i><span>Portfolio</span></a></li>
+                    <li><a href="#about"><i class="ti ti-user hwf-ic" aria-hidden="true"></i><span>About Me</span></a></li>
+                    <li><a href="#contact"><i class="ti ti-message-circle hwf-ic" aria-hidden="true"></i><span>Contact</span></a></li>
                 </ul>
             </nav>
             <div class="hwf-col hwf-contact">
-                <h3 data-i18n="ft.contact">Contact</h3>
+                <h3>Contact</h3>
                 <ul>
                     <li>
                         <a href="mailto:yasinmirzaei715@gmail.com" class="hwf-small"><i class="ti ti-mail hwf-ic" aria-hidden="true"></i><span>yasinmirzaei715@gmail.com</span></a>
-                        <button type="button" class="hwf-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email" data-i18n-attr="aria-label:c.mail.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+                        <button type="button" class="hwf-copy" data-copy="yasinmirzaei715@gmail.com" aria-label="Copy email"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
                     </li>
                     <li>
                         <a href="tel:+989991049494" class="hwf-small" dir="ltr"><i class="ti ti-phone hwf-ic" aria-hidden="true"></i><span>+98 999 104 9494</span></a>
-                        <button type="button" class="hwf-copy" data-copy="+989991049494" aria-label="Copy phone number" data-i18n-attr="aria-label:c.phone.copy"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+                        <button type="button" class="hwf-copy" data-copy="+989991049494" aria-label="Copy phone number"><svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
                     </li>
                 </ul>
             </div>
         </div>
+        <div class="hwf-mark" id="hwf-mark" aria-hidden="true"></div>
         <div class="hwf-rule">
-            <button type="button" class="hwf-up" id="hwf-up"><span data-i18n="ft.top">Back to top</span> ↑</button>
+            <span class="hwf-legal">&copy; 2026 MIRWEB</span>
+            <button type="button" class="hwf-up" id="hwf-up"><span>Back to top</span> &uarr;</button>
         </div>
     </footer>
 

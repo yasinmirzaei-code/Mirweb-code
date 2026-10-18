@@ -12,7 +12,7 @@
         word: 'MIRWEB',
         dotGap: 6,          // distance between dot centres (px); phones use a finer 4
         radius: 80,         // how far the pointer pushes (px)
-        crop: 0.2,          // how much of the letters hangs below the bottom edge (0 - 0.6)
+        crop: 0.04,         // how much of the letters hangs below the bottom edge (0 - 0.6)
         grain: 0.5,         // print grain (0 - 1)
         fontFamily: '"Syne", "Inter Tight", "Inter", "Helvetica Neue", Arial, sans-serif',
         fontWeight: 800,
@@ -44,9 +44,10 @@
     function init() {
         var root = document.getElementById('site-footer');
         if (!root) return;
+        var host = document.getElementById('hwf-mark') || root;
         var canvas = document.createElement('canvas');
         canvas.setAttribute('aria-hidden', 'true');
-        root.insertBefore(canvas, root.firstChild);
+        host.appendChild(canvas);
         var ctx = canvas.getContext('2d');
         if (!ctx) return;
 
@@ -61,7 +62,7 @@
         var warm = hex(OPTIONS.warm) || [93, 202, 165];
 
         function layout() {
-            var rect = root.getBoundingClientRect();
+            var rect = host.getBoundingClientRect();
             w = Math.max(1, Math.round(rect.width));
             h = Math.max(1, Math.round(rect.height));
             dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -78,10 +79,16 @@
             m.font = OPTIONS.fontWeight + ' ' + fit + 'px ' + OPTIONS.fontFamily;
             var box = m.measureText(word);
             var cap = box.actualBoundingBoxAscent || fit * 0.72;
-            var c = Math.max(0, Math.min(0.6, OPTIONS.crop));
+            var phone = w < 640;
+            var c = Math.max(0, Math.min(0.6, phone ? 0.06 : OPTIONS.crop));
+            // phones: stretch the letters upward so the wordmark is much taller
+            var k = phone ? Math.max(1, Math.min(h * 0.94 / cap, 3.4)) : 1;
             m.fillStyle = '#000';
             m.textBaseline = 'alphabetic';
-            m.fillText(word, (w - box.width) / 2, h + cap * c);
+            m.save();
+            m.scale(1, k);
+            m.fillText(word, (w - box.width) / 2, h / k + cap * c);
+            m.restore();
             var img = m.getImageData(0, 0, w, h).data;
 
             var gap = Math.max(3, w < 720 ? 4 : OPTIONS.dotGap);
@@ -174,9 +181,9 @@
         function wake() { awake = true; if (!raf && visible) raf = requestAnimationFrame(loop); }
 
         function local(e) { var b = canvas.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; }
-        root.addEventListener('pointermove', function (e) { var p = local(e); px = p[0]; py = p[1]; wake(); });
-        root.addEventListener('pointerleave', function () { px = -1e5; py = -1e5; wake(); });
-        root.addEventListener('pointerdown', function (e) {
+        host.addEventListener('pointermove', function (e) { var p = local(e); px = p[0]; py = p[1]; wake(); });
+        host.addEventListener('pointerleave', function () { px = -1e5; py = -1e5; wake(); });
+        host.addEventListener('pointerdown', function (e) {
             if (reduced || (e.target.closest && e.target.closest('a,button'))) return;
             var p = local(e);
             ring = { x: p[0], y: p[1], t: performance.now() };
@@ -187,11 +194,11 @@
         draw(performance.now());
         wake();
 
-        new ResizeObserver(function () { layout(); wake(); }).observe(root);
+        new ResizeObserver(function () { layout(); wake(); }).observe(host);
         new IntersectionObserver(function (entries) {
             visible = entries[0] ? entries[0].isIntersecting : true;
             if (visible) wake();
-        }).observe(root);
+        }).observe(host);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layout(); wake(); });
 
         var up = document.getElementById('hwf-up');

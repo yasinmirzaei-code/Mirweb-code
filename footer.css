@@ -1,5 +1,6 @@
 /* =========================================================
-   FOOTER: giant MIRWEB wordmark printed in halftone dots (footer.js draws the canvas)
+   FOOTER: links on top, giant MIRWEB wordmark printed in halftone dots below.
+   footer.js draws the dots inside .hwf-mark.
    ========================================================= */
 .hwf-root {
     --hwf-bg: #060606;
@@ -8,47 +9,67 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    height: 500px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     isolation: isolate;
     background: var(--hwf-bg);
     color: var(--hwf-ink);
+    border-top: 1px solid rgba(233, 228, 218, 0.08);
     -webkit-font-smoothing: antialiased;
 }
-.hwf-root canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; }
 
+/* ---------- Links area ---------- */
 .hwf-top {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(0, 1fr));
-    gap: 24px;
-    padding: clamp(22px, 3.4vw, 40px) clamp(20px, 3.4vw, 44px) 0;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: 40px 32px;
+    padding: clamp(40px, 5vw, 72px) clamp(20px, 4vw, 56px) clamp(28px, 3vw, 44px);
     font-family: var(--hwf-mono);
-    font-size: 10.5px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    line-height: 1.75;
-    pointer-events: none;           /* the dots underneath stay reactive */
+    font-size: 13px;
+    letter-spacing: .08em;
+    line-height: 1.6;
 }
-.hwf-top a, .hwf-top button { pointer-events: auto; }
 
-.hwf-brand strong { display: block; font-weight: 500; }
-.hwf-brand span { opacity: .45; }
-.hwf-col h3 { margin: 0; font: inherit; opacity: .4; font-weight: 500; }
-.hwf-col ul { list-style: none; margin: 0; padding: 0; }
-.hwf-col li { display: flex; align-items: center; gap: 8px; }
+.hwf-brand strong {
+    display: block;
+    margin-bottom: 12px;
+    font-family: "Syne", var(--hwf-mono);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: .18em;
+}
+.hwf-brand span {
+    display: block;
+    max-width: 30ch;
+    opacity: .5;
+    text-transform: none;
+    letter-spacing: .02em;
+}
+
+.hwf-col h3 {
+    margin: 0 0 16px;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    opacity: .4;
+}
+.hwf-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.hwf-col li { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
 .hwf-col a, .hwf-up {
     color: inherit;
     text-decoration: none;
-    opacity: .78;
+    opacity: .85;
     background: none;
     border: 0;
     padding: 0;
     font: inherit;
     letter-spacing: inherit;
-    text-transform: inherit;
     cursor: pointer;
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
@@ -56,100 +77,93 @@
     background-position: 0 100%;
     transition: opacity .25s ease, background-size .35s cubic-bezier(.2, .7, .1, 1);
 }
+.hwf-col a { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
 .hwf-col a:hover, .hwf-up:hover { opacity: 1; background-size: 100% 1px; }
 .hwf-col a:focus-visible, .hwf-up:focus-visible, .hwf-copy:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; opacity: 1; }
+.hwf-ic { font-size: 20px; line-height: 1; flex: none; opacity: .9; }
 
-/* small email and phone with a tiny copy button */
-.hwf-small { text-transform: none; letter-spacing: .03em; font-size: 10.5px; }
+.hwf-small { letter-spacing: .02em; font-size: 13px; }
+.hwf-small span { overflow-wrap: anywhere; }
+
 .hwf-copy {
     flex: none;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 0;
-    background: none;
+    border: 1px solid rgba(233, 228, 218, 0.14);
+    border-radius: 8px;
+    background: rgba(233, 228, 218, 0.04);
     color: inherit;
-    opacity: .55;
+    opacity: .7;
     cursor: pointer;
-    transition: opacity .25s ease, color .25s ease;
+    transition: opacity .25s ease, color .25s ease, border-color .25s ease;
 }
-.hwf-copy:hover { opacity: 1; }
-.hwf-copy svg { width: 13px; height: 13px; }
+.hwf-copy:hover { opacity: 1; border-color: rgba(233, 228, 218, 0.35); }
+.hwf-copy svg { width: 15px; height: 15px; }
 .hwf-copy .ck { display: none; }
-.hwf-copy.ok { color: #5DCAA5; opacity: 1; }
+.hwf-copy.ok { color: #5DCAA5; opacity: 1; border-color: rgba(93, 202, 165, .5); }
 .hwf-copy.ok .cp { display: none; }
 .hwf-copy.ok .ck { display: block; }
 
+/* ---------- Halftone wordmark ---------- */
+.hwf-mark {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: clamp(170px, 19vw, 380px);
+    touch-action: pan-y;
+}
+.hwf-mark canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; }
+
+/* ---------- Bottom bar ---------- */
 .hwf-rule {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin: clamp(18px, 2.6vw, 30px) clamp(20px, 3.4vw, 44px) 0;
-    padding-top: 12px;
+    padding: 16px clamp(84px, 6vw, 96px) calc(18px + env(safe-area-inset-bottom, 0px)) clamp(20px, 4vw, 56px);
     border-top: .5px solid color-mix(in srgb, var(--hwf-ink) 16%, transparent);
     font-family: var(--hwf-mono);
-    font-size: 10.5px;
-    letter-spacing: .18em;
+    font-size: 12px;
+    letter-spacing: .14em;
     text-transform: uppercase;
 }
+.hwf-legal { opacity: .45; text-transform: none; letter-spacing: .04em; }
 .hwf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-@media (max-width: 1100px) {
-    .hwf-root { height: 440px; }
-}
-@media (max-width: 720px) {
-    .hwf-root { height: 440px; }
-    .hwf-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 16px; }
-    .hwf-brand, .hwf-contact { grid-column: 1 / -1; }
+/* ---------- Tablets ---------- */
+@media (max-width: 1000px) {
+    .hwf-top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .hwf-brand { grid-column: 1 / -1; }
 }
 
-/* Persian: no tracking, no capitals, a readable face */
-html[lang="fa"] .hwf-top,
-html[lang="fa"] .hwf-rule {
-    font-family: "Vazirmatn", Tahoma, sans-serif;
-    letter-spacing: 0;
-    text-transform: none;
-    font-size: 13px;
-    line-height: 1.9;
+/* ---------- Phones ---------- */
+@media (max-width: 640px) {
+    .hwf-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 20px;
+        padding: 40px 22px 28px;
+        font-size: 14px;
+    }
+    .hwf-brand, .hwf-contact { grid-column: 1 / -1; }
+    .hwf-brand strong { font-size: 26px; }
+    .hwf-brand span { max-width: none; }
+    .hwf-col ul { gap: 14px; }
+    .hwf-small { font-size: 14px; }
+    .hwf-copy { width: 34px; height: 34px; }
+
+    /* much taller wordmark on phones (footer.js stretches the letters upward) */
+    .hwf-mark { height: 300px; }
+
+    .hwf-rule { padding: 14px 22px calc(92px + env(safe-area-inset-bottom, 0px)); font-size: 11px; flex-wrap: wrap; }
+    .hwf-up { white-space: nowrap; }
 }
-html[lang="fa"] .hwf-small { font-family: var(--hwf-mono); font-size: 10.5px; }
 
 @media (prefers-reduced-motion: reduce) {
     .hwf-col a, .hwf-up, .hwf-copy { transition: none; }
 }
-
-
-/* ---------- Bigger footer links, each with its own icon/logo ---------- */
-.hwf-root { height: 600px; }
-.hwf-top { font-size: 15px; letter-spacing: .12em; line-height: 1.6; gap: 32px; }
-.hwf-small { font-size: 15px; }
-.hwf-col h3 { margin-bottom: 14px; font-size: 13px; }
-.hwf-col ul { display: grid; gap: 12px; }
-.hwf-col li { gap: 10px; }
-.hwf-col a { display: inline-flex; align-items: center; gap: 12px; opacity: .88; }
-.hwf-ic { font-size: 24px; line-height: 1; flex: none; }
-.hwf-copy { width: 28px; height: 28px; }
-.hwf-copy svg { width: 17px; height: 17px; }
-.hwf-brand strong { font-size: 20px; letter-spacing: .2em; }
-.hwf-brand span { font-size: 13px; }
-.hwf-up, .hwf-rule { font-size: 14px; }
-
-@media (max-width: 1100px) {
-    .hwf-root { height: 620px; }
-    .hwf-small { font-size: 14px; }
-}
-@media (max-width: 720px) {
-    .hwf-root { height: 700px; }
-    .hwf-top { font-size: 15px; }
-    .hwf-small { font-size: 13px; word-break: break-all; }
-}
-
-html[lang="fa"] .hwf-top,
-html[lang="fa"] .hwf-rule { font-size: 16px; }
-html[lang="fa"] .hwf-small { font-size: 14px; }

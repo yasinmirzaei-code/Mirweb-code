@@ -62,10 +62,6 @@
 }
 .mo-root.open { visibility: visible; opacity: 1; transition: opacity .35s ease; }
 .mo-root *, .mo-root *::before, .mo-root *::after { box-sizing: border-box; }
-.mo-root[data-lang="fa"] .mo-a-body,
-.mo-root[data-lang="fa"] .mo-a-head { direction: rtl; text-align: right; }
-.mo-root[data-lang="fa"] .mo-status,
-.mo-root[data-lang="fa"] .mo-reset { font-family: "Vazirmatn", Tahoma, sans-serif; }
 
 .mo-bg {
     position: absolute;
@@ -267,10 +263,8 @@
 }
 .mo-root[data-phase="answered"] .mo-answer { pointer-events: auto; }
 .mo-a-head { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: .06em; color: rgba(255, 255, 255, .62); }
-.mo-root[data-lang="fa"] .mo-a-head { letter-spacing: 0; font-size: 13px; }
 .mo-a-dot { display: block; width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px #34d399; transform: scale(var(--dotS, 0)); }
 .mo-a-body { margin: 8px 0 0; font-size: 14.5px; line-height: 1.5; color: rgba(255, 255, 255, .92); }
-.mo-root[data-lang="fa"] .mo-a-body { line-height: 1.9; }
 .mo-w { display: inline-block; opacity: 0; will-change: transform, opacity; }
 
 /* status label under the orb */

@@ -137,17 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Language switch changes link widths and fonts: measure the bubble again
-    document.addEventListener('sitelangchange', function () {
-        moveBubbleTo(activeLink);
-        setTimeout(function () { moveBubbleTo(activeLink); }, 250);
-        if (document.fonts && document.fonts.ready) {
-            setTimeout(function () {
-                document.fonts.ready.then(function () { moveBubbleTo(activeLink); });
-            }, 100);
-        }
-    });
-
     /* ---------- Hamburger menu (tablet and phone) ---------- */
     function closeMenu() {
         nav.classList.remove('open');
@@ -277,11 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
    ========================================================= */
 
 function tr(key, fallback) {
-    return (window.I18N && window.I18N.t) ? window.I18N.t(key) : fallback;
-}
-
-function isFa() {
-    return Boolean(window.I18N) && window.I18N.lang === 'fa';
+    return fallback;
 }
 
 function initPortfolio() {
@@ -334,17 +319,6 @@ function initPortfolio() {
             sheet.style.setProperty('--my', (event.clientY - r.top).toFixed(0) + 'px');
         });
     });
-
-    // Persian or English description
-    function renderTexts() {
-        const fa = isFa();
-        sheets.forEach(function (sheet) {
-            const desc = sheet.querySelector('.pf-sheet-desc');
-            if (desc) desc.textContent = (fa && sheet.dataset.descFa) || sheet.dataset.desc;
-        });
-    }
-    renderTexts();
-    document.addEventListener('sitelangchange', renderTexts);
 
     /* Curved layout: the centre card is flat, the others turn towards the centre and fade out */
     function layout() {
@@ -460,7 +434,7 @@ function initPortfolio() {
    CONTACT: opening panel, country codes, validation, sending
    ========================================================= */
 
-/* Persian and Arabic digits are turned into normal digits (so typing in Persian works) */
+/* Arabic-script digits are turned into normal digits (phone field accepts any keyboard) */
 function toLatinDigits(text) {
     return String(text)
         .replace(/[\u06F0-\u06F9]/g, function (ch) { return String(ch.charCodeAt(0) - 0x06F0); })
@@ -587,10 +561,6 @@ function initContact() {
     });
     fragment.appendChild(emptyItem);
     ccList.appendChild(fragment);
-
-    document.addEventListener('sitelangchange', function () {
-        emptyItem.textContent = tr('cc.empty', 'No country found');
-    });
 
     function selectCountry(iso) {
         const found = countries.filter(function (c) {
@@ -867,240 +837,6 @@ function initContact() {
 }
 
 
-
-/* =========================================================
-   LANGUAGE SWITCH (English / Persian)
- 
-   How it works:
-   - Every element with data-i18n="key" gets its text from the FA
-     dictionary below when Persian is on. The English text is read
-     from the HTML itself, so index.html stays your English source.
-   - data-i18n-attr="placeholder:key;aria-label:key" does the same
-     for attributes.
-   - To add a new translated text: put data-i18n="my.key" on the
-     element and add "my.key" to the FA dictionary.
-   ========================================================= */
- 
-(function () {
-    'use strict';
- 
-    var STORAGE_KEY = 'site-lang';
- 
-    /* ---------- Persian texts ---------- */
-    var FA = {
-        // Navigation
-        'nav.home': 'خانه',
-        'nav.services': 'خدمات',
-        'nav.portfolio': 'نمونه‌کارها',
-        'nav.about': 'درباره من',
-        'nav.contact': 'تماس',
-        'menu.aria': 'باز و بسته کردن منو',
-        'logo.alt': 'لوگوی میرویب',
-
-        'lang.label': 'EN',
-        'lang.aria': 'تغییر زبان به انگلیسی',
-
-        // Footer
-        'ft.meta': '۲۰۲۶ · یاسین میرزایی · طراحی و توسعه وب',
-        'ft.social': 'شبکه‌ها',
-        'ft.pages': 'صفحه‌ها',
-        'ft.contact': 'تماس',
-        'ft.top': 'بازگشت به بالا',
-
-        // Hero
-        'hero.tag': 'طراحی و توسعه وب',
-        'hero.l1': 'وب‌سایتی که',
-        'hero.l2': 'دیده می‌شود',
-        'hero.text': 'من یاسین هستم. سایت‌هایی می‌سازم که هم چشم را می‌گیرند و هم بی‌نقص کار می‌کنند؛ سریع، تمیز و کاملاً هم‌رنگ برند شما.',
-        'hero.btn': 'نمونه‌کارها را ببینید',
-        'hero.scroll': 'ادامه',
-
-        // Services
-        's.tag': 'خدمات',
-        's.l1': 'هر آنچه برای',
-        's.l2': 'دیده‌شدن لازم است',
-        's.text': 'از اولین خط‌های طرح تا روز انتشار کنار شما هستم تا سایتی بسازیم که اعتماد بسازد و برای کسب‌وکارتان مشتری بیاورد.',
-        's.c1.t': 'طراحی سایت',
-        's.c1.p': 'ظاهری شیک و خوانا که شخصیت برند شما را نشان می‌دهد و بازدیدکننده را تا آخر صفحه همراهی می‌کند.',
-        's.c2.t': 'برنامه‌نویسی وب',
-        's.c2.p': 'کدنویسی تمیز با وردپرس یا کد دستی؛ سایتی سبک و سریع که روی موبایل و دسکتاپ بی‌نقص دیده می‌شود.',
-        's.c3.t': 'جزئیات و حرکت',
-        's.c3.p': 'انیمیشن‌های ظریف و افکت‌های نرم که یک صفحه معمولی را به تجربه‌ای به‌یادماندنی تبدیل می‌کنند.',
-
-        // Portfolio
-        'p.tag': 'کارهای انجام‌شده',
-        'p.l1': 'سایت‌هایی که',
-        'p.l2': 'خودشان گویا هستند',
-        'p.view': 'دیدن پروژه',
-        'p.folder': 'پوشه نمونه‌کار',
-        'p.folder.meta': '4 پروژه',
-        'p.folder.aria': 'باز و بسته کردن پوشه نمونه‌کارها',
-
-        // About
-        'a.tag': 'درباره من',
-        'a.l1': 'پشت هر سایت خوب،',
-        'a.l2': 'توجه به ریزه‌کاری‌هاست',
-        'a.name': 'یاسین میرزایی',
-        'a.role': 'طراح و برنامه‌نویس وب',
-        'a.pill': 'پذیرای پروژه‌های تازه',
-        'a.bio': 'عاشق ساختن سایت‌هایی هستم که ساده به نظر می‌رسند اما پشتشان فکر و دقت زیادی است. اول هدف و مخاطب شما را می‌شناسم، بعد طراحی و جزئیات متحرک را یکی‌یکی می‌سازم.',
-        'a.cv': 'دریافت رزومه',
-        'a.stat1': 'پروژه موفق',
-        'a.stat2': 'سال تجربه',
-        'a.jtitle': 'مسیر حرفه‌ای',
-        'a.j1': 'قدم اول در طراحی سایت',
-        'a.j2': 'همکاری با اولین مشتری‌ها',
-        'a.j3': 'ساخت سایت‌های سینمایی و پرجزئیات',
-        'a.tools': 'ابزارهای کاری من',
-
-        // Contact
-        'c.tag': 'ارتباط با من',
-        'c.l1': 'بیایید چیزی',
-        'c.l2': 'عالی بسازیم',
-        'c.text': 'ایده یا پروژه‌ای در سر دارید؟ از هر راهی که راحت‌ترید پیام بدهید.',
-        'c.mail.label': 'ایمیل',
-        'c.mail.copy': 'کپی ایمیل',
-        'c.phone.label': 'تماس و پیام',
-        'c.phone.copy': 'کپی شماره',
-        'c.wa': 'واتس‌اپ',
-        'c.tg': 'تلگرام',
-        'c.status': 'هر روز از ۹ صبح تا ۹ شب پاسخگو هستم',
-        'c.cta.t': 'پروژه‌ای در سر دارید؟',
-        'c.cta.p': 'ایده‌تان را برایم بنویسید؛ سریع جواب می‌دهم.',
-        'c.cta.btn': 'شروع گفتگو',
-
-        // Contact form
-        'f.close': 'بستن فرم',
-        'f.title': 'بیایید پروژه‌تان را شروع کنیم',
-        'f.sub': 'چند خط درباره کارتان بنویسید تا با شما تماس بگیرم.',
-        'f.name': 'نام شما',
-        'f.name.ph': 'مثلاً علی رضایی',
-        'f.email': 'ایمیل',
-        'f.phone': 'شماره موبایل',
-        'f.cc.aria': 'انتخاب کد کشور',
-        'f.cc.search': 'جست‌وجوی کشور یا کد',
-        'f.msg': 'پروژه‌تان چیست؟',
-        'f.msg.ph': 'چه سایتی لازم دارید؟ از هدف، صفحه‌ها و زمان‌بندی بنویسید تا دقیق‌تر راهنمایی‌تان کنم.',
-        'f.note': 'اطلاعات شما فقط برای پاسخ دادن به همین پیام استفاده می‌شود.',
-        'form.send': 'ارسال پیام',
-        'success.title': 'سپاس،',
-        'success.sub': 'پیامتان رسید. خیلی زود با شما در ارتباط خواهم بود.',
-        'success.another': 'پیام تازه',
-
-        // Texts used only by script.js
-        'form.sending': 'در حال ارسال…',
-        'cc.empty': 'کشوری پیدا نشد',
-        'err.name': 'لطفاً نامتان را بنویسید.',
-        'err.email': 'ایمیل واردشده درست به نظر نمی‌رسد.',
-        'err.phone': 'شماره تلفن واردشده معتبر نیست.',
-        'err.message': 'کمی بیشتر درباره پروژه‌تان بنویسید.',
-        'status.notconnected': 'فرم تماس هنوز فعال نشده است.',
-        'status.failed': 'ارسال انجام نشد. اینترنت را بررسی کنید و دوباره تلاش کنید.'
-    };
- 
-    /* ---------- English texts that exist only in script.js ---------- */
-    var EN_EXTRA = {
-        'form.sending': 'Sending...',
-        'cc.empty': 'No country found',
-        'err.name': 'Please enter your name.',
-        'err.email': 'Please enter a valid email address.',
-        'err.phone': 'Please enter a valid phone number.',
-        'err.message': 'Please tell me a little more about your project.',
-        'status.notconnected': 'The contact form is not connected yet.',
-        'status.failed': 'Something went wrong. Please check your connection and try again.'
-    };
- 
-    var root = document.documentElement;
-    var records = [];
-    var enDom = {};
-    var current = 'en';
- 
-    function readSaved() {
-        try {
-            var saved = localStorage.getItem(STORAGE_KEY);
-            return saved === 'fa' ? 'fa' : 'en';
-        } catch (error) {
-            return 'en';
-        }
-    }
- 
-    /* Returns the text for a key in the current language */
-    function t(key) {
-        if (current === 'fa' && FA[key] !== undefined) return FA[key];
-        if (enDom[key] !== undefined) return enDom[key];
-        if (EN_EXTRA[key] !== undefined) return EN_EXTRA[key];
-        return key;
-    }
- 
-    /* Remember the original English text of every translatable element */
-    function collect() {
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-            var key = el.getAttribute('data-i18n');
-            var en = el.textContent.trim();
-            records.push({ el: el, key: key, attr: null, en: en });
-            if (enDom[key] === undefined) enDom[key] = en;
-        });
- 
-        document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
-            el.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
-                var parts = pair.split(':');
-                if (parts.length < 2) return;
- 
-                var attr = parts[0].trim();
-                var key = parts[1].trim();
-                var en = el.getAttribute(attr) || '';
- 
-                records.push({ el: el, key: key, attr: attr, en: en });
-                if (enDom[key] === undefined) enDom[key] = en;
-            });
-        });
-    }
- 
-    function apply(lang, silent) {
-        current = lang === 'fa' ? 'fa' : 'en';
- 
-        root.setAttribute('lang', current);
-        root.setAttribute('dir', current === 'fa' ? 'rtl' : 'ltr');
- 
-        records.forEach(function (record) {
-            var value = (current === 'fa' && FA[record.key] !== undefined)
-                ? FA[record.key]
-                : record.en;
- 
-            if (record.attr) {
-                record.el.setAttribute(record.attr, value);
-            } else {
-                record.el.textContent = value;
-            }
-        });
- 
-        if (!silent) {
-            try {
-                localStorage.setItem(STORAGE_KEY, current);
-            } catch (error) { /* private mode: the choice is just not saved */ }
- 
-            document.dispatchEvent(new CustomEvent('sitelangchange', {
-                detail: { lang: current }
-            }));
-        }
-    }
- 
-    collect();
-    apply(readSaved(), true);
- 
-    var switchBtn = document.getElementById('lang-toggle');
-    if (switchBtn) {
-        switchBtn.addEventListener('click', function () {
-            apply(current === 'fa' ? 'en' : 'fa');
-        });
-    }
- 
-    window.I18N = {
-        t: t,
-        set: apply,
-        get lang() { return current; }
-    };
-})();
 
 /* =========================================================
    COPY BUTTONS (email and phone): really copy, then show a check mark
